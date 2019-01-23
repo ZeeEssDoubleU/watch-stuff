@@ -1,0 +1,20 @@
+.ui.menu.top-menu {
+   border: none; // remove Semantic UI's bottom border
+   .logo {
+      width: 17rem;
+   }
+   .nav-container {
+      flex-grow: 1; // take available space in flex container
+      padding: 0;
+      .search-input {
+         padding-left: 0;
+         width: 50%;
+         Form {
+            width: 100%;
+         }
+      }
+   }
+   .header-icon {
+      color: #a0a0a0;
+   }
+}
