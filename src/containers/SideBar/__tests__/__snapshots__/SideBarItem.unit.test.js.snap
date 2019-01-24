@@ -1,0 +1,121 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SideBarItem renders empty SideBarItem 1`] = `
+<MenuItem
+  className="sidebar-item"
+>
+  <div
+    className="sidebar-item-alignment-container"
+  >
+    <span>
+      <Icon
+        as="i"
+        size="large"
+      />
+    </span>
+    <span />
+  </div>
+</MenuItem>
+`;
+
+exports[`SideBarItem renders highlight SideBarItem that navigates to /feed/trending 1`] = `
+<MenuItem
+  className="sidebar-item"
+>
+  <div
+    className="sidebar-item-alignment-container"
+  >
+    <span>
+      <Icon
+        as="i"
+        name="fire"
+        size="large"
+      />
+    </span>
+    <span>
+      Trending
+    </span>
+  </div>
+</MenuItem>
+`;
+
+exports[`SideBarItem renders highlighted SideBarItem that navigates to /feed/trending 1`] = `
+<MenuItem
+  className="sidebar-item"
+>
+  <div
+    className="sidebar-item-alignment-container"
+  >
+    <span>
+      <Icon
+        as="i"
+        name="fire"
+        size="large"
+      />
+    </span>
+    <span>
+      Trending
+    </span>
+  </div>
+</MenuItem>
+`;
+
+exports[`SideBarItem renders highlighted SideBarItem with no navigation 1`] = `
+<MenuItem
+  className="sidebar-item"
+>
+  <div
+    className="sidebar-item-alignment-container"
+  >
+    <span>
+      <Icon
+        as="i"
+        name="fire"
+        size="large"
+      />
+    </span>
+    <span>
+      Trending
+    </span>
+  </div>
+</MenuItem>
+`;
+
+exports[`SideBarItem renders non-highlighted SideBarItem that navigates to /feed/trending 1`] = `
+<MenuItem
+  className="sidebar-item"
+>
+  <div
+    className="sidebar-item-alignment-container"
+  >
+    <span>
+      <Icon
+        as="i"
+        name="fire"
+        size="large"
+      />
+    </span>
+    <span>
+      Trending
+    </span>
+  </div>
+</MenuItem>
+`;
+
+exports[`renders SideBarItem 1`] = `
+<MenuItem
+  className="sidebar-item"
+>
+  <div
+    className="sidebar-item-alignment-container"
+  >
+    <span>
+      <Icon
+        as="i"
+        size="large"
+      />
+    </span>
+    <span />
+  </div>
+</MenuItem>
+`;

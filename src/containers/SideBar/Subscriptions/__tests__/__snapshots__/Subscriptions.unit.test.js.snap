@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders Subscriptions 1`] = `
+<Fragment>
+  <SideBarHeader
+    title="Subscriptions"
+  />
+  <Subscription
+    broadcasting={true}
+    label="Music Channel"
+  />
+  <Subscription
+    amountNewVideos={10}
+    label="Coursea"
+  />
+  <Subscription
+    amountNewVideos={23}
+    label="TEDx Talks"
+  />
+  <Subscription
+    amountNewVideos={4}
+    label="Standford iOs"
+  />
+  <Subscription
+    amountNewVideos={114}
+    label="Udacity"
+  />
+  <Divider />
+</Fragment>
+`;
