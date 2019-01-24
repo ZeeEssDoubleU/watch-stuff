@@ -1,12 +1,17 @@
 import React, { Component } from "react";
-import HeaderNav from "./containers/HeaderNav/HeaderNav";
+
+import HeaderNav from "./containers/HeaderNav/HeaderNav.js";
+import SideBar from "./containers/SideBar/SideBar.js";
 
 const API_KEY = "AIzaSyCY1Z702IHnKeFqnF0G6xRxoLnosXwXF2Y";
 
 class App extends Component {
 	render() {
 		return (
-			<HeaderNav />
+         <div>
+            <HeaderNav />
+            <SideBar />
+         </div>
 		);
 	}
 }

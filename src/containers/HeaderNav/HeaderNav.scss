@@ -1,7 +1,9 @@
+@import '../../styles/shared.scss';
+
 .ui.menu.top-menu {
    border: none; // remove Semantic UI's bottom border
    .logo {
-      width: 17rem;
+      width: $sidebar-left-width;
    }
    .nav-container {
       flex-grow: 1; // take available space in flex container
