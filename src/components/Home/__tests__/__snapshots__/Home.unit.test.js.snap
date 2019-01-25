@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders Home 1`] = `
+<div
+  className="home"
+>
+  <VideoPreview />
+</div>
+`;
