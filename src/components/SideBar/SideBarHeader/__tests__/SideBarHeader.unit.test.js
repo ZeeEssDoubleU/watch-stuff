@@ -4,12 +4,12 @@ import { shallow } from "enzyme";
 import SideBarHeader from "../SideBarHeader.js";
 
 describe("SideBarHeader", () => {
-	test("renders SideBarHeader with props.title=null", () => {
+	test("renders SideBarHeader with props.title null", () => {
 		const wrapper = shallow(<SideBarHeader />);
 		expect(wrapper).toMatchSnapshot();
 	});
 
-	test("renders SideBarHeader with props.title=''", () => {
+	test("renders SideBarHeader with props.title empty", () => {
 		const wrapper = shallow(<SideBarHeader title="" />);
 		expect(wrapper).toMatchSnapshot();
 	});

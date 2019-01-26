@@ -1,9 +1,22 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders Home 1`] = `
-<div
-  className="home"
->
-  <VideoPreview />
-</div>
+<Fragment>
+  <SideBar />
+  <div
+    className="home"
+  >
+    <div
+      className="responsive-video-grid-container"
+    >
+      <VideoGrid
+        title="Trending"
+      />
+      <VideoGrid
+        hideDivider={true}
+        title="Autos & Vehicles"
+      />
+    </div>
+  </div>
+</Fragment>
 `;
