@@ -3,7 +3,7 @@ import { Menu, Divider } from "semantic-ui-react";
 
 import "./SideBar.scss";
 import SideBarHeader from "./SideBarHeader/SideBarHeader.js";
-import SideBarItem from "./Subscriptions/__tests__/__snapshots__/SideBarItem.js";
+import SideBarItem from "./SideBarItem/SideBarItem.js";
 import Subscriptions from "./Subscriptions/Subscriptions.js";
 import SideBarFooter from "./SideBarFooter/SideBarFooter.js";
 

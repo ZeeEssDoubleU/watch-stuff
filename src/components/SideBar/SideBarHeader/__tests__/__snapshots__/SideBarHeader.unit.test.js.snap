@@ -25,11 +25,3 @@ exports[`SideBarHeader renders SideBarHeader with sample title 1`] = `
   </MenuHeader>
 </MenuItem>
 `;
-
-exports[`renders SideBarHeader 1`] = `
-<MenuItem>
-  <MenuHeader
-    className="side-bar-header"
-  />
-</MenuItem>
-`;
