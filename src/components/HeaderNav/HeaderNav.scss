@@ -2,18 +2,23 @@
 
 .ui.menu.top-menu {
    border: none; // remove Semantic UI's bottom border
-   .logo {
-      width: $sidebar-left-width;
-   }
    .nav-container {
+      display: flex;
       flex-grow: 1; // take available space in flex container
-      padding: 0;
+      justify-content: space-between;
+      .logo {
+         width: $sidebar-left-width;
+      }
       .search-input {
+         flex-grow: 1;
          padding-left: 0;
-         width: 50%;
+         max-width: 640px;
          Form {
             width: 100%;
          }
+      }
+      .menu {
+         display: flex;
       }
    }
    .header-icon {

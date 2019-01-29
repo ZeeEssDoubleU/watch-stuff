@@ -6,20 +6,25 @@ exports[`renders HeaderNav 1`] = `
   className="top-menu"
   fixed="top"
 >
-  <MenuItem
-    className="logo"
-    header={true}
-  >
-    <Image
-      as="img"
-      size="tiny"
-      src="logo.jpg"
-      ui={true}
-    />
-  </MenuItem>
   <MenuMenu
     className="nav-container"
   >
+    <MenuItem
+      className="logo"
+      header={true}
+    >
+      <Link
+        replace={false}
+        to="/"
+      >
+        <Image
+          as="img"
+          size="tiny"
+          src="logo.jpg"
+          ui={true}
+        />
+      </Link>
+    </MenuItem>
     <MenuItem
       className="search-input"
     >
@@ -36,9 +41,7 @@ exports[`renders HeaderNav 1`] = `
         </FormField>
       </Form>
     </MenuItem>
-    <MenuMenu
-      position="right"
-    >
+    <MenuMenu>
       <MenuItem>
         <Icon
           as="i"

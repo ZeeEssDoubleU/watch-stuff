@@ -1,0 +1,9 @@
+@import './styles/shared.scss';
+
+.app-layout {
+   margin-top: $header-nav-height;
+
+   ::-webkit-scrollbar {
+      width: 6px;
+   }
+}
