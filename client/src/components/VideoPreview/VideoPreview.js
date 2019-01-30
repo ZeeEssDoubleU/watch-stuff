@@ -5,8 +5,10 @@ import "./VideoPreview.scss";
 
 class VideoPreview extends Component {
 	render() {
+		const horizontal = this.props.horizontal ? " horizontal" : "";
+
 		return (
-			<div className="video-preview">
+			<div className={"video-preview" + horizontal}>
 				<div className="image-container">
 					<Image src="http://via.placeholder.com/210x118" />
 					<div className="time-label">

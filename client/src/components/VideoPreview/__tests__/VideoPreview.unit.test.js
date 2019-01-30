@@ -3,7 +3,14 @@ import { shallow } from "enzyme";
 
 import VideoPreview from "../VideoPreview.js";
 
-test("renders VideoPreview", () => {
-   const wrapper = shallow(<VideoPreview />);
-   expect(wrapper).toMatchSnapshot();
+describe("VideoPreview", () => {
+	test("renders vertically", () => {
+		const wrapper = shallow(<VideoPreview />);
+		expect(wrapper).toMatchSnapshot();
+	});
+
+	test("renders horizontally", () => {
+		const wrapper = shallow(<VideoPreview horizontal={true} />);
+		expect(wrapper).toMatchSnapshot();
+	});
 });
