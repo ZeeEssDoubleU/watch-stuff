@@ -3,15 +3,14 @@ import PropTypes from "prop-types";
 
 import "./Watch.scss";
 import Video from "../Video/Video.js";
-import VideoPreview from "../VideoPreview/VideoPreview.js";
+import RelatedVideos from "./RelatedVideos/RelatedVideos.js";
 
 class Watch extends Component {
 	render() {
 		return (
 			<>
 				<Video id="vDjcWlCT8rg" />
-				<VideoPreview horizontal={true} />
-				<VideoPreview />
+				<RelatedVideos />
 			</>
 		);
 	}
