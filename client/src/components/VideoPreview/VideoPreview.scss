@@ -1,4 +1,5 @@
 @import '../../styles/shared.scss';
+
 .video-preview {
    display: grid;
    grid: 118px auto / 210px;
@@ -38,13 +39,11 @@
          text-overflow: ellipsis;
       }
    }
-
    .show-max-two-lines {
       overflow: hidden;
       line-height: 1.4em;
       max-height: 2.8em;
    }
-
    .semi-bold {
       font-weight: 600;
    }
