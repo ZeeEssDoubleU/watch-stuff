@@ -8,10 +8,13 @@ import RelatedVideos from "./RelatedVideos/RelatedVideos.js";
 class Watch extends Component {
 	render() {
 		return (
-			<>
-				<Video id="vDjcWlCT8rg" />
-				<RelatedVideos />
-			</>
+			<div className="watch-grid">
+				<Video id="vDjcWlCT8rg" className="video-container" />
+				<div className="metadata">Metadata here.</div>
+				<div className="video-info">Video info here.</div>
+				<div className="comments">Comments here.</div>
+				<RelatedVideos className="related-videos" />
+			</div>
 		);
 	}
 }

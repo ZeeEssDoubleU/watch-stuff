@@ -9,16 +9,14 @@ const Video = props => {
 	}
 	return (
 		<div className="video-container">
-			<div className="video">
-				<iframe
-					className="video-player"
-					src={`https://www.youtube.com/embed/${props.id}`}
-					frameborder="0"
-					allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-					allowfullscreen
-					title={"video"}
-				/>
-			</div>
+			<iframe
+				className="video-player"
+				src={`https://www.youtube.com/embed/${props.id}`}
+				frameborder="0"
+				allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+				allowfullscreen
+				title={"video"}
+			/>
 		</div>
 	);
 };
