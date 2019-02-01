@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import { Divider } from "semantic-ui-react";
 
 import "./VideoGrid.scss";
-import VideoGridHeader from "./VideoGridHeader/VideoGridHeader.js";
-import VideoPreview from "../VideoPreview/VideoPreview.js";
+import VideoGridHeader from "./VideoGridHeader/VideoGridHeader";
+import VideoPreview from "../VideoPreview/VideoPreview";
 
 const VideoGrid = props => {
 	const divider = props.hideDivider ? null : <Divider />;

@@ -1,5 +1,5 @@
 import React from "react";
-import App from "../App.js";
+import App from "../App";
 import { shallow } from "enzyme";
 
 test("renders", () => {

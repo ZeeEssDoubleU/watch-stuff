@@ -3,8 +3,8 @@ import React from "react";
 import PropTypes from "prop-types";
 
 import "./RelatedVideos.scss";
-import NextUpVideo from "./NextUpVideo/NextUpVideo.js";
-import VideoPreview from "../../VideoPreview/VideoPreview.js";
+import NextUpVideo from "./NextUpVideo/NextUpVideo";
+import VideoPreview from "../../VideoPreview/VideoPreview";
 
 const RelatedVideo = props => {
 	return (

@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import VideoPreview from "../VideoPreview.js";
+import VideoPreview from "../VideoPreview";
 
 describe("VideoPreview", () => {
 	test("renders vertically", () => {

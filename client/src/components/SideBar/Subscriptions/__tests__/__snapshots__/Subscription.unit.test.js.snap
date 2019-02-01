@@ -66,21 +66,3 @@ exports[`Subscription renders non-broadcasting subscription with new videos 1`] 
   </div>
 </MenuItem>
 `;
-
-exports[`renders Subscription 1`] = `
-<MenuItem>
-  <div
-    className="subscription"
-  >
-    <div>
-      <Image
-        as="img"
-        avatar={true}
-        src="http://via.placeholder.com/28x28"
-        ui={true}
-      />
-      <span />
-    </div>
-  </div>
-</MenuItem>
-`;

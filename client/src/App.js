@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 
-import HeaderNav from "./components/HeaderNav/HeaderNav.js";
-import Home from "./components/Home/Home.js";
-import Watch from "./components/Watch/Watch.js";
+import HeaderNav from "./components/HeaderNav/HeaderNav";
+import Home from "./components/Home/Home";
+import Watch from "./components/Watch/Watch";
 
 import "./App.scss";
 

@@ -3,8 +3,8 @@ import PropTypes from "prop-types";
 import { Checkbox, Divider } from "semantic-ui-react";
 
 import "./NextUpVideo.scss";
-import "../../../VideoPreview/VideoPreview.js";
-import VideoPreview from "../../../VideoPreview/VideoPreview.js";
+import "../../../VideoPreview/VideoPreview";
+import VideoPreview from "../../../VideoPreview/VideoPreview";
 
 const NextUpVideo = props => {
 	return (

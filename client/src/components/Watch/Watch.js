@@ -2,17 +2,20 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 
 import "./Watch.scss";
-import Video from "../Video/Video.js";
-import RelatedVideos from "./RelatedVideos/RelatedVideos.js";
+import Video from "../Video/Video";
+import RelatedVideos from "./RelatedVideos/RelatedVideos";
+import VideoInfo from "./VideoInfo/VideoInfo";
+import VideoMetadata from "./VideoMetadata/VIdeoMetadata";
+import Comments from "./Comments/Comments";
 
 class Watch extends Component {
 	render() {
 		return (
 			<div className="watch-grid">
 				<Video id="vDjcWlCT8rg" className="video-container" />
-				<div className="metadata">Metadata here.</div>
-				<div className="video-info">Video info here.</div>
-				<div className="comments">Comments here.</div>
+				<VideoMetadata className="video-metadata" viewCount={1000} />
+				<VideoInfo className='video-info'/>
+				<Comments className='comments'/>
 				<RelatedVideos className="related-videos" />
 			</div>
 		);
