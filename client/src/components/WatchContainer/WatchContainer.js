@@ -11,11 +11,11 @@ import CommentsContainer from "./CommentsContainer/CommentsContainer";
 class WatchContainer extends Component {
 	render() {
 		return (
-			<div className="WatchContainer-grid">
+			<div className="watch-container">
 				<Video id="vDjcWlCT8rg" className="video-container" />
 				<VideoMetadata className="video-metadata" viewCount={1000} />
 				<VideoInfo className='video-info-container'/>
-				<CommentsContainer className='comments'/>
+				<CommentsContainer className='comments-container'/>
 				<RelatedVideos className="related-videos" />
 			</div>
 		);

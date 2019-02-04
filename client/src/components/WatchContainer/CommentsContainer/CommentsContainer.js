@@ -9,7 +9,7 @@ import Comment from "./Comment/Comment";
 class CommentsContainer extends Component {
 	render() {
 		return (
-			<div className="comments">
+			<div className="comments-container">
 				<CommentsHeader />
 				<AddComment />
 				<Comment />
