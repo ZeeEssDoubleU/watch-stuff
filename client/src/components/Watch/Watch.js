@@ -14,7 +14,7 @@ class Watch extends Component {
 			<div className="watch-grid">
 				<Video id="vDjcWlCT8rg" className="video-container" />
 				<VideoMetadata className="video-metadata" viewCount={1000} />
-				<VideoInfo className='video-info'/>
+				<VideoInfo className='video-info-container'/>
 				<Comments className='comments'/>
 				<RelatedVideos className="related-videos" />
 			</div>

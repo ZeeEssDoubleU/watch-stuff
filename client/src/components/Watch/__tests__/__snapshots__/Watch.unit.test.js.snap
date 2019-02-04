@@ -13,7 +13,7 @@ exports[`renders Watch 1`] = `
     viewCount={1000}
   />
   <VideoInfo
-    className="video-info"
+    className="video-info-container"
   />
   <Comments
     className="comments"
