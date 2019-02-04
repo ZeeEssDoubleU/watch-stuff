@@ -20,10 +20,10 @@ class VideoInfo extends Component {
 
 	render() {
 		let visibility = "collapsed";
-		let buttonText = "Show Less";
+		let buttonText = "Show More";
 		if (!this.state.collapsed) {
 			visibility = "expanded";
-			buttonText = "Show More";
+			buttonText = "Show Less";
 		}
 
 		let description = (
@@ -57,7 +57,7 @@ class VideoInfo extends Component {
 						className="show-more-button"
 						compact
 						onClick={this.onToggleCollapseButtonClick}>
-						Show More
+						{buttonText}
 					</Button>
 				</div>
 			</div>

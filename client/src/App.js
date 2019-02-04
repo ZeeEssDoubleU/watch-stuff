@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Route, Switch } from "react-router-dom";
 
-import HeaderNav from "./components/HeaderNav/HeaderNav";
-import Home from "./components/Home/Home";
-import Watch from "./components/Watch/Watch";
+import HeaderNavContainer from "./components/HeaderNavContainer/HeaderNavContainer";
+import HomeContainer from "./components/HomeContainer/HomeContainer";
+import WatchContainer from "./components/WatchContainer/WatchContainer";
 
 import "./App.scss";
 
@@ -13,11 +13,11 @@ class App extends Component {
 	render() {
 		return (
 			<>
-				<HeaderNav />
+				<HeaderNavContainer />
 				<div className="app-layout">
 					<Switch>
-						<Route exact path="/" component={Home} />
-						<Route path="/watch" component={Watch} />
+						<Route exact path="/" component={HomeContainer} />
+						<Route path="/watch" component={WatchContainer} />
 					</Switch>
 				</div>
 			</>

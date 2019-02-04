@@ -2,10 +2,10 @@ import React, { Component } from "react";
 import { Image, Menu, Form, Input, Icon } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
-import "./HeaderNav.scss";
+import "./HeaderNavContainer.scss";
 import logo from "../../assets/images/logo.jpg";
 
-class HeaderNav extends Component {
+class HeaderNavContainer extends Component {
 	render() {
 		return (
 			<Menu borderless className="top-menu" fixed="top">
@@ -45,4 +45,4 @@ class HeaderNav extends Component {
 	}
 }
 
-export default HeaderNav;
+export default HeaderNavContainer;

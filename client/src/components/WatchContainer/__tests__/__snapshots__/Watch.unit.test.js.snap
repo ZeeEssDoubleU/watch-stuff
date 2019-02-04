@@ -23,3 +23,27 @@ exports[`renders Watch 1`] = `
   />
 </div>
 `;
+
+exports[`renders WatchContainer 1`] = `
+<div
+  className="WatchContainer-grid"
+>
+  <Video
+    className="video-container"
+    id="vDjcWlCT8rg"
+  />
+  <VideoMetadata
+    className="video-metadata"
+    viewCount={1000}
+  />
+  <VideoInfo
+    className="video-info-container"
+  />
+  <CommentsContainer
+    className="comments"
+  />
+  <RelatedVideo
+    className="related-videos"
+  />
+</div>
+`;

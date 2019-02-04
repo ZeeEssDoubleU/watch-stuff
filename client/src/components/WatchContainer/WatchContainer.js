@@ -1,30 +1,30 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import "./Watch.scss";
+import "./WatchContainer.scss";
 import Video from "../Video/Video";
 import RelatedVideos from "./RelatedVideos/RelatedVideos";
 import VideoInfo from "./VideoInfo/VideoInfo";
 import VideoMetadata from "./VideoMetadata/VIdeoMetadata";
-import Comments from "./Comments/Comments";
+import CommentsContainer from "./CommentsContainer/CommentsContainer";
 
-class Watch extends Component {
+class WatchContainer extends Component {
 	render() {
 		return (
-			<div className="watch-grid">
+			<div className="WatchContainer-grid">
 				<Video id="vDjcWlCT8rg" className="video-container" />
 				<VideoMetadata className="video-metadata" viewCount={1000} />
 				<VideoInfo className='video-info-container'/>
-				<Comments className='comments'/>
+				<CommentsContainer className='comments'/>
 				<RelatedVideos className="related-videos" />
 			</div>
 		);
 	}
 }
 
-Watch.propTypes = {};
+WatchContainer.propTypes = {};
 
-export default Watch;
+export default WatchContainer;
 
 // video container
 //// video

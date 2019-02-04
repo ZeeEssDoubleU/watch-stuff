@@ -1,10 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders Home 1`] = `
+exports[`renders HomeContainer 1`] = `
 <Fragment>
-  <SideBar />
+  <SideBarContainer />
   <div
-    className="home"
+    className="HomeContainer"
   >
     <div
       className="responsive-video-grid-container"

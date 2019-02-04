@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-import "./Comments.scss";
+import "./CommentsContainer.scss";
 import CommentsHeader from "./CommentsHeader/CommentsHeader";
 import AddComment from "./AddComment/AddComment";
 import Comment from "./Comment/Comment";
 
-class Comments extends Component {
+class CommentsContainer extends Component {
 	render() {
 		return (
 			<div className="comments">
@@ -25,6 +25,6 @@ class Comments extends Component {
 	}
 }
 
-Comments.propTypes = {};
+CommentsContainer.propTypes = {};
 
-export default Comments;
+export default CommentsContainer;
