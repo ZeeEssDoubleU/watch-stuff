@@ -1,32 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders Watch 1`] = `
-<div
-  className="watch-grid"
->
-  <Video
-    className="video-container"
-    id="vDjcWlCT8rg"
-  />
-  <VideoMetadata
-    className="video-metadata"
-    viewCount={1000}
-  />
-  <VideoInfo
-    className="video-info-container"
-  />
-  <Comments
-    className="comments"
-  />
-  <RelatedVideo
-    className="related-videos"
-  />
-</div>
-`;
-
 exports[`renders WatchContainer 1`] = `
 <div
-  className="WatchContainer-grid"
+  className="watch-container"
 >
   <Video
     className="video-container"
@@ -40,7 +16,7 @@ exports[`renders WatchContainer 1`] = `
     className="video-info-container"
   />
   <CommentsContainer
-    className="comments"
+    className="comments-container"
   />
   <RelatedVideo
     className="related-videos"

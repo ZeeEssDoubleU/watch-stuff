@@ -10,9 +10,9 @@ const NextUpVideo = props => {
 	return (
 		<>
 			<div className="next-up-container">
-				<h4>Up Next</h4>
+				<h4>Up next</h4>
 				<div className="next-up-toggle">
-					<span>Autoplay</span>
+					<span>AUTOPLAY</span>
 					<Checkbox toggle defaultChecked />
 				</div>
 			</div>

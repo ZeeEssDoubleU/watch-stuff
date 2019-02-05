@@ -5,9 +5,11 @@
    row-gap: 4px;
    .thumbs-up {
       grid-area: 1/1 / 2/2;
+      cursor: pointer;
    }
    .thumbs-down {
       grid-area: 1/2 / 2/3;
+      cursor: pointer;
    }
    .progress {
       grid-area: 2/1 / 3/3;

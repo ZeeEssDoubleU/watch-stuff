@@ -10,7 +10,7 @@ class CommentsContainer extends Component {
 	render() {
 		return (
 			<div className="comments-container">
-				<CommentsHeader />
+				<CommentsHeader className='comments-header' commentCount={402}/>
 				<AddComment />
 				<Comment />
 				<Comment />

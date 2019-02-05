@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Button, Divider, Icon } from "semantic-ui-react";
 
 import "./VideoMetadata.scss";
-import Ratings from "./Ratings/Ratings";
+import Ratings from "../../Ratings/Ratings";
 
 const VideoMetadata = props => {
 	const viewCount = Number(props.viewCount).toLocaleString() || "";
@@ -17,11 +17,11 @@ const VideoMetadata = props => {
 					<Ratings likes={75} dislikes={25} />
 					<Button basic icon labelPosition="left">
 						<Icon name="share" />
-						Share
+						SHARE
 					</Button>
 					<Button basic icon labelPosition="left">
 						<Icon name="add circle" />
-						Save
+						SAVE
 					</Button>
 					<Button basic icon>
 						<Icon name="ellipsis horizontal" />

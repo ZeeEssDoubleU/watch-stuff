@@ -30,7 +30,7 @@ exports[`VideoInfo renders collapsed 1`] = `
     className="subscribe-button"
     color="youtube"
   >
-    Subscribe 523K
+    SUBSCRIBE 523K
   </Button>
   <div
     className="video-description"
@@ -48,7 +48,7 @@ exports[`VideoInfo renders collapsed 1`] = `
       compact={true}
       onClick={[Function]}
     >
-      Show More
+      SHOW MORE
     </Button>
   </div>
 </div>
@@ -84,7 +84,7 @@ exports[`VideoInfo renders expanded 1`] = `
     className="subscribe-button"
     color="youtube"
   >
-    Subscribe 523K
+    SUBSCRIBE 523K
   </Button>
   <div
     className="video-description"
@@ -102,7 +102,7 @@ exports[`VideoInfo renders expanded 1`] = `
       compact={true}
       onClick={[Function]}
     >
-      Show More
+      SHOW LESS
     </Button>
   </div>
 </div>

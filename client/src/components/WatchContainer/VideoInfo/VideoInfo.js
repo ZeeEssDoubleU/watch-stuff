@@ -20,10 +20,10 @@ class VideoInfo extends Component {
 
 	render() {
 		let visibility = "collapsed";
-		let buttonText = "Show More";
+		let buttonText = "SHOW MORE";
 		if (!this.state.collapsed) {
 			visibility = "expanded";
-			buttonText = "Show Less";
+			buttonText = "SHOW LESS";
 		}
 
 		let description = (
@@ -49,7 +49,7 @@ class VideoInfo extends Component {
 					<div className="videopublication-date">Published on Jun 25, 2019</div>
 				</div>
 				<Button className="subscribe-button" color="youtube">
-					Subscribe 523K
+					SUBSCRIBE 523K
 				</Button>
 				<div className="video-description">
 					<div className={visibility}>{description}</div>
