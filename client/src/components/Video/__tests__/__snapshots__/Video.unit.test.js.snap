@@ -8,9 +8,9 @@ exports[`Video renders video component correctly 1`] = `
 >
   <iframe
     allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-    allowfullscreen={true}
+    allowFullScreen={true}
     className="video-player"
-    frameborder="0"
+    frameBorder="0"
     src="https://www.youtube.com/embed/vDjcWlCT8rg"
     title="video"
   />

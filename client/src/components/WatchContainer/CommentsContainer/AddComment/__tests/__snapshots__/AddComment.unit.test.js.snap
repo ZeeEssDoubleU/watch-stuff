@@ -17,7 +17,6 @@ exports[`AddComment renders correctly 1`] = `
     <TextArea
       as="textarea"
       autoHeight={true}
-      control={[Function]}
       placeholder="Add a public comment..."
       rows={1}
     />

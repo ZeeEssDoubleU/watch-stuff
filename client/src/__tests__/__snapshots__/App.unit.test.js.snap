@@ -1,22 +1,13 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`App renders 1`] = `
+<Route>
+  <Component />
+</Route>
+`;
+
 exports[`renders 1`] = `
-<Fragment>
-  <HeaderNavContainer />
-  <div
-    className="app-layout"
-  >
-    <Switch>
-      <Route
-        component={[Function]}
-        exact={true}
-        path="/"
-      />
-      <Route
-        component={[Function]}
-        path="/watch"
-      />
-    </Switch>
-  </div>
-</Fragment>
+<Route>
+  <Component />
+</Route>
 `;

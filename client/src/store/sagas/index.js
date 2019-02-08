@@ -1,5 +1,9 @@
-import {all} from 'redux-saga/effects';
+import { all, call, put, takeEvery } from "redux-saga/effects";
 
-export default function* () {
-   yield all([]);
+function* helloSaga() {
+	console.log("Hello Saga!");
+}
+
+export default function*() {
+	yield all([helloSaga()]);
 }
