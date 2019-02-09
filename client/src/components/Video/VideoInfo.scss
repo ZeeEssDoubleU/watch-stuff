@@ -1,0 +1,50 @@
+@import '../../styles/shared.scss';
+.video-info-container {
+   display: grid;
+   grid: auto auto / max-content auto max-content;
+   align-items: center;
+   grid-row-gap: 16px;
+   .channel-image {
+      margin-right: $avatar-margin;
+      grid-area: 1/1 / 2/2;
+      cursor: pointer;
+   }
+   .video-info {
+      grid-area: 1/2 / 2/3;
+      .channel-name {
+         font-weight: 600;
+         cursor: pointer;
+      }
+      .video-publication-date {
+         font-size: 13px;
+         color: #707070;
+      }
+   }
+   .subscribe-button {
+      grid-area: 1/3 / 2/4;
+      &.ui.button {
+         margin: 0;
+      }
+   }
+   .video-description {
+      grid-area: 2/2 / 3/3;
+      max-width: 615px;
+      &>.ui.button {
+         margin: 8px 0;
+         padding-left: 0;
+         padding-right: 0;
+         background: none;
+      }
+      p {
+         line-height: 2rem;
+         margin-bottom: 0;
+      }
+      .collapsed {
+         max-height: 4rem;
+         overflow-y: hidden;
+      }
+      .expanded {
+         max-height: none;
+      }
+   }
+}

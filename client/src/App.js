@@ -16,7 +16,7 @@ import "./App.scss";
 const API_KEY = "AIzaSyCmQiCjbEAyUJcuP8SJtTHV4dqb1QW6Yuk";
 
 class App extends Component {
-   render() {
+	render() {
 		return (
 			<>
 				<HeaderNavContainer />
@@ -29,23 +29,49 @@ class App extends Component {
 			</>
 		);
 	}
-   
+
 	componentDidMount() {
 		this.loadYoutubeApi();
 	}
 
 	loadYoutubeApi() {
 		const script = document.createElement("script");
-		script.src = "https://apis.google.com/js/client.js";
+		// script.src = "https://apis.google.com/js/client.js";
 
-		script.onload = () => {
-			window.gapi.load("client", () => {
-				window.gapi.client.setApiKey(API_KEY);
-				window.gapi.client.load("youtube", "v3", () => {
-					this.props.youtubeLibraryLoaded();
-				});
-			});
-		};
+		// script.onload = () => {
+		// 	window.gapi.load("client", () => {
+		// 		window.gapi.client.setApiKey(API_KEY);
+		// 		window.gapi.client.load("youtube", "v3", () => {
+		// 			this.props.youtubeLibraryLoaded();
+		// 		});
+		// 	});
+		// };
+
+		script.src = "https://apis.google.com/js/api.js";
+
+		function start() {
+			// 2. Initialize the JavaScript client library.
+			window.gapi.client
+				.init({
+					apiKey: `${API_KEY}`,
+				})
+				.then(() => {
+					// 3. Initialize and make the API request.
+					return window.gapi.client.request({
+						path: "https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest",
+					});
+				})
+				.then(
+					response => {
+						console.log(response.result);
+					},
+					reason => {
+						console.log("Error: " + reason.result.error.message);
+					},
+				);
+		}
+		// 1. Load the JavaScript client library.
+		script.onload = () => window.gapi.load("client", start);
 
 		document.body.appendChild(script);
 	}

@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 
+import './HomeContainer.scss';
 import VideoGrid from "../VideoGrid/VideoGrid";
 import SideBarContainer from '../SideBarContainer/SideBarContainer';
-import './HomeContainer.scss';
 
 class HomeContainer extends Component {
 	render() {

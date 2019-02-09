@@ -3,10 +3,10 @@ import PropTypes from "prop-types";
 
 import "./WatchContainer.scss";
 import Video from "../Video/Video";
-import RelatedVideos from "./RelatedVideos/RelatedVideos";
-import VideoInfo from "./VideoInfo/VideoInfo";
-import VideoMetadata from "./VideoMetadata/VIdeoMetadata";
-import CommentsContainer from "./CommentsContainer/CommentsContainer";
+import RelatedVideos from "../RelatedVideos/RelatedVideos";
+import VideoInfo from "../Video/VideoInfo";
+import VideoMetadata from "../Video/VIdeoMetadata";
+import CommentsContainer from "../CommentsContainer/CommentsContainer";
 
 class WatchContainer extends Component {
 	render() {

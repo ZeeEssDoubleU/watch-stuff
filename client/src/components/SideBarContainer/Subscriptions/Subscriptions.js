@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Divider } from "semantic-ui-react";
 
 import Subscription from "./Subscription";
-import SideBarHeader from "../SideBarHeader/SideBarHeader";
+import SideBarHeader from "../SideBarHeader";
 
 class Subscriptions extends Component {
 	render() {

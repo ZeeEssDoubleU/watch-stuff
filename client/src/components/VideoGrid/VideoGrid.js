@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Divider } from "semantic-ui-react";
 
 import "./VideoGrid.scss";
-import VideoGridHeader from "./VideoGridHeader/VideoGridHeader";
+import VideoGridHeader from "./VideoGridHeader";
 import VideoPreview from "../VideoPreview/VideoPreview";
 
 const VideoGrid = props => {
