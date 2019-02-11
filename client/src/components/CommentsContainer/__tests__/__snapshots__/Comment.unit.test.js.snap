@@ -1,0 +1,125 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Comment renders collapsed 1`] = `
+<div
+  className="comment"
+>
+  <Image
+    as="img"
+    circular={true}
+    className="user-image"
+    src="http://via.placeholder.com/48x48"
+    ui={true}
+  />
+  <div
+    className="comment-items"
+  >
+    <div
+      className="user-name"
+    >
+      User name
+    </div>
+    <div
+      className="comment-date"
+    >
+      Comment date
+    </div>
+    <div
+      className="comment-body"
+    >
+      <div
+        className="collapsed"
+      >
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, consequuntur! Nam eligendi pariatur a, dolores adipisci consequatur nostrum! Natus harum molestiae dignissimos, id voluptatibus ad veniam eum atque quis repudiandae quos sit, quisquam tempora error adipisci a ipsum rem excepturi voluptatem delectus dolorum dolor reiciendis fugiat? Dolorum error dignissimos explicabo neque corrupti, nisi soluta laudantium non inventore officiis nobis earum!
+        </p>
+      </div>
+      <Button
+        as="button"
+        className="show-more-button"
+        compact={true}
+        onClick={[Function]}
+      >
+        Read more
+      </Button>
+    </div>
+    <div
+      className="comment-actions"
+    >
+      <Ratings
+        likes={34}
+      />
+       
+      <Button
+        as="button"
+        compact={true}
+        size="mini"
+      >
+        REPLY
+      </Button>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Comment renders expanded 1`] = `
+<div
+  className="comment"
+>
+  <Image
+    as="img"
+    circular={true}
+    className="user-image"
+    src="http://via.placeholder.com/48x48"
+    ui={true}
+  />
+  <div
+    className="comment-items"
+  >
+    <div
+      className="user-name"
+    >
+      User name
+    </div>
+    <div
+      className="comment-date"
+    >
+      Comment date
+    </div>
+    <div
+      className="comment-body"
+    >
+      <div
+        className="expanded"
+      >
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Ullam, consequuntur! Nam eligendi pariatur a, dolores adipisci consequatur nostrum! Natus harum molestiae dignissimos, id voluptatibus ad veniam eum atque quis repudiandae quos sit, quisquam tempora error adipisci a ipsum rem excepturi voluptatem delectus dolorum dolor reiciendis fugiat? Dolorum error dignissimos explicabo neque corrupti, nisi soluta laudantium non inventore officiis nobis earum!
+        </p>
+      </div>
+      <Button
+        as="button"
+        className="show-more-button"
+        compact={true}
+        onClick={[Function]}
+      >
+        Read less
+      </Button>
+    </div>
+    <div
+      className="comment-actions"
+    >
+      <Ratings
+        likes={34}
+      />
+       
+      <Button
+        as="button"
+        compact={true}
+        size="mini"
+      >
+        REPLY
+      </Button>
+    </div>
+  </div>
+</div>
+`;

@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SideBarHeader renders SideBarHeader with props.title empty 1`] = `
+<MenuItem>
+  <MenuHeader
+    className="side-bar-header"
+  />
+</MenuItem>
+`;
+
+exports[`SideBarHeader renders SideBarHeader with props.title null 1`] = `
+<MenuItem>
+  <MenuHeader
+    className="side-bar-header"
+  />
+</MenuItem>
+`;
+
+exports[`SideBarHeader renders SideBarHeader with sample title 1`] = `
+<MenuItem>
+  <MenuHeader
+    className="side-bar-header"
+  >
+    SAMPLE TITLE
+  </MenuHeader>
+</MenuItem>
+`;

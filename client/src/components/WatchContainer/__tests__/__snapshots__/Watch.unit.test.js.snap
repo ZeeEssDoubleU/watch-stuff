@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders WatchContainer 1`] = `
+<div
+  className="watch-container"
+>
+  <Video
+    className="video-container"
+    id="vDjcWlCT8rg"
+  />
+  <VideoMetadata
+    className="video-metadata"
+    viewCount={1000}
+  />
+  <VideoInfo
+    className="video-info-container"
+  />
+  <CommentsContainer
+    className="comments-container"
+  />
+  <RelatedVideo
+    className="related-videos"
+  />
+</div>
+`;

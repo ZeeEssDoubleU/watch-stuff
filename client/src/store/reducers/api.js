@@ -2,6 +2,14 @@ import { YOUTUBE_LIBRARY_LOADED } from "../actions/types";
 
 const initialState = {
 	libraryLoaded: false,
+	videos: {
+		byId: {
+
+		},
+		mostPopular: {
+
+		}
+	}
 };
 
 // REDUCERS

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 import './HomeContainer.scss';
-import VideoGrid from "../VideoGrid/VideoGrid";
+import HomeContent from "./HomeContent";
 import SideBarContainer from '../SideBarContainer/SideBarContainer';
 
 class HomeContainer extends Component {
@@ -9,12 +9,7 @@ class HomeContainer extends Component {
 		return (
 			<>
 				<SideBarContainer />
-				<div className="HomeContainer">
-					<div className="responsive-video-grid-container">
-						<VideoGrid title="Trending" />
-						<VideoGrid title="Autos & Vehicles" hideDivider={true} />
-					</div>
-				</div>
+				<HomeContent />
 			</>
 		);
 	}

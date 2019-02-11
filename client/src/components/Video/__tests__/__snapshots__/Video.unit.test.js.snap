@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Video renders null if id in video component not specified 1`] = `""`;
+
+exports[`Video renders video component correctly 1`] = `
+<div
+  className="video-container"
+>
+  <iframe
+    allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+    allowFullScreen={true}
+    className="video-player"
+    frameBorder="0"
+    src="https://www.youtube.com/embed/vDjcWlCT8rg"
+    title="video"
+  />
+</div>
+`;
