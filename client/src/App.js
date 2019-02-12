@@ -36,42 +36,51 @@ class App extends Component {
 
 	loadYoutubeApi() {
 		const script = document.createElement("script");
-		// script.src = "https://apis.google.com/js/client.js";
-
-		// script.onload = () => {
-		// 	window.gapi.load("client", () => {
-		// 		window.gapi.client.setApiKey(API_KEY);
-		// 		window.gapi.client.load("youtube", "v3", () => {
-		// 			this.props.youtubeLibraryLoaded();
-		// 		});
-		// 	});
-		// };
-
 		script.src = "https://apis.google.com/js/api.js";
 
-		function start() {
-			// 2. Initialize the JavaScript client library.
-			window.gapi.client
-				.init({
-					apiKey: `${API_KEY}`,
-				})
-				.then(() => {
-					// 3. Initialize and make the API request.
-					return window.gapi.client.request({
-						path: "https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest",
-					});
-				})
-				.then(
-					response => {
-						console.log(response.result);
-					},
-					reason => {
-						console.log("Error: " + reason.result.error.message);
-					},
-				);
-		}
-		// 1. Load the JavaScript client library.
-		script.onload = () => window.gapi.load("client", start);
+		script.onload = () => {
+			window.gapi.load("client", () => {
+				window.gapi.client.setApiKey(API_KEY);
+				window.gapi.client
+					.request(
+						"https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest",
+					)
+					.then(
+						response => {
+							console.log(response.result);
+							this.props.youtubeLibraryLoaded();
+						},
+						reason => {
+							console.log("Error: " + reason.result.error.message);
+						},
+					);
+			});
+		};
+
+		// // 1. Load the JavaScript client library.
+		// script.onload = () =>
+		// 	window.gapi.load("client", () => {
+		// 		// 2. Initialize the JavaScript client library.
+		// 		window.gapi.client
+		// 			.init({
+		// 				apiKey: `${API_KEY}`,
+		// 			})
+		// 			// 3. Initialize and make the API request.
+		// 			.then(() =>
+		// 				window.gapi.client.request(
+		// 					"https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest",
+		// 				),
+		// 			)
+		// 			.then(
+		// 				response => {
+		// 					console.log(response.result);
+		// 					this.props.youtubeLibraryLoaded();
+		// 				},
+		// 				reason => {
+		// 					console.log("Error: " + reason.result.error.message);
+		// 				},
+		// 			);
+		// 	});
 
 		document.body.appendChild(script);
 	}

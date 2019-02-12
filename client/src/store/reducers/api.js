@@ -1,21 +1,13 @@
-import { YOUTUBE_LIBRARY_LOADED } from "../actions/types";
+import { YOUTUBE_LIBRARY_LOADED } from "../actions/api";
 
 const initialState = {
 	libraryLoaded: false,
-	videos: {
-		byId: {
-
-		},
-		mostPopular: {
-
-		}
-	}
 };
 
 // REDUCERS
 const apiReducer = (state = initialState, action) => {
 	switch (action.type) {
-		case 'YOUTUBE_LIBRARY_LOADED':
+		case YOUTUBE_LIBRARY_LOADED:
 			return {
 				libraryLoaded: true,
 			};
