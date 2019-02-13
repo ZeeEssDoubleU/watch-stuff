@@ -101,12 +101,7 @@ function removeEmptyParams(params) {
 	return params;
 }
 
-function executeRequest(request) {
-	request.execute(function(response) {
-		console.log(response);
-	});
-}
-
+// function that arranges api request data into correct format
 export function buildApiRequest(requestMethod, path, params, properties) {
 	params = removeEmptyParams(params);
 	let request;
@@ -125,9 +120,10 @@ export function buildApiRequest(requestMethod, path, params, properties) {
 			params: params,
 		});
 	}
-	executeRequest(request);
+	return request;
 }
 
+// function that passes 'most popular videos' data to buildApiRequest function
 export const buildMostPopularVideosRequest = (
 	amount = 12,
 	loadDescription = false,
