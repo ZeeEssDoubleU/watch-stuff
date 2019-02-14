@@ -1,15 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`HomeContainer renders 1`] = `
-<Fragment>
-  <SideBarContainer />
-  <HomeContent />
-</Fragment>
-`;
-
-exports[`renders HomeContainer 1`] = `
-<Fragment>
-  <SideBarContainer />
-  <HomeContent />
-</Fragment>
+<ContextConsumer>
+  <Component />
+</ContextConsumer>
 `;

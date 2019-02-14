@@ -1,9 +1,8 @@
 import { MOST_POPULAR_SUCCESS, MOST_POPULAR_FAILURE } from "../actions/videos";
 
 const initialState = {
-	byId: {},
 	mostPopular: {},
-	error: {},
+	byId: {},
 };
 
 const videosReducer = (state = initialState, action) => {
