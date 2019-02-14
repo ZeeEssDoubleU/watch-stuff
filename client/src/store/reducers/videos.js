@@ -29,6 +29,7 @@ const fetchMostPopularVideosReducer = (response, prevState) => {
 	}, {});
 
 	let itemIds = Object.keys(videoMap);
+	let byId = { ...videoMap };
 	console.log("RESPONSE", response);
 	console.log("VIDEO MAP", videoMap);
 
@@ -36,6 +37,10 @@ const fetchMostPopularVideosReducer = (response, prevState) => {
 	// combine previous vids into mostPopular itemIds (video ids)
 	if (response.hasOwnProperty("prevPageToken") && prevState.mostPopular) {
 		itemIds = [...prevState.mostPopular.itemIds, ...itemIds];
+		byId = {
+			...prevState.byId,
+			...videoMap,
+		};
 	}
 
 	const mostPopular = {
@@ -47,10 +52,7 @@ const fetchMostPopularVideosReducer = (response, prevState) => {
 	// combine previous vids into state (same as above)
 	return {
 		...prevState,
-		byId: {
-			...prevState.byId,
-			...videoMap,
-		},
+		byId,
 		mostPopular,
 	};
 };

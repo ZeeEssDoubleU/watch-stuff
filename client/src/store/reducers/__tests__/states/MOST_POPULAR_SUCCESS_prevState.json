@@ -1,0 +1,35 @@
+{
+	"mostPopular": {
+		"totalResults": 200,
+		"nextPageToken": "CAwQAA",
+		"itemIds": ["aVt5uHuKuK0"]
+	},
+
+	"byId": {
+		"aVt5uHuKuK0": {
+			"id": "aVt5uHuKuK0",
+			"snippet": {
+				"publishedAt": "2019-02-13T14:00:05.000Z",
+				"channelId": "AB_f798edPgzIa290Hqtk-9g",
+				"title": "Yo Mama | Official 'She So Fat' Trailer",
+				"thumbnails": {
+					"medium": {
+						"url": "https://i.ytimg.com/vi/aVt5uHuKuK0/mqdefault.jpg",
+						"width": 320,
+						"height": 180
+					}
+				},
+				"channelTitle": "Gargantuan Entertainment",
+				"localized": {
+					"title": "Yo Mama | Official 'She So Fat' Trailer"
+				}
+			},
+			"contentDetails": {
+				"duration": "PT2M"
+			},
+			"statistics": {
+				"viewCount": "4032498342"
+			}
+		}
+	}
+}

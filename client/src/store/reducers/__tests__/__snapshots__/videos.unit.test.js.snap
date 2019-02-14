@@ -1,0 +1,157 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`videos reducer test for idempotence with MOST_POPULAR_SUCCESS action 1`] = `
+Object {
+  "byId": Object {
+    "eSLe4HuKuK0": Object {
+      "contentDetails": Object {
+        "duration": "PT2M",
+      },
+      "id": "eSLe4HuKuK0",
+      "snippet": Object {
+        "channelId": "UC_976xMxPgzIa290Hqtk-9g",
+        "channelTitle": "Walt Disney Animation Studios",
+        "localized": Object {
+          "title": "Frozen 2 | Official Teaser Trailer",
+        },
+        "publishedAt": "2019-02-13T14:00:05.000Z",
+        "thumbnails": Object {
+          "medium": Object {
+            "height": 180,
+            "url": "https://i.ytimg.com/vi/eSLe4HuKuK0/mqdefault.jpg",
+            "width": 320,
+          },
+        },
+        "title": "Frozen 2 | Official Teaser Trailer",
+      },
+      "statistics": Object {
+        "viewCount": "5486363",
+      },
+    },
+    "hhzYbExfVIY": Object {
+      "contentDetails": Object {
+        "duration": "PT3M25S",
+      },
+      "id": "hhzYbExfVIY",
+      "snippet": Object {
+        "channelId": "UCM1gEqLPsgej7ZKzu9w8v7A",
+        "channelTitle": "LilBabyVEVO",
+        "localized": Object {
+          "title": "Lil Baby, Gunna - Close Friends (Official Music Video)",
+        },
+        "publishedAt": "2019-02-13T15:00:06.000Z",
+        "thumbnails": Object {
+          "medium": Object {
+            "height": 180,
+            "url": "https://i.ytimg.com/vi/hhzYbExfVIY/mqdefault.jpg",
+            "width": 320,
+          },
+        },
+        "title": "Lil Baby, Gunna - Close Friends (Official Music Video)",
+      },
+      "statistics": Object {
+        "viewCount": "929603",
+      },
+    },
+  },
+  "mostPopular": Object {
+    "itemIds": Array [
+      "eSLe4HuKuK0",
+      "hhzYbExfVIY",
+    ],
+    "nextPageToken": "CAwQAA",
+    "totalResults": 200,
+  },
+}
+`;
+
+exports[`videos reducer test for idempotence with MOST_POPULAR_SUCCESS action with prevPageToken 1`] = `
+Object {
+  "byId": Object {
+    "aVt5uHuKuK0": Object {
+      "contentDetails": Object {
+        "duration": "PT2M",
+      },
+      "id": "aVt5uHuKuK0",
+      "snippet": Object {
+        "channelId": "AB_f798edPgzIa290Hqtk-9g",
+        "channelTitle": "Gargantuan Entertainment",
+        "localized": Object {
+          "title": "Yo Mama | Official 'She So Fat' Trailer",
+        },
+        "publishedAt": "2019-02-13T14:00:05.000Z",
+        "thumbnails": Object {
+          "medium": Object {
+            "height": 180,
+            "url": "https://i.ytimg.com/vi/aVt5uHuKuK0/mqdefault.jpg",
+            "width": 320,
+          },
+        },
+        "title": "Yo Mama | Official 'She So Fat' Trailer",
+      },
+      "statistics": Object {
+        "viewCount": "4032498342",
+      },
+    },
+    "eSLe4HuKuK0": Object {
+      "contentDetails": Object {
+        "duration": "PT2M",
+      },
+      "id": "eSLe4HuKuK0",
+      "snippet": Object {
+        "channelId": "UC_976xMxPgzIa290Hqtk-9g",
+        "channelTitle": "Walt Disney Animation Studios",
+        "localized": Object {
+          "title": "Frozen 2 | Official Teaser Trailer",
+        },
+        "publishedAt": "2019-02-13T14:00:05.000Z",
+        "thumbnails": Object {
+          "medium": Object {
+            "height": 180,
+            "url": "https://i.ytimg.com/vi/eSLe4HuKuK0/mqdefault.jpg",
+            "width": 320,
+          },
+        },
+        "title": "Frozen 2 | Official Teaser Trailer",
+      },
+      "statistics": Object {
+        "viewCount": "5486363",
+      },
+    },
+    "hhzYbExfVIY": Object {
+      "contentDetails": Object {
+        "duration": "PT3M25S",
+      },
+      "id": "hhzYbExfVIY",
+      "snippet": Object {
+        "channelId": "UCM1gEqLPsgej7ZKzu9w8v7A",
+        "channelTitle": "LilBabyVEVO",
+        "localized": Object {
+          "title": "Lil Baby, Gunna - Close Friends (Official Music Video)",
+        },
+        "publishedAt": "2019-02-13T15:00:06.000Z",
+        "thumbnails": Object {
+          "medium": Object {
+            "height": 180,
+            "url": "https://i.ytimg.com/vi/hhzYbExfVIY/mqdefault.jpg",
+            "width": 320,
+          },
+        },
+        "title": "Lil Baby, Gunna - Close Friends (Official Music Video)",
+      },
+      "statistics": Object {
+        "viewCount": "929603",
+      },
+    },
+  },
+  "mostPopular": Object {
+    "itemIds": Array [
+      "aVt5uHuKuK0",
+      "eSLe4HuKuK0",
+      "hhzYbExfVIY",
+    ],
+    "nextPageToken": "CAwQAA",
+    "totalResults": 200,
+  },
+}
+`;
