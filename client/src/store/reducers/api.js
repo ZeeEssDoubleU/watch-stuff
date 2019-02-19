@@ -4,7 +4,7 @@ const initialState = {
 	libraryLoaded: false,
 };
 
-// REDUCERS
+
 const apiReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case YOUTUBE_LIBRARY_LOADED:

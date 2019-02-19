@@ -17,6 +17,7 @@ describe("videos reducer", () => {
 		const action = { type: "UNUSED_ACTION_TYPE" };
 		const expectedEndState = { ...initialState };
 		expect(videosReducer(startState, action)).toEqual(expectedEndState);
+		expect(expectedEndState).toMatchSnapshot();
 	});
 
 	test("test with MOST_POPULAR_SUCCESS action", () => {
@@ -26,35 +27,51 @@ describe("videos reducer", () => {
 			payload: mostPopularResponse,
 		};
 		const expectedEndState = {
-			...startState,
-			...mostPopularSuccessState,
-		};
-		expect(videosReducer(startState, action)).toEqual(expectedEndState);
-	});
-
-	test("test for idempotence with MOST_POPULAR_SUCCESS action", () => {
-		const startState = { ...mostPopularSuccessState_prevState };
-		const action = {
-			type: MOST_POPULAR_SUCCESS,
-			payload: mostPopularResponse,
-		};
-		const expectedEndState = {
-			...startState,
 			...mostPopularSuccessState,
 		};
 		expect(videosReducer(startState, action)).toEqual(expectedEndState);
 		expect(expectedEndState).toMatchSnapshot();
 	});
 
+	test("test for idempotence with MOST_POPULAR_SUCCESS action", () => {
+		const startState = mostPopularSuccessState_prevState;
+		const action = {
+			type: MOST_POPULAR_SUCCESS,
+			payload: mostPopularResponse,
+		};
+		// should keep and add to previous byId data, but not keep previous omstPopular
+		const expectedEndState = {
+			mostPopular: {
+				...mostPopularSuccessState.mostPopular,
+			},
+			byId: {
+				...startState.byId,
+				...mostPopularSuccessState.byId,
+			},
+		};
+		expect(videosReducer(startState, action)).toEqual(expectedEndState);
+		expect(expectedEndState).toMatchSnapshot();
+	});
+
 	test("test for idempotence with MOST_POPULAR_SUCCESS action with prevPageToken", () => {
-		const startState = { ...mostPopularSuccessState_prevState };
+		const startState = mostPopularSuccessState_prevState;
 		const action = {
 			type: MOST_POPULAR_SUCCESS,
 			payload: mostPopularResponse_withPrevPageToken,
 		};
+		// should keep and add to previous byId and mostPopular data
 		const expectedEndState = {
-			...startState,
-			...mostPopularSuccessState_withPrevPageToken,
+			mostPopular: {
+				...mostPopularSuccessState.mostPopular,
+				itemIds: [
+					...startState.mostPopular.itemIds,
+					...mostPopularSuccessState.mostPopular.itemIds,
+				],
+			},
+			byId: {
+				...startState.byId,
+				...mostPopularSuccessState.byId,
+			},
 		};
 		expect(videosReducer(startState, action)).toEqual(expectedEndState);
 		expect(expectedEndState).toMatchSnapshot();

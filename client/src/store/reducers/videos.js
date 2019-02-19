@@ -1,3 +1,4 @@
+import { createSelector } from "reselect";
 import { MOST_POPULAR_SUCCESS, MOST_POPULAR_FAILURE } from "../actions/videos";
 
 const initialState = {
@@ -29,7 +30,6 @@ const fetchMostPopularVideosReducer = (response, prevState) => {
 	}, {});
 
 	let itemIds = Object.keys(videoMap);
-	let byId = { ...videoMap };
 	console.log("RESPONSE", response);
 	console.log("VIDEO MAP", videoMap);
 
@@ -37,10 +37,6 @@ const fetchMostPopularVideosReducer = (response, prevState) => {
 	// combine previous vids into mostPopular itemIds (video ids)
 	if (response.hasOwnProperty("prevPageToken") && prevState.mostPopular) {
 		itemIds = [...prevState.mostPopular.itemIds, ...itemIds];
-		byId = {
-			...prevState.byId,
-			...videoMap,
-		};
 	}
 
 	const mostPopular = {
@@ -52,7 +48,24 @@ const fetchMostPopularVideosReducer = (response, prevState) => {
 	// combine previous vids into state (same as above)
 	return {
 		...prevState,
-		byId,
 		mostPopular,
+		byId: {
+			...prevState.byId,
+			...videoMap,
+		},
 	};
 };
+
+// SELECTORS
+export const getMostPopularVideos = createSelector(
+	state => state.videosState.byId,
+	state => state.videosState.mostPopular,
+	(videosById, mostPopular) => {
+		// if no mostPopular items exist, return []
+		if (!mostPopular || !mostPopular.itemIds) {
+			return [];
+		}
+		// map mostPopular items to an array, using mostPopular itemIds in byId lookup table
+		return mostPopular.itemIds.map(id => videosById[id]);
+	},
+);
