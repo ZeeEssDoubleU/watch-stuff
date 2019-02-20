@@ -1,6 +1,12 @@
 import React, { Component } from "react";
 import { Image } from "semantic-ui-react";
 
+import { getAbbrevNumber } from "../../utils/format-number";
+import {
+	getFormattedDuration,
+	getFormattedTimeAgo,
+} from "../../utils/format-time";
+
 import "./VideoPreview.scss";
 
 class VideoPreview extends Component {
@@ -16,7 +22,7 @@ class VideoPreview extends Component {
 				<div className="image-container">
 					<Image src={video.snippet.thumbnails.medium.url} />
 					<div className="time-label">
-						<span>{video.contentDetails.duration}</span>
+						<span>{this.getFormattedDuration(video)}</span>
 					</div>
 				</div>
 				<div className="video-info">
@@ -28,16 +34,34 @@ class VideoPreview extends Component {
 							{video.snippet.channelTitle}
 						</div>
 						<div>
-							<span>
-								{video.statistics.viewCount} views •{" "}
-								{video.snippet.publishedAt}
-							</span>
+							<span>{this.getFormattedViewAndTime(video)}</span>
 						</div>
 					</div>
 				</div>
 			</div>
 		);
 	}
+
+	getFormattedDuration = video => {
+		if (video.contentDetails && video.contentDetails.duration) {
+			// moment imported from above, format allowed from moment-duration-format
+			return getFormattedDuration(video.contentDetails.duration);
+		}
+		return "";
+	};
+	
+	getFormattedViewAndTime = video => {
+		if (video.statistics && video.statistics.viewCount) {
+			// moment and getAbbrevNumber imported at top
+			const formattedViewCount = getAbbrevNumber(video.statistics.viewCount);
+			const formattedTimeAgo = getFormattedTimeAgo(
+				video.snippet.publishedAt,
+			);
+
+			return `${formattedViewCount} views • ${formattedTimeAgo}`;
+		}
+		return "";
+	};
 }
 
 export default VideoPreview;
