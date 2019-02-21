@@ -22,6 +22,7 @@ class HomeContainer extends Component {
 	componentDidMount() {
 		if (this.props.youtubeLibraryLoaded) {
 			this.props.fetchMostPopularVideos();
+			this.props.fetchVideoCategories();
 		}
 	}
 
@@ -29,6 +30,7 @@ class HomeContainer extends Component {
 	componentDidUpdate(prevProps) {
 		if (this.props.youtubeLibraryLoaded !== prevProps.youtubeLibraryLoaded) {
 			this.props.fetchMostPopularVideos();
+			this.props.fetchVideoCategories();
 		}
 	}
 }
@@ -38,11 +40,14 @@ const mapStateToProps = state => ({
 });
 
 // action creators
-const fetchMostPopularVideos = videoActions.fetchMostPopularVideos.request;
+const actionCreators = {
+	fetchMostPopularVideos: videoActions.fetchMostPopularVideos.request,
+	fetchVideoCategories: videoActions.fetchVideoCategories.request,
+};
 
 HomeContainer = connect(
 	mapStateToProps,
-	{ fetchMostPopularVideos },
+	actionCreators,
 )(HomeContainer);
 
 export default HomeContainer;

@@ -148,3 +148,16 @@ export const buildMostPopularVideosRequest = (
 		null,
 	);
 };
+
+// function that passes 'video categories' data to buildApiRequest function
+export const buildVideoCategoriesRequest = () => {
+	return buildApiRequest(
+		"GET",
+		"/youtube/v3/videoCategories",
+		{
+			part: "snippet",
+			regionCode: "US",
+		},
+		null,
+	);
+};
