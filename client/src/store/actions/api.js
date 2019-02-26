@@ -1,6 +1,8 @@
 // api action types
-export const YOUTUBE_LIBRARY_LOADED = "YOUTUBE_LIBRARY_LOADED";
+export const types = {
+	YOUTUBE_LIBRARY_LOADED: "YOUTUBE_LIBRARY_LOADED"
+}
 
-export const youtubeLibraryLoaded = () => ({
-	type: YOUTUBE_LIBRARY_LOADED,
+export const action_youtubeLibraryLoaded = () => ({
+	type: types.YOUTUBE_LIBRARY_LOADED,
 });

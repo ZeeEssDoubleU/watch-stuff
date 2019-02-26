@@ -6,7 +6,8 @@ import HomeContent from "./HomeContent";
 import SideBarContainer from "../SideBarContainer/SideBarContainer";
 
 import * as videoActions from "../../store/actions/videos";
-import { getYoutubeLibraryLoaded } from "../../store/reducers/api";
+import { selector_youtubeLibraryLoaded } from "../../store/reducers/api";
+import { selector_videoCategories } from "../../store/reducers/videos";
 
 class HomeContainer extends Component {
 	render() {
@@ -23,6 +24,11 @@ class HomeContainer extends Component {
 		if (this.props.youtubeLibraryLoaded) {
 			this.props.fetchMostPopularVideos();
 			this.props.fetchVideoCategories();
+			if (this.props.videoCategories.length > 0) {
+				this.props.fetchMostPopularVideosByCategory(
+					this.props.videoCategories,
+				);
+			}
 		}
 	}
 
@@ -32,17 +38,28 @@ class HomeContainer extends Component {
 			this.props.fetchMostPopularVideos();
 			this.props.fetchVideoCategories();
 		}
+		if (
+			this.props.videoCategories !== prevProps.videoCategories &&
+			this.props.videoCategories.length > 0
+		) {
+			this.props.fetchMostPopularVideosByCategory(
+				this.props.videoCategories,
+			);
+		}
 	}
 }
 
 const mapStateToProps = state => ({
-	youtubeLibraryLoaded: getYoutubeLibraryLoaded(state),
+	youtubeLibraryLoaded: selector_youtubeLibraryLoaded(state),
+	videoCategories: selector_videoCategories(state),
 });
 
 // action creators
 const actionCreators = {
-	fetchMostPopularVideos: videoActions.fetchMostPopularVideos.request,
-	fetchVideoCategories: videoActions.fetchVideoCategories.request,
+	fetchMostPopularVideos: videoActions.action_fetchMostPopular.request,
+	fetchVideoCategories: videoActions.action_fetchCategory.request,
+	fetchMostPopularVideosByCategory:
+		videoActions.action_fetchMostPopularByCategory.request,
 };
 
 HomeContainer = connect(

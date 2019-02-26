@@ -1,13 +1,12 @@
-import { YOUTUBE_LIBRARY_LOADED } from "../actions/api";
+import * as apiActions from "../actions/api";
 
 const initialState = {
 	libraryLoaded: false,
 };
 
-
-const apiReducer = (state = initialState, action) => {
+const reducer_api = (state = initialState, action) => {
 	switch (action.type) {
-		case YOUTUBE_LIBRARY_LOADED:
+		case apiActions.types.YOUTUBE_LIBRARY_LOADED:
 			return {
 				libraryLoaded: true,
 			};
@@ -16,7 +15,7 @@ const apiReducer = (state = initialState, action) => {
 	}
 };
 
-export default apiReducer;
+export default reducer_api;
 
 // SELECTORS
-export const getYoutubeLibraryLoaded = state => state.apiState.libraryLoaded;
+export const selector_youtubeLibraryLoaded = state => state.apiState.libraryLoaded;

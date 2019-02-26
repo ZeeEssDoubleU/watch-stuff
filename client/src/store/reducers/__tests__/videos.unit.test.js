@@ -8,6 +8,7 @@ import mostPopularSuccessState_withPrevPageToken from "./states/MOST_POPULAR_SUC
 
 const initialState = {
 	mostPopular: {},
+	categories: {},
 	byId: {},
 };
 
@@ -27,6 +28,7 @@ describe("videos reducer", () => {
 			payload: mostPopularResponse,
 		};
 		const expectedEndState = {
+			...startState,
 			...mostPopularSuccessState,
 		};
 		expect(videosReducer(startState, action)).toEqual(expectedEndState);
@@ -41,6 +43,7 @@ describe("videos reducer", () => {
 		};
 		// should keep and add to previous byId data, but not keep previous omstPopular
 		const expectedEndState = {
+			...startState,
 			mostPopular: {
 				...mostPopularSuccessState.mostPopular,
 			},
@@ -61,6 +64,7 @@ describe("videos reducer", () => {
 		};
 		// should keep and add to previous byId and mostPopular data
 		const expectedEndState = {
+			...startState,
 			mostPopular: {
 				...mostPopularSuccessState.mostPopular,
 				itemIds: [

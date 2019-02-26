@@ -8,12 +8,12 @@ import HomeContainer from "./components/HomeContainer/HomeContainer";
 import WatchContainer from "./components/WatchContainer/WatchContainer";
 
 // import actions / reducers / sagas
-import { youtubeLibraryLoaded } from "./store/actions/api";
+import { action_youtubeLibraryLoaded } from "./store/actions/api";
 
 // import styles
 import "./App.scss";
 
-const API_KEY = "AIzaSyCmQiCjbEAyUJcuP8SJtTHV4dqb1QW6Yuk";
+const API_KEY = "AIzaSyBgXzOUW-c5STY2tGItjriaVK7uah8wxss";
 
 class App extends Component {
 	render() {
@@ -47,8 +47,11 @@ class App extends Component {
 					)
 					.then(
 						response => {
-							console.log(response.result);
-							this.props.youtubeLibraryLoaded();
+							console.log(
+								"RESPONSE - YOUTUBE CLIENT LIBRARY",
+								response.result,
+							);
+							this.props.action_youtubeLibraryLoaded();
 						},
 						reason => {
 							console.log("Error: " + reason.result.error.message);
@@ -74,7 +77,7 @@ class App extends Component {
 		// 			.then(
 		// 				response => {
 		// 					console.log(response.result);
-		// 					this.props.youtubeLibraryLoaded();
+		// 					this.props.action_youtubeLibraryLoaded();
 		// 				},
 		// 				reason => {
 		// 					console.log("Error: " + reason.result.error.message);
@@ -89,7 +92,7 @@ class App extends Component {
 App = withRouter(
 	connect(
 		null,
-		{ youtubeLibraryLoaded },
+		{ action_youtubeLibraryLoaded },
 	)(App),
 );
 

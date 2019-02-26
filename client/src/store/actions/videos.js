@@ -1,14 +1,19 @@
 // video action types
-export const MOST_POPULAR_REQUEST = "MOST_POPULAR_REQUEST";
-export const MOST_POPULAR_SUCCESS = "MOST_POPULAR_SUCCESS";
-export const MOST_POPULAR_FAILURE = "MOST_POPULAR_FAILURE";
-export const VIDEO_CATEGORIES_REQUEST = "VIDEO_CATEGORIES_REQUEST";
-export const VIDEO_CATEGORIES_SUCCESS = "VIDEO_CATEGORIES_SUCCESS";
-export const VIDEO_CATEGORIES_FAILURE = "VIDEO_CATEGORIES_FAILURE";
+export const types = {
+	MOST_POPULAR_REQUEST: "MOST_POPULAR_REQUEST",
+	MOST_POPULAR_SUCCESS: "MOST_POPULAR_SUCCESS",
+	MOST_POPULAR_FAILURE: "MOST_POPULAR_FAILURE",
+	VIDEO_CATEGORIES_REQUEST: "VIDEO_CATEGORIES_REQUEST",
+	VIDEO_CATEGORIES_SUCCESS: "VIDEO_CATEGORIES_SUCCESS",
+	VIDEO_CATEGORIES_FAILURE: "VIDEO_CATEGORIES_FAILURE",
+	MOST_POPULAR_BY_CATEGORY_REQUEST: "MOST_POPULAR_BY_CATEGORY_REQUEST",
+	MOST_POPULAR_BY_CATEGORY_SUCCESS: "MOST_POPULAR_BY_CATEGORY_SUCCESS",
+	MOST_POPULAR_BY_CATEGORY_FAILURE: "MOST_POPULAR_BY_CATEGORY_FAILURE",
+};
 
-export const fetchMostPopularVideos = {
+export const action_fetchMostPopular = {
 	request: (amount, loadDescription, nextPageToken) => ({
-		type: MOST_POPULAR_REQUEST,
+		type: types.MOST_POPULAR_REQUEST,
 		payload: {
 			amount,
 			loadDescription,
@@ -16,25 +21,44 @@ export const fetchMostPopularVideos = {
 		},
 	}),
 	success: response => ({
-		type: MOST_POPULAR_SUCCESS,
+		type: types.MOST_POPULAR_SUCCESS,
 		payload: response,
 	}),
 	failure: response => ({
-		type: MOST_POPULAR_FAILURE,
+		type: types.MOST_POPULAR_FAILURE,
 		payload: response,
 	}),
 };
-export const fetchVideoCategories = {
+
+export const action_fetchCategory = {
 	request: () => ({
-		type: VIDEO_CATEGORIES_REQUEST,
+		type: types.VIDEO_CATEGORIES_REQUEST,
 		payload: {},
 	}),
 	success: response => ({
-		type: VIDEO_CATEGORIES_SUCCESS,
+		type: types.VIDEO_CATEGORIES_SUCCESS,
 		payload: response,
 	}),
 	failure: response => ({
-		type: VIDEO_CATEGORIES_FAILURE,
+		type: types.VIDEO_CATEGORIES_FAILURE,
+		payload: response,
+	}),
+};
+
+export const action_fetchMostPopularByCategory = {
+	request: categories => ({
+		type: types.MOST_POPULAR_BY_CATEGORY_REQUEST,
+		payload: { categories },
+	}),
+	success: (response, categories) => ({
+		type: types.MOST_POPULAR_BY_CATEGORY_SUCCESS,
+		payload: {
+			response,
+			categories,
+		},
+	}),
+	failure: response => ({
+		type: types.MOST_POPULAR_BY_CATEGORY_FAILURE,
 		payload: response,
 	}),
 };

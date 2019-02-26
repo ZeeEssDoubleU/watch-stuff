@@ -184,6 +184,7 @@ Object {
 exports[`videos reducer test unused action type with default initial state 1`] = `
 Object {
   "byId": Object {},
+  "categories": Object {},
   "mostPopular": Object {},
 }
 `;
@@ -242,6 +243,7 @@ Object {
       },
     },
   },
+  "categories": Object {},
   "mostPopular": Object {
     "itemIds": Array [
       "eSLe4HuKuK0",

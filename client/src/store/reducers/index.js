@@ -1,10 +1,10 @@
 import { combineReducers } from "redux";
-import apiReducer from "./api";
-import videosReducer from "./videos";
+import reducer_api from "./api";
+import reducer_videos from "./videos";
 
-const rootReducer = combineReducers({
-	apiState: apiReducer,
-	videosState: videosReducer,
+const reducer_root = combineReducers({
+	apiState: reducer_api,
+	videosState: reducer_videos,
 });
 
-export default rootReducer;
+export default reducer_root;

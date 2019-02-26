@@ -1,29 +1,64 @@
-import { call, fork, take, takeEvery } from "redux-saga/effects";
+import { takeEvery, call } from "redux-saga/effects";
 import * as youtubeApi from "../api/youtube-api";
 import * as videoActions from "../actions/videos";
-import { fetchEntity } from "./index";
+import * as rootSagas from "./index";
 
 // watch and fect most popular vidoes
-export function* watchMostPopularVideos() {
-	yield takeEvery(videoActions.MOST_POPULAR_REQUEST, fetchMostPopularVideos);
+export function* saga_watchMostPopular() {
+	yield takeEvery(
+		videoActions.types.MOST_POPULAR_REQUEST,
+		saga_fetchMostPopular,
+	);
 }
-export function* fetchMostPopularVideos(action) {
-	console.log("ACTION - FETCH MOST POPULAR", action);
+export function* saga_fetchMostPopular(action) {
+	console.log("ACTION - FETCH MOST POPULAR VIDEOS", action);
 	const request = () =>
 		youtubeApi.buildMostPopularVideosRequest(
 			action.payload.amount,
 			action.payload.loadDescription,
 			action.payload.nextPageToken,
 		);
-	yield fetchEntity(request, videoActions.fetchMostPopularVideos);
+	yield rootSagas.saga_fetchEntity(
+		request,
+		videoActions.action_fetchMostPopular,
+	);
 }
 
 // watch and fetch video categories
-export function* watchVideoCategories() {
-	yield takeEvery(videoActions.VIDEO_CATEGORIES_REQUEST, fetchVideoCategories);
+export function* saga_watchCategories() {
+	yield takeEvery(
+		videoActions.types.VIDEO_CATEGORIES_REQUEST,
+		saga_fetchCategories,
+	);
 }
-export function* fetchVideoCategories(action) {
+export function* saga_fetchCategories(action) {
 	console.log("ACTION - FETCH VIDEO CATEGORIES", action);
 	const request = () => youtubeApi.buildVideoCategoriesRequest();
-	yield fetchEntity(request, videoActions.fetchVideoCategories);
+	yield rootSagas.saga_fetchEntity(request, videoActions.action_fetchCategory);
+}
+
+// watch and fetch most popular videos by category
+export function* saga_watchMostPopularByCategory() {
+	yield takeEvery(
+		videoActions.types.MOST_POPULAR_BY_CATEGORY_REQUEST,
+		saga_fetchMostPopularByCategory,
+	);
+}
+export function* saga_fetchMostPopularByCategory(action) {
+	console.log("ACTION - FETCH MOST POPULAR VIDEOS BY CATEGORY", action);
+	const requests = action.payload.categories.map(category => {
+		const request = youtubeApi.buildMostPopularVideosRequest(
+			action.payload.amount,
+			action.payload.loadDescription,
+			action.payload.nextPageToken,
+			category,
+		);
+		// ignoreErrors is imported helper function that allows request to return responses and errors
+		return call(rootSagas.ignoreErrors(request));
+	});
+	yield rootSagas.saga_fetchEntities(
+		requests,
+		videoActions.action_fetchMostPopularByCategory,
+		action.payload.categories,
+	);
 }
