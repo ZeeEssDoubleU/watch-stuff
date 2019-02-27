@@ -144,19 +144,35 @@ export const selector_videoCategories = createSelector(
 	categories => Object.keys(categories),
 );
 
+export const selector_videoCategoriesLoaded = createSelector(
+	state => state.videosState.categories,
+	categories => Object.keys(categories).length > 0,
+);
+
 export const selector_mostPopularVideosByCategory = createSelector(
 	state => state.videosState.categories,
 	state => state.videosState.byCategory,
 	state => state.videosState.byId,
 	(videoCategories, videosByCategory, videosById) => {
 		const byCategory = {};
-		for (let categoryId in videosByCategory) {
+		const categoryIds = Object.keys(videosByCategory);
+		categoryIds.forEach(categoryId => {
 			const categoryName = videoCategories[categoryId];
 			const videoIds = videosByCategory[categoryId].items;
 			byCategory[categoryName] = videoIds.map(
 				videoId => videosById[videoId],
 			);
-		}
+		});
 		return byCategory;
 	},
+);
+
+export const selector_mostPopularVideosByCategoryLoaded = createSelector(
+	state => state.videosState.byCategory,
+	byCategory => Object.keys(byCategory).length > 0,
+);
+
+export const selector_mostPopularVideosByCategoryLength = createSelector(
+	state => state.videosState.byCategory,
+	byCategory => Object.keys(byCategory).length,
 );
