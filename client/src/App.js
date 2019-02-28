@@ -23,7 +23,7 @@ class App extends Component {
 				<div className="app-layout">
 					<Switch>
 						<Route exact path="/" component={HomeContainer} />
-						<Route path="/watch" component={WatchContainer} />
+						<Route path="/watch/:videoId" component={WatchContainer} />
 					</Switch>
 				</div>
 			</>

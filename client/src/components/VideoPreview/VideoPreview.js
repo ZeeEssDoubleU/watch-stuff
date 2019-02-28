@@ -32,9 +32,7 @@ class VideoPreview extends Component {
 						</div>
 						<div className="video-preview-metadata-container">
 							<div className="channel-title semi-bold">
-								<Link to={`/channel/${video.snippet.channelId}`}>
-									{video.snippet.channelTitle}
-								</Link>
+								{video.snippet.channelTitle}
 							</div>
 							<div>
 								<span>{this.getFormattedViewAndTime(video)}</span>

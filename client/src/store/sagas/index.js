@@ -1,6 +1,7 @@
 import { all, call, put, fork } from "redux-saga/effects";
 
 import * as videoSagas from "./videos";
+import * as watchSagas from "./watch";
 
 export default function*() {
 	yield all([
@@ -8,6 +9,7 @@ export default function*() {
 		fork(videoSagas.saga_watchMostPopular),
 		fork(videoSagas.saga_watchCategories),
 		fork(videoSagas.saga_watchMostPopularByCategory),
+		fork(watchSagas.saga_watchWatchDetails),
 	]);
 }
 

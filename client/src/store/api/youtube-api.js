@@ -163,3 +163,17 @@ export const buildVideoCategoriesRequest = () => {
 		null,
 	);
 };
+
+export const buildVideoDetailsRequest = videoId => {
+	return buildApiRequest(
+		"GET",
+		"/youtube/v3/videos",
+		{
+			part: "snippet,contentDetails,statistics",
+			id: videoId,
+			fields:
+				"kind,items(contentDetails/duration,id,snippet(channelId,channelTitle,description,publishedAt,thumbnails/medium,title),statistics)",
+		},
+		null,
+	);
+};
