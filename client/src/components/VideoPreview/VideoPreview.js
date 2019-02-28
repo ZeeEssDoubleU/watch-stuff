@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Image } from "semantic-ui-react";
-
+import { Link } from "react-router-dom";
 import { getAbbrevNumber } from "../../utils/format-number";
 import {
 	getFormattedDuration,
@@ -18,27 +18,31 @@ class VideoPreview extends Component {
 		}
 
 		return (
-			<div className={"video-preview" + horizontal}>
-				<div className="image-container">
-					<Image src={video.snippet.thumbnails.medium.url} />
-					<div className="time-label">
-						<span>{this.getFormattedDuration(video)}</span>
-					</div>
-				</div>
-				<div className="video-info">
-					<div className="semi-bold show-max-two-lines">
-						{video.snippet.title}
-					</div>
-					<div className="video-preview-metadata-container">
-						<div className="channel-title">
-							{video.snippet.channelTitle}
-						</div>
-						<div>
-							<span>{this.getFormattedViewAndTime(video)}</span>
+			<Link to={`/watch/${video.id}`}>
+				<div className={"video-preview" + horizontal}>
+					<div className="image-container">
+						<Image src={video.snippet.thumbnails.medium.url} />
+						<div className="time-label">
+							<span>{this.getFormattedDuration(video)}</span>
 						</div>
 					</div>
+					<div className="video-info">
+						<div className="semi-bold show-max-two-lines">
+							{video.snippet.title}
+						</div>
+						<div className="video-preview-metadata-container">
+							<div className="channel-title semi-bold">
+								<Link to={`/channel/${video.snippet.channelId}`}>
+									{video.snippet.channelTitle}
+								</Link>
+							</div>
+							<div>
+								<span>{this.getFormattedViewAndTime(video)}</span>
+							</div>
+						</div>
+					</div>
 				</div>
-			</div>
+			</Link>
 		);
 	}
 
@@ -49,7 +53,7 @@ class VideoPreview extends Component {
 		}
 		return "";
 	};
-	
+
 	getFormattedViewAndTime = video => {
 		if (video.statistics && video.statistics.viewCount) {
 			// moment and getAbbrevNumber imported at top

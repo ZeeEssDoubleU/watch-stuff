@@ -3,7 +3,7 @@ import { Image, Menu, Form, Input, Icon } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
 import "./HeaderNavContainer.scss";
-import logo from "../../assets/images/logo.jpg";
+import logo from "../../assets/images/WatchStuff.svg";
 
 class HeaderNavContainer extends Component {
 	render() {
@@ -12,7 +12,7 @@ class HeaderNavContainer extends Component {
 				<Menu.Menu className="nav-container">
 					<Menu.Item header className="logo">
 						<Link to="/">
-							<Image src={logo} size="tiny" />
+							<Image src={logo} size="small" />
 						</Link>
 					</Menu.Item>
 					<Menu.Item className="search-input">

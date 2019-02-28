@@ -13,7 +13,7 @@ import { action_youtubeLibraryLoaded } from "./store/actions/api";
 // import styles
 import "./App.scss";
 
-const API_KEY = "AIzaSyBgXzOUW-c5STY2tGItjriaVK7uah8wxss";
+const API_KEY = "AIzaSyBmzT9H1LZkmVoEg6dmGSzNqWVyfz8-nEI";
 
 class App extends Component {
 	render() {
@@ -59,41 +59,13 @@ class App extends Component {
 					);
 			});
 		};
-
-		// // 1. Load the JavaScript client library.
-		// script.onload = () =>
-		// 	window.gapi.load("client", () => {
-		// 		// 2. Initialize the JavaScript client library.
-		// 		window.gapi.client
-		// 			.init({
-		// 				apiKey: `${API_KEY}`,
-		// 			})
-		// 			// 3. Initialize and make the API request.
-		// 			.then(() =>
-		// 				window.gapi.client.request(
-		// 					"https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest",
-		// 				),
-		// 			)
-		// 			.then(
-		// 				response => {
-		// 					console.log(response.result);
-		// 					this.props.action_youtubeLibraryLoaded();
-		// 				},
-		// 				reason => {
-		// 					console.log("Error: " + reason.result.error.message);
-		// 				},
-		// 			);
-		// 	});
-
 		document.body.appendChild(script);
 	}
 }
 
-App = withRouter(
+export default withRouter(
 	connect(
 		null,
 		{ action_youtubeLibraryLoaded },
 	)(App),
 );
-
-export default App;

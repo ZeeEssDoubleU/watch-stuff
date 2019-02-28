@@ -82,9 +82,7 @@ const mapStateToProps = state => ({
 	videosByCategoryLength: selector_mostPopularVideosByCategoryLength(state),
 });
 
-HomeContent = connect(
+export default connect(
 	mapStateToProps,
 	null,
 )(HomeContent);
-
-export default HomeContent;

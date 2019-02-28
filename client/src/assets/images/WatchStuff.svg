@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1110px" height="286px" viewBox="0 0 1110 286" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group">
+            <rect id="Rectangle-3" fill="#FFFFFF" x="0" y="0" width="1110" height="286" rx="60"></rect>
+            <rect id="Rectangle" fill="#FF0000" x="38" y="46" width="277" height="194" rx="60"></rect>
+            <polygon id="Triangle" fill="#FFFFFF" transform="translate(186.500000, 143.500000) rotate(90.000000) translate(-186.500000, -143.500000) " points="186.5 106 230 181 143 181"></polygon>
+            <text id="WatchStuff" font-family="DINCondensed-Bold, DIN Condensed" font-size="240" font-style="condensed" font-weight="bold" letter-spacing="-6.80000019" fill="#000000">
+                <tspan x="330" y="228">WatchStuff</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

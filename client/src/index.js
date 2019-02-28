@@ -8,13 +8,16 @@ import configureStore from "./store/configureStore";
 
 // import application
 import App from "./App";
+import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 
 const store = configureStore();
 
 ReactDOM.render(
 	<Provider store={store}>
 		<BrowserRouter>
-			<App />
+			<ScrollToTop>
+				<App />
+			</ScrollToTop>
 		</BrowserRouter>
 	</Provider>,
 	document.getElementById("root"),

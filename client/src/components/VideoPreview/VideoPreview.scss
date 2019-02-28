@@ -1,5 +1,4 @@
 @import '../../styles/shared.scss';
-
 .video-preview {
    display: grid;
    grid: 118px auto / 210px;
@@ -7,13 +6,17 @@
       position: relative;
       grid-row: 1 / 2;
       grid-column: 1 / 2;
+      img {
+         border: solid black 3px;
+         border-radius: 10px;
+      }
       .time-label {
          position: absolute;
          background: $text-color-dark;
          bottom: 0;
          right: 0;
          opacity: .8;
-         border-radius: 3px;
+         border-radius: 10Îpx;
          font-weight: 500;
          color: white;
          margin: 4px;
@@ -25,10 +28,14 @@
       color: $text-color-dark;
       grid-row: 2 / 3;
       grid-column: 1 / 2;
+      padding-top: 5px;
       .video-preview-metadata-container {
          padding-top: 5px;
          font-size: 13px;
          color: #6e6e6e;
+         a {
+            color: #6e6e6e;
+         }
          .channel-title {
             white-space: nowrap;
             overflow: hidden;

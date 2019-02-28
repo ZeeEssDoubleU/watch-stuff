@@ -59,9 +59,7 @@ const actionCreators = {
 		videoActions.action_fetchMostPopularByCategory.request,
 };
 
-HomeContainer = connect(
+export default connect(
 	mapStateToProps,
 	actionCreators,
 )(HomeContainer);
-
-export default HomeContainer;
