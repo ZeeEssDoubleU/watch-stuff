@@ -14,7 +14,6 @@ export function* saga_fetchWatchDetails(action) {
 	const request = () =>
 		youtubeApi.buildVideoDetailsRequest(action.payload.videoId);
 	yield rootSagas.saga_fetchEntity(
-		request,
-		watchActions.action_fetchWatchDetails,
+		request, watchActions.action_fetchWatchDetails
 	);
 }

@@ -9,9 +9,6 @@ export const types = {
 	MOST_POPULAR_BY_CATEGORY_REQUEST: "MOST_POPULAR_BY_CATEGORY_REQUEST",
 	MOST_POPULAR_BY_CATEGORY_SUCCESS: "MOST_POPULAR_BY_CATEGORY_SUCCESS",
 	MOST_POPULAR_BY_CATEGORY_FAILURE: "MOST_POPULAR_BY_CATEGORY_FAILURE",
-	WATCH_DETAILS_REQUEST: "WATCH_DETAILS_REQUEST",
-	WATCH_DETAILS_SUCCESS: "WATCH_DETAILS_SUCCESS",
-	WATCH_DETAILS_FAILURE: "WATCH_DETAILS_FAILURE",
 };
 
 export const action_fetchMostPopular = {
@@ -62,23 +59,6 @@ export const action_fetchMostPopularByCategory = {
 	}),
 	failure: response => ({
 		type: types.MOST_POPULAR_BY_CATEGORY_FAILURE,
-		payload: response,
-	}),
-};
-
-export const action_fetchWatchDetails = {
-	request: videoId => ({
-		type: types.WATCH_DETAILS_REQUEST,
-		payload: { videoId },
-	}),
-	success: response => ({
-		type: types.WATCH_DETAILS_SUCCESS,
-		payload: {
-			response,
-		},
-	}),
-	failure: response => ({
-		type: types.WATCH_DETAILS_FAILURE,
 		payload: response,
 	}),
 };

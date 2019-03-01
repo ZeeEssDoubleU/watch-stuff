@@ -12,9 +12,7 @@ export const action_fetchWatchDetails = {
 	}),
 	success: response => ({
 		type: types.WATCH_DETAILS_SUCCESS,
-		payload: {
-			response,
-		},
+		payload: response,
 	}),
 	failure: response => ({
 		type: types.WATCH_DETAILS_FAILURE,

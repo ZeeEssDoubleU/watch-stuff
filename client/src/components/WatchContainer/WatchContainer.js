@@ -10,7 +10,7 @@ import VideoInfo from "../Video/VideoInfo";
 import VideoMetadata from "../Video/VIdeoMetadata";
 import CommentsContainer from "../CommentsContainer/CommentsContainer";
 
-import * as videoActions from "../../store/actions/videos";
+import * as watchActions from "../../store/actions/watch";
 import { selector_youtubeLibraryLoaded } from "../../store/reducers/api";
 
 class WatchContainer extends Component {
@@ -47,7 +47,7 @@ const mapStateToProps = state => ({
 });
 
 const actionCreators = {
-	fetchWatchDetails: videoActions.action_fetchWatchDetails.request,
+	fetchWatchDetails: watchActions.action_fetchWatchDetails.request,
 };
 
 export default withRouter(
