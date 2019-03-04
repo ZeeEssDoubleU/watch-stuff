@@ -36,8 +36,7 @@ export function* saga_fetchEntities(requests, entity, ...args) {
 	try {
 		const response = yield all(requests);
 		console.log("ENTITIES SUCCESS", entity.success(response, ...args));
-		// return response.result, throwing away headers/status text
-		// if headers/status are needed, return full response instead of response.result
+		// only returns result if passed through ignore errors below
 		yield put(entity.success(response, ...args));
 	} catch (error) {
 		console.log("ENTITIES FAILURE", entity.failure(error, ...args));
@@ -46,6 +45,8 @@ export function* saga_fetchEntities(requests, entity, ...args) {
 }
 
 // helper function that returns responses and errors from promises
+// only returns result throwing away headers/status text
+// if headers/status are needed, return full response instead of response.result
 export const ignoreErrors = promise => () =>
 	promise
 		.then(response => response.result)

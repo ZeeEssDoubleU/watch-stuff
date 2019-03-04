@@ -11,7 +11,7 @@
       grid-area: 1/2 / 2/3;
       cursor: pointer;
    }
-   .progress {
+   .rating-bar {
       grid-area: 2/1 / 3/3;
       &.ui.progress:last-child {
          margin-bottom: 0;

@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 import { Image } from "semantic-ui-react";
 import { Link } from "react-router-dom";
+
+import "./VideoPreview.scss";
+
 import { getAbbrevNumber } from "../../utils/format-number";
 import {
 	getFormattedDuration,
 	getFormattedTimeAgo,
 } from "../../utils/format-time";
-
-import "./VideoPreview.scss";
 
 class VideoPreview extends Component {
 	render() {

@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import "./HomeContainer.scss";
 import HomeContent from "./HomeContent";
 import SideBarContainer from "../SideBarContainer/SideBarContainer";
 

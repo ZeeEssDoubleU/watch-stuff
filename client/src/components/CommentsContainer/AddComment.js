@@ -12,7 +12,11 @@ const AddComment = props => (
 			circular
 		/>
 		<Form>
-			<TextArea autoHeight rows={1} placeholder="Add a public comment..." />
+			<TextArea
+				autoHeight
+				rows={1}
+				placeholder="Add a public comment..."
+			/>
 		</Form>
 	</div>
 );

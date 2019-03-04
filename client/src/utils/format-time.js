@@ -9,6 +9,6 @@ export const getFormattedDuration = time => {
 	return moment.duration(time).format();
 };
 
-export const getFormattedTimeAgo = date => {
-	return moment(date).fromNow();
-};
+export const getFormattedTimeAgo = date => moment(date).fromNow();
+
+export const getFormattedDate = date => moment(date).format('ll');

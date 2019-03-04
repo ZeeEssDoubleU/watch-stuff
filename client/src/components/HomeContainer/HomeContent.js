@@ -23,6 +23,7 @@ class HomeContent extends Component {
 			document.querySelector(".home-content").offsetHeight -
 			document.querySelector(".loader-container").offsetHeight;
 		if (
+			// if height of loaded content is less than window height, load more content
 			this.props.videosByCategoryLoaded &&
 			homeContentHeight < window.innerHeight
 		) {
@@ -30,6 +31,7 @@ class HomeContent extends Component {
 		}
 	}
 
+	// function that loads data to page.  Data alreayd fetched from server
 	lazyLoadVideoCategories = () => {
 		if (
 			this.props.videosByCategoryLoaded &&

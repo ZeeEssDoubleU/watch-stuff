@@ -1,5 +1,6 @@
 import { createSelector } from "reselect";
 import * as videoActions from "../actions/videos";
+import * as watchActions from "../actions/watch";
 
 const initialState = {
 	categories: {},
@@ -12,25 +13,12 @@ const reducer_videos = (state = initialState, action) => {
 	switch (action.type) {
 		case videoActions.types.MOST_POPULAR_SUCCESS:
 			return reducer_fetchMostPopular(action.payload, state);
-		case videoActions.types.MOST_POPULAR_FAILURE:
-			return {
-				...state,
-				error: action.payload.message,
-			};
 		case videoActions.types.VIDEO_CATEGORIES_SUCCESS:
 			return reducer_fetchVideoCategories(action.payload, state);
-		case videoActions.types.VIDEO_CATEGORIES_FAILURE:
-			return {
-				...state,
-				error: action.payload.message,
-			};
 		case videoActions.types.MOST_POPULAR_BY_CATEGORY_SUCCESS:
 			return reducer_fetchMostPopularByCategory(action.payload, state);
-		// case videoActions.types.MOST_POPULAR_BY_CATEGORY_FAILURE:
-		// 	return {
-		// 		...state,
-		// 		error: action.payload.message,
-		// 	};
+		case watchActions.types.WATCH_DETAILS_SUCCESS:
+			return reducer_fetchWatchDetails(action.payload, state);
 		default:
 			return state;
 	}
@@ -125,6 +113,19 @@ const reducer_fetchMostPopularByCategory = (payload, prevState) => {
 	};
 };
 
+const reducer_fetchWatchDetails = (payload, prevState) => {
+	console.log("PAYLOAD - FETCH WATCH DETAILS", payload);
+	const details = payload.items[0];
+	const videoId = details.id;
+	return {
+		...prevState,
+		byId: {
+			...prevState.byId,
+			[videoId]: details,
+		},
+	};
+};
+
 // SELECTORS
 export const selector_mostPopularVideos = createSelector(
 	state => state.videosState.byId,
@@ -176,3 +177,6 @@ export const selector_mostPopularVideosByCategoryLength = createSelector(
 	state => state.videosState.byCategory,
 	byCategory => Object.keys(byCategory).length,
 );
+
+export const selector_videoById = (state, videoId) =>
+	state.videosState.byId[videoId];

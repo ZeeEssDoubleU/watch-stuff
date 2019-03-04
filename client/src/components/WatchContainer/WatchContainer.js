@@ -3,12 +3,7 @@ import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
 
-import "./WatchContainer.scss";
-import Video from "../Video/Video";
-import RelatedVideos from "../RelatedVideos/RelatedVideos";
-import VideoInfo from "../Video/VideoInfo";
-import VideoMetadata from "../Video/VIdeoMetadata";
-import CommentsContainer from "../CommentsContainer/CommentsContainer";
+import WatchContent from "./WatchContent";
 
 import * as watchActions from "../../store/actions/watch";
 import { selector_youtubeLibraryLoaded } from "../../store/reducers/api";
@@ -25,18 +20,7 @@ class WatchContainer extends Component {
 		}
 	}
 	render() {
-		return (
-			<div className="watch-container">
-				<Video
-					id={this.props.match.params.videoId}
-					className="video-container"
-				/>
-				<VideoMetadata className="video-metadata" viewCount={1000} />
-				<VideoInfo className="video-info-container" />
-				<CommentsContainer className="comments-container" />
-				<RelatedVideos className="related-videos" />
-			</div>
-		);
+		return <WatchContent />;
 	}
 }
 

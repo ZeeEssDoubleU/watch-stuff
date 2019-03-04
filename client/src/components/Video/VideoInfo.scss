@@ -29,6 +29,7 @@
    .video-description {
       grid-area: 2/2 / 3/3;
       max-width: 615px;
+      white-space: pre-line;
       &>.ui.button {
          margin: 8px 0;
          padding-left: 0;
