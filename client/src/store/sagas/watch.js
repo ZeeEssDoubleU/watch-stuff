@@ -14,6 +14,26 @@ export function* saga_fetchWatchDetails(action) {
 	const request = () =>
 		youtubeApi.buildVideoDetailsRequest(action.payload.videoId);
 	yield rootSagas.saga_fetchEntity(
-		request, watchActions.action_fetchWatchDetails
+		request,
+		watchActions.action_fetchWatchDetails,
+	);
+}
+
+export function* saga_watchRelatedVideos() {
+	yield takeEvery(
+		watchActions.types.RELATED_VIDEOS_REQUEST,
+		saga_fetchRelatedVideos,
+	);
+}
+export function* saga_fetchRelatedVideos(action) {
+	console.log("ACTION - FETCH RELATED VIDEOS", action);
+	const request = () =>
+		youtubeApi.buildRelatedVideosRequest(
+			action.payload.videoId,
+			action.payload.amount,
+		);
+	yield rootSagas.saga_fetchEntity(
+		request,
+		watchActions.action_fetchRelatedVideos,
 	);
 }

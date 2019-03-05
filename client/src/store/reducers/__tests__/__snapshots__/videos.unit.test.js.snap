@@ -183,6 +183,7 @@ Object {
 
 exports[`videos reducer test unused action type with default initial state 1`] = `
 Object {
+  "byCategory": Object {},
   "byId": Object {},
   "categories": Object {},
   "mostPopular": Object {},
@@ -191,6 +192,7 @@ Object {
 
 exports[`videos reducer test with MOST_POPULAR_SUCCESS action 1`] = `
 Object {
+  "byCategory": Object {},
   "byId": Object {
     "eSLe4HuKuK0": Object {
       "contentDetails": Object {

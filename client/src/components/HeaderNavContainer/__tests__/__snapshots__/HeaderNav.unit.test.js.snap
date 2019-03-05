@@ -19,8 +19,8 @@ exports[`renders HeaderNavContainer 1`] = `
       >
         <Image
           as="img"
-          size="tiny"
-          src="logo.jpg"
+          size="small"
+          src="WatchStuff.svg"
           ui={true}
         />
       </Link>

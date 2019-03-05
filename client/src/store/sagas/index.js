@@ -5,16 +5,12 @@ import * as watchSagas from "./watch";
 
 export default function*() {
 	yield all([
-		fork(helloSaga),
 		fork(videoSagas.saga_watchMostPopular),
 		fork(videoSagas.saga_watchCategories),
 		fork(videoSagas.saga_watchMostPopularByCategory),
 		fork(watchSagas.saga_watchWatchDetails),
+		fork(watchSagas.saga_watchRelatedVideos),
 	]);
-}
-
-function* helloSaga() {
-	console.log("Hello Saga!");
 }
 
 // entity refers to action group

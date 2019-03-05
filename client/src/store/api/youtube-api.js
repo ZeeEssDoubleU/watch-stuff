@@ -124,17 +124,11 @@ export function buildApiRequest(requestMethod, path, params, properties) {
 }
 
 // function that passes 'most popular videos' data to buildApiRequest function
-export function buildMostPopularVideosRequest(
+export const buildMostPopularVideosRequest = (
 	amount = 12,
-	loadDescription = false,
 	nextPageToken = null,
 	videoCategoryId = null,
-) {
-	let fields =
-		"nextPageToken,prevPageToken,items(contentDetails/duration,id,snippet(channelId,channelTitle,publishedAt,thumbnails/medium,title),statistics/viewCount),pageInfo(totalResults)";
-	if (loadDescription) {
-		fields += ",items/snippet/description";
-	}
+) => {
 	return buildApiRequest(
 		"GET",
 		"/youtube/v3/videos",
@@ -144,12 +138,13 @@ export function buildMostPopularVideosRequest(
 			maxResults: amount,
 			regionCode: "US",
 			pageToken: nextPageToken,
-			fields,
+			fields:
+				"nextPageToken,prevPageToken,items(contentDetails/duration,id,snippet(channelId,channelTitle,publishedAt,thumbnails/medium,title),statistics/viewCount),pageInfo(totalResults)",
 			videoCategoryId,
 		},
 		null,
 	);
-}
+};
 
 // function that passes 'video categories' data to buildApiRequest function
 export const buildVideoCategoriesRequest = () => {
@@ -173,6 +168,20 @@ export const buildVideoDetailsRequest = videoId => {
 			id: videoId,
 			fields:
 				"kind,items(contentDetails/duration,id,snippet(channelId,channelTitle,description,publishedAt,thumbnails/medium,title),statistics)",
+		},
+		null,
+	);
+};
+
+export const buildRelatedVideosRequest = (videoId, amount = 12) => {
+	return buildApiRequest(
+		"GET",
+		"/youtube/v3/search",
+		{
+			part: "snippet",
+			maxResults: amount,
+			relatedToVideoId: videoId,
+			type: "video",
 		},
 		null,
 	);

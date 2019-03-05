@@ -3,7 +3,7 @@ import * as youtubeApi from "../api/youtube-api";
 import * as videoActions from "../actions/videos";
 import * as rootSagas from "./index";
 
-// watch and fect most popular vidoes
+// watch and fetch most popular vidoes
 export function* saga_watchMostPopular() {
 	yield takeEvery(
 		videoActions.types.MOST_POPULAR_REQUEST,
@@ -15,7 +15,6 @@ export function* saga_fetchMostPopular(action) {
 	const request = () =>
 		youtubeApi.buildMostPopularVideosRequest(
 			action.payload.amount,
-			action.payload.loadDescription,
 			action.payload.nextPageToken,
 		);
 	yield rootSagas.saga_fetchEntity(
@@ -49,13 +48,13 @@ export function* saga_fetchMostPopularByCategory(action) {
 	const requests = action.payload.categories.map(category => {
 		const request = youtubeApi.buildMostPopularVideosRequest(
 			action.payload.amount,
-			action.payload.loadDescription,
 			action.payload.nextPageToken,
 			category,
 		);
 		// ignoreErrors is imported helper function that allows request to return responses and errors
 		return call(rootSagas.ignoreErrors(request));
 	});
+	console.log("REQUESTS", requests);
 	yield rootSagas.saga_fetchEntities(
 		requests,
 		videoActions.action_fetchMostPopularByCategory,

@@ -29,10 +29,7 @@ class WatchContent extends Component {
 					className="video-info-container"
 					video={this.props.video}
 				/>
-				<CommentsContainer
-					className="comments-container"
-					videoDetails={this.props.videoDetails}
-				/>
+				<CommentsContainer className="comments-container" />
 				<RelatedVideos className="related-videos" />
 			</div>
 		);

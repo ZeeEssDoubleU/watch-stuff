@@ -26,7 +26,7 @@ const reducer_videos = (state = initialState, action) => {
 
 export default reducer_videos;
 
-const reducer_fetchMostPopular = (payload, prevState) => {
+const reducer_fetchMostPopular = (payload, state) => {
 	const videoMap = payload.items.reduce((obj, item) => {
 		obj[item.id] = item;
 		return obj;
@@ -38,8 +38,8 @@ const reducer_fetchMostPopular = (payload, prevState) => {
 
 	// if prevPageToken exists, previous vids (items) have already been fetched from endpoint
 	// combine previous vids into mostPopular itemIds (video ids)
-	if (payload.hasOwnProperty("prevPageToken") && prevState.mostPopular) {
-		itemIds = [...prevState.mostPopular.itemIds, ...itemIds];
+	if (payload.hasOwnProperty("prevPageToken") && state.mostPopular) {
+		itemIds = [...state.mostPopular.itemIds, ...itemIds];
 	}
 
 	const mostPopular = {
@@ -50,16 +50,16 @@ const reducer_fetchMostPopular = (payload, prevState) => {
 
 	// combine previous vids into state (same as above)
 	return {
-		...prevState,
+		...state,
 		mostPopular,
 		byId: {
-			...prevState.byId,
+			...state.byId,
 			...videoMap,
 		},
 	};
 };
 
-const reducer_fetchVideoCategories = (payload, prevState) => {
+const reducer_fetchVideoCategories = (payload, state) => {
 	const categoryMap = payload.items.reduce((obj, item) => {
 		obj[item.id] = item.snippet.title;
 		return obj;
@@ -70,12 +70,12 @@ const reducer_fetchVideoCategories = (payload, prevState) => {
 
 	// combine previous vids into state (same as above)
 	return {
-		...prevState,
+		...state,
 		categories: categoryMap,
 	};
 };
 
-const reducer_fetchMostPopularByCategory = (payload, prevState) => {
+const reducer_fetchMostPopularByCategory = (payload, state) => {
 	const { categories, response } = payload;
 	const byIdMap = {};
 	const byCategoryMap = {};
@@ -101,26 +101,27 @@ const reducer_fetchMostPopularByCategory = (payload, prevState) => {
 	console.log("MAP - VIDEOS BY ID", byIdMap);
 
 	return {
-		...prevState,
+		...state,
 		byCategory: {
-			...prevState.byCategory,
+			...state.byCategory,
 			...byCategoryMap,
 		},
 		byId: {
-			...prevState.byId,
+			...state.byId,
 			...byIdMap,
 		},
 	};
 };
 
-const reducer_fetchWatchDetails = (payload, prevState) => {
+// this reducer is mirrors in watch.js as reducer_fetchWatchDetails
+const reducer_fetchWatchDetails = (payload, state) => {
 	console.log("PAYLOAD - FETCH WATCH DETAILS", payload);
 	const details = payload.items[0];
 	const videoId = details.id;
 	return {
-		...prevState,
+		...state,
 		byId: {
-			...prevState.byId,
+			...state.byId,
 			[videoId]: details,
 		},
 	};
@@ -178,5 +179,6 @@ export const selector_mostPopularVideosByCategoryLength = createSelector(
 	byCategory => Object.keys(byCategory).length,
 );
 
+// this selector is mirrored in watch.js as selector_watchDetails
 export const selector_videoById = (state, videoId) =>
 	state.videosState.byId[videoId];

@@ -1,25 +1,25 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`VideoMetadata renders with view count 1`] = `
+exports[`VideoMetadata renders with video prop 1`] = `
 <div
   className="video-metadata"
 >
   <h3>
-    Video Title
+    Overwatch Animated Short | “Reunion”
   </h3>
   <div
     className="video-stats"
   >
     <span>
-      100,234
+      2,221,089
        views
     </span>
     <div
       className="video-actions"
     >
       <Ratings
-        dislikes={25}
-        likes={75}
+        dislikes={1524}
+        likes={141186}
       />
       <Button
         as="button"
@@ -61,63 +61,4 @@ exports[`VideoMetadata renders with view count 1`] = `
 </div>
 `;
 
-exports[`VideoMetadata renders without props 1`] = `
-<div
-  className="video-metadata"
->
-  <h3>
-    Video Title
-  </h3>
-  <div
-    className="video-stats"
-  >
-    <span>
-      NaN
-       views
-    </span>
-    <div
-      className="video-actions"
-    >
-      <Ratings
-        dislikes={25}
-        likes={75}
-      />
-      <Button
-        as="button"
-        basic={true}
-        icon={true}
-        labelPosition="left"
-      >
-        <Icon
-          as="i"
-          name="share"
-        />
-        SHARE
-      </Button>
-      <Button
-        as="button"
-        basic={true}
-        icon={true}
-        labelPosition="left"
-      >
-        <Icon
-          as="i"
-          name="add circle"
-        />
-        SAVE
-      </Button>
-      <Button
-        as="button"
-        basic={true}
-        icon={true}
-      >
-        <Icon
-          as="i"
-          name="ellipsis horizontal"
-        />
-      </Button>
-    </div>
-  </div>
-  <Divider />
-</div>
-`;
+exports[`VideoMetadata renders without props 1`] = `<div />`;

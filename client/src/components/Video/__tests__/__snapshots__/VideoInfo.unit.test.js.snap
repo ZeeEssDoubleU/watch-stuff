@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`VideoInfo renders collapsed 1`] = `
+exports[`VideoInfo renders collapsed with video prop 1`] = `
 <div
   className="video-info-container"
 >
@@ -17,12 +17,13 @@ exports[`VideoInfo renders collapsed 1`] = `
     <div
       className="channel-name"
     >
-      Channel Name
+      PlayOverwatch
     </div>
     <div
       className="videopublication-date"
     >
-      Published on Jun 25, 2019
+      Published on 
+      Nov 2, 2018
     </div>
   </div>
   <Button
@@ -38,9 +39,20 @@ exports[`VideoInfo renders collapsed 1`] = `
     <div
       className="collapsed"
     >
-      <p>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem quos, magnam impedit vero hic inventore, numquam perspiciatis veritatis obcaecati aut assumenda rerum. Atque ratione similique numquam excepturi provident, commodi fugiat dolores accusamus quas cupiditate dolorum facilis iure aliquam nesciunt exercitationem totam pariatur deserunt nemo cum in. Eum voluptates mollitia quisquam eos repellendus sapiente ratione accusantium tempore sit dolorum dolorem est aut dolores nesciunt, ipsum voluptas tempora sequi praesentium obcaecati amet! Nam nostrum deleniti a eius, recusandae dolorum? Eius tenetur repudiandae debitis incidunt aliquid harum, deserunt, illum tempore, voluptatibus fuga aspernatur eaque consequuntur magnam perferendis consectetur earum veritatis nisi ut?
-      </p>
+      <Linkify
+        className="Linkify"
+        component="a"
+        properties={Object {}}
+      >
+        An explosive train robbery gives McCree the chance to settle some unfinished business with a few former associates in our latest animated short: Reunion! 
+
+Learn more about McCree: https://playoverwatch.com/en-us/heroes/mccree/
+
+Begin your watch: http://buyoverwatch.com
+Like us on Facebook: http://www.facebook.com/playoverwatch
+Follow us on Twitter: http://www.twitter.com/playoverwatch
+Join us on Instagram: https://www.instagram.com/playoverwatch
+      </Linkify>
     </div>
     <Button
       as="button"
@@ -54,7 +66,7 @@ exports[`VideoInfo renders collapsed 1`] = `
 </div>
 `;
 
-exports[`VideoInfo renders expanded 1`] = `
+exports[`VideoInfo renders expanded with video prop 1`] = `
 <div
   className="video-info-container"
 >
@@ -71,12 +83,13 @@ exports[`VideoInfo renders expanded 1`] = `
     <div
       className="channel-name"
     >
-      Channel Name
+      PlayOverwatch
     </div>
     <div
       className="videopublication-date"
     >
-      Published on Jun 25, 2019
+      Published on 
+      Nov 2, 2018
     </div>
   </div>
   <Button
@@ -92,9 +105,20 @@ exports[`VideoInfo renders expanded 1`] = `
     <div
       className="expanded"
     >
-      <p>
-        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem quos, magnam impedit vero hic inventore, numquam perspiciatis veritatis obcaecati aut assumenda rerum. Atque ratione similique numquam excepturi provident, commodi fugiat dolores accusamus quas cupiditate dolorum facilis iure aliquam nesciunt exercitationem totam pariatur deserunt nemo cum in. Eum voluptates mollitia quisquam eos repellendus sapiente ratione accusantium tempore sit dolorum dolorem est aut dolores nesciunt, ipsum voluptas tempora sequi praesentium obcaecati amet! Nam nostrum deleniti a eius, recusandae dolorum? Eius tenetur repudiandae debitis incidunt aliquid harum, deserunt, illum tempore, voluptatibus fuga aspernatur eaque consequuntur magnam perferendis consectetur earum veritatis nisi ut?
-      </p>
+      <Linkify
+        className="Linkify"
+        component="a"
+        properties={Object {}}
+      >
+        An explosive train robbery gives McCree the chance to settle some unfinished business with a few former associates in our latest animated short: Reunion! 
+
+Learn more about McCree: https://playoverwatch.com/en-us/heroes/mccree/
+
+Begin your watch: http://buyoverwatch.com
+Like us on Facebook: http://www.facebook.com/playoverwatch
+Follow us on Twitter: http://www.twitter.com/playoverwatch
+Join us on Instagram: https://www.instagram.com/playoverwatch
+      </Linkify>
     </div>
     <Button
       as="button"
@@ -107,3 +131,5 @@ exports[`VideoInfo renders expanded 1`] = `
   </div>
 </div>
 `;
+
+exports[`VideoInfo renders without props 1`] = `<div />`;

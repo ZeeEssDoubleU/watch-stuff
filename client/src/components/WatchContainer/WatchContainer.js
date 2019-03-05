@@ -12,11 +12,13 @@ class WatchContainer extends Component {
 	componentDidMount() {
 		if (this.props.youtubeLibraryLoaded) {
 			this.props.fetchWatchDetails(this.props.match.params.videoId);
+			this.props.fetchRelatedVideos(this.props.match.params.videoId);
 		}
 	}
 	componentDidUpdate(prevState) {
 		if (this.props.youtubeLibraryLoaded !== prevState.youtubeLibraryLoaded) {
 			this.props.fetchWatchDetails(this.props.match.params.videoId);
+			this.props.fetchRelatedVideos(this.props.match.params.videoId);
 		}
 	}
 	render() {
@@ -32,6 +34,7 @@ const mapStateToProps = state => ({
 
 const actionCreators = {
 	fetchWatchDetails: watchActions.action_fetchWatchDetails.request,
+	fetchRelatedVideos: watchActions.action_fetchRelatedVideos.request,
 };
 
 export default withRouter(
