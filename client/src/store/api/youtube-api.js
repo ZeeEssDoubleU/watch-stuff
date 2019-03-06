@@ -146,7 +146,7 @@ export const buildMostPopularVideosRequest = (
 	);
 };
 
-// function that passes 'video categories' data to buildApiRequest function
+// builds request to fetch all available video categories
 export const buildVideoCategoriesRequest = () => {
 	return buildApiRequest(
 		"GET",
@@ -159,6 +159,7 @@ export const buildVideoCategoriesRequest = () => {
 	);
 };
 
+// builds request to fetch individual video details
 export const buildVideoDetailsRequest = videoId => {
 	return buildApiRequest(
 		"GET",
@@ -173,6 +174,7 @@ export const buildVideoDetailsRequest = videoId => {
 	);
 };
 
+// builds request to fetch videos related to target video
 export const buildRelatedVideosRequest = (videoId, amount = 12) => {
 	return buildApiRequest(
 		"GET",

@@ -6,6 +6,9 @@ export const types = {
 	RELATED_VIDEOS_REQUEST: "RELATED_VIDEOS_REQUEST",
 	RELATED_VIDEOS_SUCCESS: "RELATED_VIDEOS_SUCCESS",
 	RELATED_VIDEOS_FAILURE: "RELATED_VIDEOS_FAILURE",
+	RELATED_VIDEO_DETAILS_REQUEST: "RELATED_VIDEO_DETAILS_REQUEST",
+	RELATED_VIDEO_DETAILS_SUCCESS: "RELATED_VIDEO_DETAILS_SUCCESS",
+	RELATED_VIDEO_DETAILS_FAILURE: "RELATED_VIDEO_DETAILS_FAILURE",
 };
 
 export const action_fetchWatchDetails = {
@@ -31,12 +34,30 @@ export const action_fetchRelatedVideos = {
 			amount,
 		},
 	}),
-	success: response => ({
+	success: (response, videoId) => ({
 		type: types.RELATED_VIDEOS_SUCCESS,
-		payload: response,
+		payload: {
+			response,
+			videoId,
+		},
 	}),
 	failure: response => ({
 		type: types.RELATED_VIDEOS_FAILURE,
+		payload: response,
+	}),
+};
+
+export const action_fetchRelatedVideoDetails = {
+	request: videoIds => ({
+		type: types.RELATED_VIDEO_DETAILS_REQUEST,
+		payload: { videoIds },
+	}),
+	success: response => ({
+		type: types.RELATED_VIDEO_DETAILS_SUCCESS,
+		payload: response,
+	}),
+	failure: response => ({
+		type: types.RELATED_VIDEO_DETAILS_FAILURE,
 		payload: response,
 	}),
 };

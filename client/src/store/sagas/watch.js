@@ -2,13 +2,14 @@ import { takeEvery, call } from "redux-saga/effects";
 import * as youtubeApi from "../api/youtube-api";
 import * as watchActions from "../actions/watch";
 import * as rootSagas from "./index";
+
+// fetch watch details
 export function* saga_watchWatchDetails() {
 	yield takeEvery(
 		watchActions.types.WATCH_DETAILS_REQUEST,
 		saga_fetchWatchDetails,
 	);
 }
-
 export function* saga_fetchWatchDetails(action) {
 	console.log("ACTION - FETCH WATCH DETAILS", action);
 	const request = () =>
@@ -19,6 +20,7 @@ export function* saga_fetchWatchDetails(action) {
 	);
 }
 
+// fetch related video ids
 export function* saga_watchRelatedVideos() {
 	yield takeEvery(
 		watchActions.types.RELATED_VIDEOS_REQUEST,
@@ -35,5 +37,28 @@ export function* saga_fetchRelatedVideos(action) {
 	yield rootSagas.saga_fetchEntity(
 		request,
 		watchActions.action_fetchRelatedVideos,
+		action.payload.videoId,
+	);
+}
+
+// fetch related video details
+export function* saga_watchRelatedVideoDetails() {
+	yield takeEvery(
+		watchActions.types.RELATED_VIDEOS_SUCCESS,
+		saga_fetchRelatedVideoDetails,
+	);
+}
+export function* saga_fetchRelatedVideoDetails(action) {
+	const videoIds = action.payload.response.items.map(item => item.id.videoId);
+	console.log("ACTION - FETCH RELATED VIDEO DETAILS", videoIds);
+
+	const requests = videoIds.map(videoId => {
+		const request = youtubeApi.buildVideoDetailsRequest(videoId);
+		return call(rootSagas.ignoreErrors(request));
+	});
+
+	yield rootSagas.saga_fetchEntities(
+		requests,
+		watchActions.action_fetchRelatedVideoDetails,
 	);
 }

@@ -54,7 +54,6 @@ export function* saga_fetchMostPopularByCategory(action) {
 		// ignoreErrors is imported helper function that allows request to return responses and errors
 		return call(rootSagas.ignoreErrors(request));
 	});
-	console.log("REQUESTS", requests);
 	yield rootSagas.saga_fetchEntities(
 		requests,
 		videoActions.action_fetchMostPopularByCategory,

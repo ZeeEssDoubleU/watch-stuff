@@ -10,6 +10,7 @@ export default function*() {
 		fork(videoSagas.saga_watchMostPopularByCategory),
 		fork(watchSagas.saga_watchWatchDetails),
 		fork(watchSagas.saga_watchRelatedVideos),
+		fork(watchSagas.saga_watchRelatedVideoDetails),
 	]);
 }
 

@@ -4,9 +4,8 @@ import PropTypes from "prop-types";
 import "./Video.scss";
 
 const Video = props => {
-	if (!props.id) {
-		return null;
-	}
+	if (!props.id) return null;
+
 	return (
 		<div className="video-container">
 			<iframe
