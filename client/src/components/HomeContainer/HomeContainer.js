@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 import HomeContent from "./HomeContent";
@@ -11,38 +11,27 @@ import {
 	selector_videoCategoriesLoaded,
 } from "../../store/reducers/videos";
 
-class HomeContainer extends Component {
-	// Most likely won't fetch.  Meant to fetch if client library has already been loaded (ie navigating back from other page)
-	componentDidMount() {
-		if (this.props.youtubeLibraryLoaded) {
-			this.props.fetchMostPopular();
-			this.props.fetchCategories();
+const HomeContainer = props => {
+	useEffect(() => {
+		if (props.youtubeLibraryLoaded) {
+			props.fetchMostPopular();
+			props.fetchCategories();
 		}
-	}
+	}, [props.youtubeLibraryLoaded]);
 
-	// Most likely will fetch.  Client library usually loads after component mounts
-	componentDidUpdate(prevProps) {
-		if (this.props.youtubeLibraryLoaded !== prevProps.youtubeLibraryLoaded) {
-			this.props.fetchMostPopular();
-			this.props.fetchCategories();
+	useEffect(() => {
+		if (props.categoriesLoaded) {
+			props.fetchMostPopularByCategory(props.categories);
 		}
-		if (
-			this.props.categories !== prevProps.categories &&
-			this.props.categoriesLoaded
-		) {
-			this.props.fetchMostPopularByCategory(this.props.categories);
-		}
-	}
+	}, [props.categories]);
 
-	render() {
-		return (
-			<>
-				<SideBarContainer />
-				<HomeContent />
-			</>
-		);
-	}
-}
+	return (
+		<>
+			<SideBarContainer />
+			<HomeContent />
+		</>
+	);
+};
 
 const mapStateToProps = state => ({
 	youtubeLibraryLoaded: selector_youtubeLibraryLoaded(state),

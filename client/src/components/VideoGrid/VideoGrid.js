@@ -7,9 +7,7 @@ import VideoGridHeader from "./VideoGridHeader";
 import VideoPreview from "../VideoPreview/VideoPreview";
 
 const VideoGrid = props => {
-	if (!props.videos || !props.videos.length) {
-		return <div />;
-	}
+	if (!props.videos || !props.videos.length) return <div />;
 
 	const gridItems = props.videos.map(video => {
 		return <VideoPreview video={video} key={video.id} />;

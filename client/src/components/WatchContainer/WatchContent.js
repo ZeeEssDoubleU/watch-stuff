@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
@@ -16,31 +16,15 @@ import {
 	selector_relatedVideos,
 } from "../../store/reducers/videos";
 
-class WatchContent extends Component {
-	render() {
-		return (
-			<div className="watch-grid">
-				<Video
-					id={this.props.match.params.videoId}
-					className="video-container"
-				/>
-				<VideoMetadata
-					className="video-metadata"
-					video={this.props.video}
-				/>
-				<VideoInfo
-					className="video-info-container"
-					video={this.props.video}
-				/>
-				<CommentsContainer className="comments-container" />
-				<RelatedVideos
-					className="related-videos"
-					videos={this.props.relatedVideos}
-				/>
-			</div>
-		);
-	}
-}
+const WatchContent = props => (
+	<div className="watch-grid">
+		<Video id={props.match.params.videoId} className="video-container" />
+		<VideoMetadata className="video-metadata" video={props.video} />
+		<VideoInfo className="video-info-container" video={props.video} />
+		<CommentsContainer className="comments-container" />
+		<RelatedVideos className="related-videos" videos={props.relatedVideos} />
+	</div>
+);
 
 WatchContent.propTypes = {};
 

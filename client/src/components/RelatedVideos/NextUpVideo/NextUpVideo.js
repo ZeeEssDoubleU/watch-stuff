@@ -6,6 +6,8 @@ import "./NextUpVideo.scss";
 import VideoPreview from "../../VideoPreview/VideoPreview";
 
 const NextUpVideo = props => {
+	if (!props.video) return <div />;
+	
 	return (
 		<>
 			<div className="next-up-container">
@@ -15,7 +17,11 @@ const NextUpVideo = props => {
 					<Checkbox toggle defaultChecked />
 				</div>
 			</div>
-			<VideoPreview horizontal={true} />
+			<VideoPreview
+				horizontal={true}
+				video={props.video}
+				key={props.video.id}
+			/>
 			<Divider />
 		</>
 	);

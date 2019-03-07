@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import { Route, Switch, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
@@ -13,28 +13,14 @@ import { action_youtubeLibraryLoaded } from "./store/actions/api";
 // import styles
 import "./App.scss";
 
-const API_KEY = "AIzaSyA0t_dxWokLiVuDqSM672p6T6Z_Lnyyg-Y";
+const API_KEY = "AIzaSyAVDIA9M68eiN8w-buVwQGgC4CLaWGKIrA";
 
-class App extends Component {
-	render() {
-		return (
-			<>
-				<HeaderNavContainer />
-				<div className="app-layout">
-					<Switch>
-						<Route exact path="/" component={HomeContainer} />
-						<Route path="/watch/:videoId" component={WatchContainer} />
-					</Switch>
-				</div>
-			</>
-		);
-	}
+const App = props => {
+	useEffect(() => {
+		loadYoutubeApi();
+	});
 
-	componentDidMount() {
-		this.loadYoutubeApi();
-	}
-
-	loadYoutubeApi() {
+	const loadYoutubeApi = () => {
 		const script = document.createElement("script");
 		script.src = "https://apis.google.com/js/api.js";
 
@@ -51,7 +37,7 @@ class App extends Component {
 								"RESPONSE - YOUTUBE CLIENT LIBRARY",
 								response.result,
 							);
-							this.props.action_youtubeLibraryLoaded();
+							props.action_youtubeLibraryLoaded();
 						},
 						reason => {
 							console.log("Error: " + reason.result.error.message);
@@ -60,8 +46,20 @@ class App extends Component {
 			});
 		};
 		document.body.appendChild(script);
-	}
-}
+	};
+
+	return (
+		<>
+			<HeaderNavContainer />
+			<div className="app-layout">
+				<Switch>
+					<Route exact path="/" component={HomeContainer} />
+					<Route path="/watch/:videoId" component={WatchContainer} />
+				</Switch>
+			</div>
+		</>
+	);
+};
 
 export default withRouter(
 	connect(

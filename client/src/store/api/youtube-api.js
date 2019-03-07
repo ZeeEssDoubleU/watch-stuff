@@ -175,7 +175,7 @@ export const buildVideoDetailsRequest = videoId => {
 };
 
 // builds request to fetch videos related to target video
-export const buildRelatedVideosRequest = (videoId, amount = 12) => {
+export const buildRelatedVideosRequest = (videoId, amount = 20) => {
 	return buildApiRequest(
 		"GET",
 		"/youtube/v3/search",

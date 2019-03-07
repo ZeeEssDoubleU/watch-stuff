@@ -2,7 +2,7 @@ import React from "react";
 
 import './SideBarFooter.scss';
 
-const SideBarFooter = () => {
+const SideBarFooter = props => {
 	return (
 		<>
 			<div className="footer-block">

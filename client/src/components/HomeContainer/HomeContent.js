@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 
 import "./HomeContent.scss";
@@ -12,70 +12,65 @@ import {
 	selector_mostPopularVideosByCategoryLength,
 } from "../../store/reducers/videos";
 
-class HomeContent extends Component {
-	constructor(props) {
-		super(props);
-		this.state = { lazyLoadIndex: 0 };
-	}
+const HomeContent = props => {
+	const [lazyLoadIndex, setLazyLoadIndex] = useState(0);
 
-	componentDidUpdate() {
+	useEffect(() => {
 		let homeContentHeight =
 			document.querySelector(".home-content").offsetHeight -
 			document.querySelector(".loader-container").offsetHeight;
 		if (
 			// if height of loaded content is less than window height, load more content
-			this.props.videosByCategoryLoaded &&
+			props.videosByCategoryLoaded &&
 			homeContentHeight < window.innerHeight
 		) {
-			this.lazyLoadVideoCategories();
+			lazyLoadVideoCategories();
 		}
-	}
+	});
 
 	// function that loads data to page.  Data alreayd fetched from server
-	lazyLoadVideoCategories = () => {
+	const lazyLoadVideoCategories = () => {
 		if (
-			this.props.videosByCategoryLoaded &&
-			this.state.lazyLoadIndex < this.props.videosByCategoryLength
+			props.videosByCategoryLoaded &&
+			lazyLoadIndex < props.videosByCategoryLength
 		) {
-			this.setState({ lazyLoadIndex: this.state.lazyLoadIndex + 1 });
+			setLazyLoadIndex(lazyLoadIndex + 1);
 		}
 	};
 
-	shouldShowLoader = () => {
+	const shouldShowLoader = () => {
 		// if vidoesByCategory loaded, return true if lazyLoadIndex < total categories
-		return this.props.videosByCategoryLoaded &&
-			this.state.lazyLoadIndex < this.props.videosByCategoryLength
+		return props.videosByCategoryLoaded &&
+			lazyLoadIndex < props.videosByCategoryLength
 			? true
 			: false;
 	};
 
-	render() {
-		const categoryNames = Object.keys(this.props.videosByCategory);
-		const categoryGrids = categoryNames
-			.slice(0, this.state.lazyLoadIndex)
-			.map((categoryName, index) => (
-				<VideoGrid
-					title={categoryName}
-					key={categoryName}
-					videos={this.props.videosByCategory[categoryName]}
-					hideDivider={index === categoryNames.length - 1}
-				/>
-			));
+	const categoryNames = Object.keys(props.videosByCategory);
+	const categoryGrids = categoryNames
+		.slice(0, lazyLoadIndex)
+		.map((categoryName, index) => (
+			<VideoGrid
+				title={categoryName}
+				key={categoryName}
+				videos={props.videosByCategory[categoryName]}
+				hideDivider={index === categoryNames.length - 1}
+			/>
+		));
 
-		return (
-			<div className="home-content">
-				<div className="responsive-video-grid-container">
-					<InfiniteScroll
-						lazyLoadCallback={this.lazyLoadVideoCategories}
-						showLoader={this.shouldShowLoader()}>
-						<VideoGrid title="Trending" videos={this.props.mostPopular} />
-						{categoryGrids}
-					</InfiniteScroll>
-				</div>
+	return (
+		<div className="home-content">
+			<div className="responsive-video-grid-container">
+				<InfiniteScroll
+					lazyLoadCallback={lazyLoadVideoCategories}
+					showLoader={shouldShowLoader()}>
+					<VideoGrid title="Trending" videos={props.mostPopular} />
+					{categoryGrids}
+				</InfiniteScroll>
 			</div>
-		);
-	}
-}
+		</div>
+	);
+};
 
 const mapStateToProps = state => ({
 	mostPopular: selector_mostPopularVideos(state),
