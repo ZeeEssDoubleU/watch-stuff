@@ -51,7 +51,7 @@ const VideoPreview = props => {
 						{video.snippet.title}
 					</div>
 					<div className="video-preview-metadata-container">
-						<div className="channel-title semi-bold">
+						<div className="channel-title semi-bold show-max-two-lines">
 							{video.snippet.channelTitle}
 						</div>
 						<div>

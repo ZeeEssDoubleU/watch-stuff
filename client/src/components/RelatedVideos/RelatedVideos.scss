@@ -1,5 +1,9 @@
-.related-videos {   
-   a > div {
+.related-videos {
+   .remaining-videos {
+      overflow-y: scroll;
+      overflow-x: hidden;
+   }
+   a>div {
       margin-top: 6px;
    }
 }
