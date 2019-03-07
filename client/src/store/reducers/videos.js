@@ -7,7 +7,7 @@ const initialState = {
 	mostPopular: {},
 	byId: {},
 	byCategory: {},
-	relatedVideos: {},
+	related: {},
 };
 
 //***************
@@ -158,8 +158,8 @@ const reducer_fetchRelatedVideos = (payload, state) => {
 	// place related video ids into lookup table based on original videoId
 	return {
 		...state,
-		relatedVideos: {
-			...state.relatedVideos,
+		related: {
+			...state.related,
 			[payload.videoId]: relatedVideos,
 		},
 	};
@@ -243,6 +243,12 @@ export const selector_mostPopularVideosByCategoryLength = createSelector(
 export const selector_videoById = (state, videoId) =>
 	state.videosState.byId[videoId];
 
-// export const selector_relatedVideos = createSelector(
-
-// )
+const selector_relatedVideoIds = (state, videoId) => {
+	const related = state.videosState.related[videoId];
+	return related ? related.videoIds : [];
+};
+export const selector_relatedVideos = createSelector(
+	selector_relatedVideoIds,
+	state => state.videosState.byId,
+	(relatedIds, videos) => relatedIds.map(videoId => videos[videoId]),
+);

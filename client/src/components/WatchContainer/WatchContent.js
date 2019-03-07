@@ -11,7 +11,10 @@ import VideoMetadata from "../Video/VIdeoMetadata";
 import CommentsContainer from "../CommentsContainer/CommentsContainer";
 
 import * as watchActions from "../../store/actions/watch";
-import { selector_videoById } from "../../store/reducers/videos";
+import {
+	selector_videoById,
+	selector_relatedVideos,
+} from "../../store/reducers/videos";
 
 class WatchContent extends Component {
 	render() {
@@ -30,7 +33,10 @@ class WatchContent extends Component {
 					video={this.props.video}
 				/>
 				<CommentsContainer className="comments-container" />
-				<RelatedVideos className="related-videos" />
+				<RelatedVideos
+					className="related-videos"
+					videos={this.props.relatedVideos}
+				/>
 			</div>
 		);
 	}
@@ -40,6 +46,7 @@ WatchContent.propTypes = {};
 
 const mapStateToProps = (state, props) => ({
 	video: selector_videoById(state, props.match.params.videoId),
+	relatedVideos: selector_relatedVideos(state, props.match.params.videoId),
 });
 
 const actionCreators = {

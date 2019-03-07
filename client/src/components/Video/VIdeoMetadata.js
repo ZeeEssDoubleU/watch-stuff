@@ -4,6 +4,7 @@ import { Button, Divider, Icon } from "semantic-ui-react";
 
 import "./VideoMetadata.scss";
 import Ratings from "../Ratings/Ratings";
+import RatingsBar from "../Ratings/RatingsBar";
 
 const VideoMetadata = props => {
 	if (!props.video) return <div />;
@@ -20,15 +21,16 @@ const VideoMetadata = props => {
 				<span>{viewCount} views</span>
 				<div className="video-actions">
 					<Ratings likes={likeCount} dislikes={dislikeCount} />
-					<Button basic icon labelPosition="left">
+					<RatingsBar likes={likeCount} dislikes={dislikeCount} />
+					<Button basic labelPosition="left">
 						<Icon name="share" />
-						SHARE
+						<span>SHARE</span>
 					</Button>
-					<Button basic icon labelPosition="left">
+					<Button basic labelPosition="left">
 						<Icon name="add circle" />
-						SAVE
+						<span>SAVE</span>
 					</Button>
-					<Button basic icon>
+					<Button basic className="ellipsis">
 						<Icon name="ellipsis horizontal" />
 					</Button>
 				</div>

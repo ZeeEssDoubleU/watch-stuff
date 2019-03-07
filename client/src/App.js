@@ -13,7 +13,7 @@ import { action_youtubeLibraryLoaded } from "./store/actions/api";
 // import styles
 import "./App.scss";
 
-const API_KEY = "AIzaSyBmzT9H1LZkmVoEg6dmGSzNqWVyfz8-nEI";
+const API_KEY = "AIzaSyA0t_dxWokLiVuDqSM672p6T6Z_Lnyyg-Y";
 
 class App extends Component {
 	render() {

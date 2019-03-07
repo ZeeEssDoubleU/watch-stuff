@@ -1,5 +1,4 @@
 @import '../../styles/shared.scss';
-
 .video-metadata {
    color: #707070;
    font-size: 16px;
@@ -14,9 +13,30 @@
       align-items: center;
       .video-actions {
          display: flex;
+         position: relative;
          align-items: center;
+         .ratings {
+            width: 150px;
+         }
+         .ratings-bar {
+            position: absolute;
+            width: 150px;
+            left: 0;
+            top: 25px;
+         }
+         .button {
+            height: 30px;
+            span {
+               margin-left: 5px;
+            }
+         }
+         .ellipsis {
+            padding: 0 5px;
+            border: none;
+            box-shadow: none;
+         }
          &>* {
-            margin-left: 8px;
+            margin-left: 20px;
             margin-right: 0;
          }
       }
