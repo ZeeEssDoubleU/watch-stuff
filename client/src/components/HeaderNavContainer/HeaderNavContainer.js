@@ -10,7 +10,7 @@ const HeaderNavContainer = props => (
 		<Menu.Menu className="nav-container">
 			<Menu.Item header className="logo">
 				<Link to="/">
-					<Image src={logo} size="small" />
+					<img src={logo} alt="logo" />
 				</Link>
 			</Menu.Item>
 			<Menu.Item className="search-input">

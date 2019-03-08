@@ -146,7 +146,7 @@ const reducer_fetchRelatedVideos = (payload, state) => {
 	const response = payload.response;
 	const videoIds = response.items.map(item => item.id.videoId);
 
-	console.log("PAYLOAD - RELATED VIDEOS", response);
+	console.log("PAYLOAD - RELATED VIDEOS", payload);
 	console.log("MAP - RELATED VIDEO IDS", videoIds);
 
 	const relatedVideos = {

@@ -1,7 +1,7 @@
 @import '../../styles/shared.scss';
 .video-info-container {
    display: grid;
-   grid: auto auto / max-content auto max-content;
+   grid: auto auto / max-content auto 156px;
    align-items: center;
    grid-row-gap: 16px;
    .channel-image {
@@ -27,7 +27,7 @@
       }
    }
    .video-description {
-      grid-area: 2/2 / 3/3;
+      grid-area: 2/2 / 3/4;
       max-width: 615px;
       white-space: pre-line;
       &>.ui.button {

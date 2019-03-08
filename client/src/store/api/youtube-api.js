@@ -188,3 +188,18 @@ export const buildRelatedVideosRequest = (videoId, amount = 20) => {
 		null,
 	);
 };
+
+// builds request to fetch channel details
+export const buildChannelRequest = channelId => {
+	return buildApiRequest(
+		"GET",
+		"/youtube/v3/channels",
+		{
+			part: "snippet,statistics",
+			id: channelId,
+			fields:
+				"kind,items(id,snippet(description,thumbnails/medium,title),statistics/subscriberCount)",
+		},
+		null,
+	);
+};

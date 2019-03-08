@@ -7,10 +7,10 @@ import VideoPreview from "../../VideoPreview/VideoPreview";
 
 const NextUpVideo = props => {
 	if (!props.video) return <div />;
-	
+
 	return (
-		<>
-			<div className="next-up-container">
+		<div className="next-up-container">
+			<div className="next-up-header">
 				<h4>Up next</h4>
 				<div className="next-up-toggle">
 					<span>AUTOPLAY</span>
@@ -23,7 +23,7 @@ const NextUpVideo = props => {
 				key={props.video.id}
 			/>
 			<Divider />
-		</>
+		</div>
 	);
 };
 

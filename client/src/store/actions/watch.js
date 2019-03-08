@@ -9,6 +9,9 @@ export const types = {
 	RELATED_VIDEO_DETAILS_REQUEST: "RELATED_VIDEO_DETAILS_REQUEST",
 	RELATED_VIDEO_DETAILS_SUCCESS: "RELATED_VIDEO_DETAILS_SUCCESS",
 	RELATED_VIDEO_DETAILS_FAILURE: "RELATED_VIDEO_DETAILS_FAILURE",
+	CHANNEL_DETAILS_REQUEST: "CHANNEL_DETAILS_REQUEST",
+	CHANNEL_DETAILS_SUCCESS: "CHANNEL_DETAILS_SUCCESS",
+	CHANNEL_DETAILS_FAILURE: "CHANNEL_DETAILS_FAILURE",
 };
 
 export const action_fetchWatchDetails = {
@@ -58,6 +61,21 @@ export const action_fetchRelatedVideoDetails = {
 	}),
 	failure: response => ({
 		type: types.RELATED_VIDEO_DETAILS_FAILURE,
+		payload: response,
+	}),
+};
+
+export const action_fetchChannelDetails = {
+	request: channelId => ({
+		type: types.CHANNEL_DETAILS_REQUEST,
+		payload: { channelId },
+	}),
+	success: response => ({
+		type: types.CHANNEL_DETAILS_SUCCESS,
+		payload: response,
+	}),
+	failure: response => ({
+		type: types.CHANNEL_DETAILS_FAILURE,
 		payload: response,
 	}),
 };

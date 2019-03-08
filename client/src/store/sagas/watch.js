@@ -62,3 +62,21 @@ export function* saga_fetchRelatedVideoDetails(action) {
 		watchActions.action_fetchRelatedVideoDetails,
 	);
 }
+
+// fetch channel details
+export function* saga_watchChannelDetails() {
+	yield takeEvery(
+		watchActions.types.WATCH_DETAILS_SUCCESS,
+		saga_fetchChannelDetails,
+	);
+}
+export function* saga_fetchChannelDetails(action) {
+	const channelId = action.payload.items[0].snippet.channelId;
+	console.log("ACTION - FETCH CHANNEL DETAILS", action);
+
+	const request = () => youtubeApi.buildChannelRequest(channelId);
+	yield rootSagas.saga_fetchEntity(
+		request,
+		watchActions.action_fetchChannelDetails,
+	);
+}
