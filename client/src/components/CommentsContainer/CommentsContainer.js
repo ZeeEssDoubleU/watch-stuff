@@ -17,7 +17,7 @@ const CommentsContainer = props => {
 		<div className="comments-container">
 			<CommentsHeader className="comments-header" commentCount={402} />
 			<AddComment />
-			<div className="comments" style={{ maxHeight: commentsHeight }}>
+			<div className="comments" style={{ height: commentsHeight }}>
 				<Comment />
 				<Comment />
 				<Comment />

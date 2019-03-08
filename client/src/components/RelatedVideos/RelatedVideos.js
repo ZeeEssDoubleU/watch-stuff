@@ -28,7 +28,7 @@ const RelatedVideos = props => {
 			<NextUpVideo video={nextUpVideo} />
 			<div
 				className="remaining-videos"
-				style={{ maxHeight: remainingVidsHeight }}>
+				style={{ height: remainingVidsHeight }}>
 				{relatedPreviews}
 			</div>
 		</div>

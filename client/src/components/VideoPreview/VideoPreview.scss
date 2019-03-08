@@ -1,4 +1,4 @@
-@import '../../styles/shared.scss';
+@import "../../styles/shared.scss";
 .video-preview {
    display: grid;
    grid: 118px auto / 210px;
@@ -11,7 +11,7 @@
          background: $text-color-dark;
          bottom: 0;
          right: 0;
-         opacity: .8;
+         opacity: 0.8;
          font-weight: 500;
          color: white;
          margin: 6px 8px;
@@ -29,8 +29,6 @@
          font-size: 13px;
          color: #6e6e6e;
          .channel-title {
-            overflow: hidden;
-            text-overflow: ellipsis;
             margin-bottom: 3px;
          }
       }

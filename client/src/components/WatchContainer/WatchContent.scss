@@ -1,6 +1,6 @@
 .watch-grid {
    display: grid;
-   grid-template: auto auto auto 1fr / auto 402px; // 1fr row takes available left over whitespace
+   grid-template: auto auto auto auto / auto 402px; // 1fr row takes available left over whitespace
    padding: 24px;
    grid-gap: 8px 24px;
    max-width: 1654px;

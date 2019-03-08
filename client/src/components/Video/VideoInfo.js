@@ -1,25 +1,36 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Button, Image } from "semantic-ui-react";
-import { getFormattedDate } from "../../utils/format-time";
 import Linkify from "react-linkify";
 
 import "./VideoInfo.scss";
 
+import { getFormattedDate } from "../../utils/format-time";
+import { getAbbrevNumber } from "../../utils/format-number";
+
 const VideoInfo = props => {
 	const [collapsed, toggleCollapse] = useState(true);
+	const channel = props.channel;
+	const video = props.video;
 
-	if (!props.video) return <div />;
+	if (!video) return <div />;
 
-	const channelName = props.video.snippet.channelTitle;
-	const publishDate = getFormattedDate(props.video.snippet.publishedAt);
-	const description = props.video.snippet.description;
+	const channelName = channel
+		? channel.snippet.title
+		: video.snippet.channelTitle;
+	const publishDate = getFormattedDate(video.snippet.publishedAt);
+	const description = video.snippet.description;
+	const subCount = channel
+		? getAbbrevNumber(channel.statistics.subscriberCount)
+		: null;
+	const channelIcon =
+		"https://yt3.ggpht.com/a-/AAuE7mAWpJP0ftMStYJD1f_tGS-RlvHU2rk7zcxRbg=s240-mo-c-c0xffffffff-rj-k-no";
 
 	return (
 		<div className="video-info-container">
 			<Image
 				className="channel-image"
-				src="http://via.placeholder.com/48x48"
+				src={channelIcon}
 				circular
 			/>
 			<div className="video-info">
@@ -29,7 +40,7 @@ const VideoInfo = props => {
 				</div>
 			</div>
 			<Button className="subscribe-button" color="youtube">
-				SUBSCRIBE 523K
+				SUBSCRIBE {subCount}
 			</Button>
 			<div className="video-description">
 				<div className={collapsed ? "collapsed" : "expanded"}>

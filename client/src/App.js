@@ -13,7 +13,7 @@ import { action_youtubeLibraryLoaded } from "./store/actions/api";
 // import styles
 import "./App.scss";
 
-const API_KEY = "AIzaSyAVDIA9M68eiN8w-buVwQGgC4CLaWGKIrA";
+const API_KEY = "AIzaSyAm-orYtDHytDv9DA6zha6Dd_QKLjBpbVc";
 
 const App = props => {
 	useEffect(() => {
