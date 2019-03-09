@@ -23,14 +23,17 @@ export default reducer_comments;
 
 const reducer_fetchComments = (payload, state) => {
 	const comments = payload.response.items;
-	const byVideoMap = {
+	const videoId = payload.videoId;
+	const byVideoMap = {};
+	const byIdMap = {};
+
+	byVideoMap[videoId] = {
 		nextPageToken: payload.response.nextPageToken,
 		ids: [],
 	};
-	const byIdMap = {};
 
 	comments.forEach(comment => {
-		byVideoMap.ids.push(comment.id);
+		byVideoMap[videoId].ids.push(comment.id);
 		byIdMap[comment.id] = comment;
 	});
 
@@ -52,3 +55,13 @@ const reducer_fetchComments = (payload, state) => {
 //***************
 // SELECTORS
 //***************
+export const selector_commentsByVideo = createSelector(
+	(state, videoId) => state.comments.byVideo[videoId],
+	state => state.comments.byId,
+	(commentsList, comments) => {
+		if (commentsList) {
+			return commentsList.ids.map(id => comments[id]);
+		}
+		return null;
+	},
+);

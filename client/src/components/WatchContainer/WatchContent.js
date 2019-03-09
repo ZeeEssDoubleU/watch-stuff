@@ -16,6 +16,7 @@ import {
 	selector_relatedVideos,
 } from "../../store/reducers/videos";
 import { selector_channelDetails } from "../../store/reducers/channels";
+import { selector_commentsByVideo } from "../../store/reducers/comments";
 
 const WatchContent = props => (
 	<div className="watch-grid">
@@ -26,7 +27,10 @@ const WatchContent = props => (
 			video={props.video}
 			channel={props.channel}
 		/>
-		<CommentsContainer className="comments-container" />
+		<CommentsContainer
+			className="comments-container"
+			comments={props.comments}
+		/>
 		<RelatedVideos className="related-videos" videos={props.relatedVideos} />
 	</div>
 );
@@ -37,6 +41,7 @@ const mapStateToProps = (state, props) => ({
 	video: selector_videoById(state, props.match.params.videoId),
 	relatedVideos: selector_relatedVideos(state, props.match.params.videoId),
 	channel: selector_channelDetails(state, props.match.params.videoId),
+	comments: selector_commentsByVideo(state, props.match.params.videoId),
 });
 
 const actionCreators = {
