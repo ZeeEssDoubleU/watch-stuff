@@ -33,10 +33,13 @@ const reducer_fetchChannelDetails = (payload, state) => {
 	};
 };
 
+//***************
 // SELECTORS
+//***************
+
 export const selector_channelDetails = createSelector(
-	(state, videoId) => state.videosState.byId[videoId],
-	state => state.channelsState.byId,
+	(state, videoId) => state.videos.byId[videoId],
+	state => state.channels.byId,
 	(video, channels) => {
       if (video) {
          const channelId = video.snippet.channelId;

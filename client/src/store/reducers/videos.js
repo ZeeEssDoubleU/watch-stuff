@@ -189,8 +189,8 @@ const reducer_fetchRelatedVideoDetails = (payload, state) => {
 // SELECTORS
 //***************
 export const selector_mostPopularVideos = createSelector(
-	state => state.videosState.byId,
-	state => state.videosState.mostPopular,
+	state => state.videos.byId,
+	state => state.videos.mostPopular,
 	(videosById, mostPopular) => {
 		// if no mostPopular items exist, return []
 		if (!mostPopular || !mostPopular.itemIds) {
@@ -202,19 +202,19 @@ export const selector_mostPopularVideos = createSelector(
 );
 
 export const selector_videoCategories = createSelector(
-	state => state.videosState.categories,
+	state => state.videos.categories,
 	categories => Object.keys(categories),
 );
 
 export const selector_videoCategoriesLoaded = createSelector(
-	state => state.videosState.categories,
+	state => state.videos.categories,
 	categories => Object.keys(categories).length > 0,
 );
 
 export const selector_mostPopularVideosByCategory = createSelector(
-	state => state.videosState.categories,
-	state => state.videosState.byCategory,
-	state => state.videosState.byId,
+	state => state.videos.categories,
+	state => state.videos.byCategory,
+	state => state.videos.byId,
 	(videoCategories, videosByCategory, videosById) => {
 		const byCategory = {};
 		const categoryIds = Object.keys(videosByCategory);
@@ -230,25 +230,25 @@ export const selector_mostPopularVideosByCategory = createSelector(
 );
 
 export const selector_mostPopularVideosByCategoryLoaded = createSelector(
-	state => state.videosState.byCategory,
+	state => state.videos.byCategory,
 	byCategory => Object.keys(byCategory).length > 0,
 );
 
 export const selector_mostPopularVideosByCategoryLength = createSelector(
-	state => state.videosState.byCategory,
+	state => state.videos.byCategory,
 	byCategory => Object.keys(byCategory).length,
 );
 
 // this selector is mirrored in watch.js as selector_watchDetails
 export const selector_videoById = (state, videoId) =>
-	state.videosState.byId[videoId];
+	state.videos.byId[videoId];
 
 const selector_relatedVideoIds = (state, videoId) => {
-	const related = state.videosState.related[videoId];
+	const related = state.videos.related[videoId];
 	return related ? related.videoIds : [];
 };
 export const selector_relatedVideos = createSelector(
 	selector_relatedVideoIds,
-	state => state.videosState.byId,
+	state => state.videos.byId,
 	(relatedIds, videos) => relatedIds.map(videoId => videos[videoId]),
 );

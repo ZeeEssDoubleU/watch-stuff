@@ -2,9 +2,9 @@ import reducer_videos from "../videos";
 import * as videoActions from "../../actions/videos";
 import mostPopularResponse from "./responses/MOST_POPULAR_SUCCESS.json";
 import mostPopularResponse_withPrevPageToken from "./responses/MOST_POPULAR_SUCCESS_withPrevPageToken.json";
-import mostPopularSuccessState_prevState from "./states/MOST_POPULAR_SUCCESS_prevState.json";
+import mostPopularSuccessprevState from "./states/MOST_POPULAR_SUCCESS_prevState.json";
 import mostPopularSuccessState from "./states/MOST_POPULAR_SUCCESS.json";
-import mostPopularSuccessState_withPrevPageToken from "./states/MOST_POPULAR_SUCCESS_withPrevPageToken.json";
+import mostPopularSuccesswithPrevPageToken from "./states/MOST_POPULAR_SUCCESS_withPrevPageToken.json";
 
 const initialState = {
 	mostPopular: {},
@@ -37,7 +37,7 @@ describe("videos reducer", () => {
 	});
 
 	test("test for idempotence with MOST_POPULAR_SUCCESS action", () => {
-		const startState = mostPopularSuccessState_prevState;
+		const startState = mostPopularSuccessprevState;
 		const action = {
 			type: videoActions.types.MOST_POPULAR_SUCCESS,
 			payload: mostPopularResponse,
@@ -58,7 +58,7 @@ describe("videos reducer", () => {
 	});
 
 	test("test for idempotence with MOST_POPULAR_SUCCESS action with prevPageToken", () => {
-		const startState = mostPopularSuccessState_prevState;
+		const startState = mostPopularSuccessprevState;
 		const action = {
 			type: videoActions.types.MOST_POPULAR_SUCCESS,
 			payload: mostPopularResponse_withPrevPageToken,

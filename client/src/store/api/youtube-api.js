@@ -203,3 +203,17 @@ export const buildChannelRequest = channelId => {
 		null,
 	);
 };
+
+// builds request to fetch video comments
+export const buildCommentsRequest = (videoId, nextPageToken) => {
+	return buildApiRequest(
+		"GET",
+		"/youtube/v3/commentThreads",
+		{
+			part: "id,snippet",
+			pageToken: nextPageToken,
+			videoId,
+		},
+		null,
+	);
+};

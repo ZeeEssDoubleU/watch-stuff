@@ -12,6 +12,9 @@ export const types = {
 	CHANNEL_DETAILS_REQUEST: "CHANNEL_DETAILS_REQUEST",
 	CHANNEL_DETAILS_SUCCESS: "CHANNEL_DETAILS_SUCCESS",
 	CHANNEL_DETAILS_FAILURE: "CHANNEL_DETAILS_FAILURE",
+	COMMENTS_REQUEST: "COMMENTS_REQUEST",
+	COMMENTS_SUCCESS: "COMMENTS_SUCCESS",
+	COMMENTS_FAILURE: "COMMENTS_FAILURE",
 };
 
 export const action_fetchWatchDetails = {
@@ -76,6 +79,24 @@ export const action_fetchChannelDetails = {
 	}),
 	failure: response => ({
 		type: types.CHANNEL_DETAILS_FAILURE,
+		payload: response,
+	}),
+};
+
+export const action_fetchComments = {
+	request: videoId => ({
+		type: types.COMMENTS_REQUEST,
+		payload: { videoId },
+	}),
+	success: (response, videoId) => ({
+		type: types.COMMENTS_SUCCESS,
+		payload: {
+			response,
+			videoId,
+		},
+	}),
+	failure: response => ({
+		type: types.COMMENTS_FAILURE,
 		payload: response,
 	}),
 };

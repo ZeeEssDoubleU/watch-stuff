@@ -13,6 +13,7 @@ const WatchContainer = props => {
 		if (props.youtubeLibraryLoaded) {
 			props.fetchWatchDetails(props.match.params.videoId);
 			props.fetchRelatedVideos(props.match.params.videoId);
+			props.fetchComments(props.match.params.videoId);
 		}
 	});
 
@@ -28,6 +29,7 @@ const mapStateToProps = state => ({
 const actionCreators = {
 	fetchWatchDetails: watchActions.action_fetchWatchDetails.request,
 	fetchRelatedVideos: watchActions.action_fetchRelatedVideos.request,
+	fetchComments: watchActions.action_fetchComments.request,
 };
 
 export default withRouter(

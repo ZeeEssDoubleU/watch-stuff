@@ -18,4 +18,4 @@ const reducer_api = (state = initialState, action) => {
 export default reducer_api;
 
 // SELECTORS
-export const selector_youtubeLibraryLoaded = state => state.apiState.libraryLoaded;
+export const selector_youtubeLibraryLoaded = state => state.api.libraryLoaded;

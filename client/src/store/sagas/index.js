@@ -12,6 +12,7 @@ export default function*() {
 		fork(watchSagas.saga_watchRelatedVideos),
 		fork(watchSagas.saga_watchRelatedVideoDetails),
 		fork(watchSagas.saga_watchChannelDetails),
+		fork(watchSagas.saga_watchComments),
 	]);
 }
 

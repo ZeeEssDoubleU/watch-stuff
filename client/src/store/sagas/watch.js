@@ -80,3 +80,19 @@ export function* saga_fetchChannelDetails(action) {
 		watchActions.action_fetchChannelDetails,
 	);
 }
+
+// fetch video comments
+export function* saga_watchComments() {
+	yield takeEvery(watchActions.types.COMMENTS_REQUEST, saga_fetchComments);
+}
+export function* saga_fetchComments(action) {
+	const videoId = action.payload.videoId;
+	console.log("ACTION - FETCH COMMENTS", action);
+
+	const request = () => youtubeApi.buildCommentsRequest(videoId);
+	yield rootSagas.saga_fetchEntity(
+		request,
+		watchActions.action_fetchComments,
+		videoId,
+	);
+}
