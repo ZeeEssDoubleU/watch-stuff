@@ -1,5 +1,6 @@
 import { createSelector } from "reselect";
 import * as watchActions from "../actions/watch";
+import { selector_videoById } from "../reducers/videos";
 
 const initialState = {
 	byVideo: {},
@@ -63,5 +64,13 @@ export const selector_commentsByVideo = createSelector(
 			return commentsList.ids.map(id => comments[id]);
 		}
 		return null;
+	},
+);
+
+export const selector_commentsCount = createSelector(
+	selector_videoById,
+	video => {
+		if (video) return video.statistics.commentCount;
+		return 0;
 	},
 );

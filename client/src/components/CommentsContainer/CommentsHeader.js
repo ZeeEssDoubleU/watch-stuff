@@ -7,8 +7,13 @@ import "./CommentsHeader.scss";
 const CommentsHeader = props => {
 	return (
 		<div className="comments-header">
-			<h4>{props.commentCount} Comments</h4>
-			<Button className="sort-button" basic compact icon labelPosition="left">
+			<h4>{props.commentsCount} Comments</h4>
+			<Button
+				className="sort-button"
+				basic
+				compact
+				icon
+				labelPosition="left">
 				<Icon name="align left" />
 				SORT BY
 			</Button>

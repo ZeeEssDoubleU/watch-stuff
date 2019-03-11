@@ -7,6 +7,14 @@ import AddComment from "./AddComment";
 import Comment from "./Comment";
 
 const CommentsContainer = props => {
+	const comments = props.comments
+		? props.comments.map(comment => (
+				<Comment comment={comment} key={comment.id} />
+		  ))
+		: null;
+
+	console.log("COMMENT COMMMENT COMELKLAGDJFLK", comments);
+
 	// variables to determine scrollable height of comments
 	const commentsElem = document.querySelector(".comments");
 	const commentsHeight = commentsElem
@@ -15,17 +23,13 @@ const CommentsContainer = props => {
 
 	return (
 		<div className="comments-container">
-			<CommentsHeader className="comments-header" commentCount={402} />
+			<CommentsHeader
+				className="comments-header"
+				commentsCount={props.commentsCount}
+			/>
 			<AddComment />
 			<div className="comments" style={{ height: commentsHeight }}>
-				<Comment />
-				<Comment />
-				<Comment />
-				<Comment />
-				<Comment />
-				<Comment />
-				<Comment />
-				<Comment />
+				{comments}
 			</div>
 		</div>
 	);
