@@ -87,9 +87,11 @@ export function* saga_watchComments() {
 }
 export function* saga_fetchComments(action) {
 	const videoId = action.payload.videoId;
+	const nextPageToken = action.payload.nextPageToken;
 	console.log("ACTION - FETCH COMMENTS", action);
 
-	const request = () => youtubeApi.buildCommentsRequest(videoId);
+	const request = () =>
+		youtubeApi.buildCommentsRequest(videoId, nextPageToken);
 	yield rootSagas.saga_fetchEntity(
 		request,
 		watchActions.action_fetchComments,

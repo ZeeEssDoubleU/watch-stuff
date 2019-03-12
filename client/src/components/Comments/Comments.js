@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import "./CommentsContainer.scss";
+import "./Comments.scss";
 import CommentsHeader from "./CommentsHeader";
 import AddComment from "./AddComment";
 import Comment from "./Comment";
 
-const CommentsContainer = props => {
+const Comments = props => {
 	const comments = props.comments
 		? props.comments.map(comment => (
 				<Comment comment={comment} key={comment.id} />
@@ -35,6 +35,6 @@ const CommentsContainer = props => {
 	);
 };
 
-CommentsContainer.propTypes = {};
+Comments.propTypes = {};
 
-export default CommentsContainer;
+export default Comments;

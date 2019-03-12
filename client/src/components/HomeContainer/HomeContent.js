@@ -28,7 +28,7 @@ const HomeContent = props => {
 		}
 	});
 
-	// function that loads data to page.  Data alreayd fetched from server
+	// function that loads data to page.  Data already fetched from server
 	const lazyLoadVideoCategories = () => {
 		if (
 			props.videosByCategoryLoaded &&

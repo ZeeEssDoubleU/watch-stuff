@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Button, Image } from "semantic-ui-react";
 
-import { getFormattedDate } from "../../utils/format-time";
+import { getFormattedTimeAgo } from "../../utils/format-time";
 
 import "./Comment.scss";
 import Ratings from "../Ratings/Ratings";
@@ -13,7 +13,7 @@ const Comment = props => {
 	const comment = props.comment.snippet.topLevelComment.snippet;
 	const commentText = <p className="comment-text">{comment.textOriginal}</p>;
 	const commentAuthor = comment.authorDisplayName;
-	const commentDate = getFormattedDate(comment.updatedAt);
+	const commentDate = getFormattedTimeAgo(comment.updatedAt);
 	const commentLikes = comment.likeCount;
 
 	const commentVisibility = collapsed ? "collapsed" : "expanded";
