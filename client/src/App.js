@@ -3,9 +3,9 @@ import { Route, Switch, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 
 // import components
-import HeaderNavContainer from "./components/HeaderNavContainer/HeaderNavContainer";
-import HomeContainer from "./components/HomeContainer/HomeContainer";
-import WatchContainer from "./components/WatchContainer/WatchContainer";
+import HeaderNav from "./components/HeaderNav/HeaderNav";
+import Home from "./components/Home/Home";
+import Watch from "./components/Watch/Watch";
 
 // import actions / reducers / sagas
 import { action_youtubeLibraryLoaded } from "./store/actions/api";
@@ -50,11 +50,11 @@ const App = props => {
 
 	return (
 		<>
-			<HeaderNavContainer />
+			<HeaderNav />
 			<div className="app-layout">
 				<Switch>
-					<Route exact path="/" component={HomeContainer} />
-					<Route path="/watch/:videoId" component={WatchContainer} />
+					<Route exact path="/" component={Home} />
+					<Route path="/watch/:videoId" component={Watch} />
 				</Switch>
 			</div>
 		</>

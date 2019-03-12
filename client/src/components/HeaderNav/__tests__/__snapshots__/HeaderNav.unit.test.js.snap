@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders HeaderNavContainer 1`] = `
+exports[`renders HeaderNav 1`] = `
 <Menu
   borderless={true}
   className="top-menu"

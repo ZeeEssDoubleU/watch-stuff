@@ -1,13 +1,13 @@
 import React from "react";
 import { Menu, Divider } from "semantic-ui-react";
 
-import "./SideBarContainer.scss";
+import "./SideBar.scss";
 import SideBarHeader from "./SideBarHeader";
 import SideBarItem from "./SideBarItem";
 import Subscriptions from "./Subscriptions/Subscriptions";
 import SideBarFooter from "./SideBarFooter";
 
-const SideBarContainer = props => (
+const SideBar = props => (
 	<Menu borderless vertical stackable fixed="left" className="side-nav">
 		<SideBarItem label="Home" icon="home" highlight={true} />
 		<SideBarItem label="Trending" icon="fire" />
@@ -31,4 +31,4 @@ const SideBarContainer = props => (
 	</Menu>
 );
 
-export default SideBarContainer;
+export default SideBar;

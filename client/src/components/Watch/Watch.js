@@ -8,7 +8,7 @@ import WatchContent from "./WatchContent";
 import * as watchActions from "../../store/actions/watch";
 import { selector_youtubeLibraryLoaded } from "../../store/reducers/api";
 
-const WatchContainer = props => {
+const Watch = props => {
 	useEffect(() => {
 		if (props.youtubeLibraryLoaded) {
 			props.fetchWatchDetails(props.match.params.videoId);
@@ -20,7 +20,7 @@ const WatchContainer = props => {
 	return <WatchContent />;
 };
 
-WatchContainer.propTypes = {};
+Watch.propTypes = {};
 
 const mapStateToProps = state => ({
 	youtubeLibraryLoaded: selector_youtubeLibraryLoaded(state),
@@ -36,5 +36,5 @@ export default withRouter(
 	connect(
 		mapStateToProps,
 		actionCreators,
-	)(WatchContainer),
+	)(Watch),
 );

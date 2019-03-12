@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 import HomeContent from "./HomeContent";
-import SideBarContainer from "../SideBarContainer/SideBarContainer";
+import SideBar from "../SideBar/SideBar";
 
 import * as videoActions from "../../store/actions/videos";
 import { selector_youtubeLibraryLoaded } from "../../store/reducers/api";
@@ -11,7 +11,7 @@ import {
 	selector_videoCategoriesLoaded,
 } from "../../store/reducers/videos";
 
-const HomeContainer = props => {
+const Home = props => {
 	useEffect(() => {
 		if (props.youtubeLibraryLoaded) {
 			props.fetchMostPopular();
@@ -27,7 +27,7 @@ const HomeContainer = props => {
 
 	return (
 		<>
-			<SideBarContainer />
+			<SideBar />
 			<HomeContent />
 		</>
 	);
@@ -50,4 +50,4 @@ const actionCreators = {
 export default connect(
 	mapStateToProps,
 	actionCreators,
-)(HomeContainer);
+)(Home);

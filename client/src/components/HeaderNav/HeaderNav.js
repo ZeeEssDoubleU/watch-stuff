@@ -2,10 +2,10 @@ import React from "react";
 import { Image, Menu, Form, Input, Icon } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
-import "./HeaderNavContainer.scss";
+import "./HeaderNav.scss";
 import logo from "../../assets/images/WatchStuff.svg";
 
-const HeaderNavContainer = props => (
+const HeaderNav = props => (
 	<Menu borderless className="top-menu" fixed="top">
 		<Menu.Menu className="nav-container">
 			<Menu.Item header className="logo">
@@ -41,4 +41,4 @@ const HeaderNavContainer = props => (
 	</Menu>
 );
 
-export default HeaderNavContainer;
+export default HeaderNav;

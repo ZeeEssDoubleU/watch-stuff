@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`renders SideBarContainer 1`] = `
+exports[`renders SideBar 1`] = `
 <Menu
   borderless={true}
   className="side-nav"
