@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`CommentsContainer renders with commentCount 1`] = `
+exports[`Comments renders with commentCount 1`] = `
 <div
   className="comments-container"
 >
@@ -20,7 +20,7 @@ exports[`CommentsContainer renders with commentCount 1`] = `
 </div>
 `;
 
-exports[`CommentsContainer renders without props 1`] = `
+exports[`Comments renders without props 1`] = `
 <div
   className="comments-container"
 >

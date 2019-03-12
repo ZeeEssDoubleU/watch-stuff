@@ -8,9 +8,8 @@ import Video from "../Video/Video";
 import RelatedVideos from "../RelatedVideos/RelatedVideos";
 import VideoInfo from "../Video/VideoInfo";
 import VideoMetadata from "../Video/VIdeoMetadata";
-import CommentsContainer from "../CommentsContainer/CommentsContainer";
+import Comments from "../Comments/Comments";
 
-import * as watchActions from "../../store/actions/watch";
 import {
 	selector_videoById,
 	selector_relatedVideos,
@@ -30,7 +29,7 @@ const WatchContent = props => (
 			video={props.video}
 			channel={props.channel}
 		/>
-		<CommentsContainer
+		<Comments
 			className="comments-container"
 			comments={props.comments}
 			commentsCount={props.commentsCount}
@@ -49,13 +48,9 @@ const mapStateToProps = (state, props) => ({
 	commentsCount: selector_commentsCount(state, props.match.params.videoId),
 });
 
-const actionCreators = {
-	fetchWatchDetails: watchActions.action_fetchWatchDetails.request,
-};
-
 export default withRouter(
 	connect(
 		mapStateToProps,
-		actionCreators,
+		null,
 	)(WatchContent),
 );

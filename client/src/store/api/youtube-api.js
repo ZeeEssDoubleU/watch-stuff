@@ -205,7 +205,7 @@ export const buildChannelRequest = channelId => {
 };
 
 // builds request to fetch video comments
-export const buildCommentsRequest = (videoId, nextPageToken) => {
+export const buildCommentsRequest = (videoId, nextPageToken = null) => {
 	return buildApiRequest(
 		"GET",
 		"/youtube/v3/commentThreads",

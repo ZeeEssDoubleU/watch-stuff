@@ -84,9 +84,12 @@ export const action_fetchChannelDetails = {
 };
 
 export const action_fetchComments = {
-	request: videoId => ({
+	request: (videoId, nextPageToken) => ({
 		type: types.COMMENTS_REQUEST,
-		payload: { videoId },
+		payload: {
+			videoId,
+			nextPageToken,
+		},
 	}),
 	success: (response, videoId) => ({
 		type: types.COMMENTS_SUCCESS,

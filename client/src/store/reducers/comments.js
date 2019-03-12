@@ -70,7 +70,21 @@ export const selector_commentsByVideo = createSelector(
 export const selector_commentsCount = createSelector(
 	selector_videoById,
 	video => {
-		if (video) return video.statistics.commentCount;
-		return 0;
+		if (video) {
+			return video.statistics.commentCount;
+		}
+		return null;
 	},
+);
+
+export const selector_commentNextPageToken = createSelector(
+	(state, videoId) => state.comments.byVideo[videoId],
+	comment => {
+		return comment ? comment.nextPageToken : null;
+	},
+);
+
+export const selector_commentsLoaded = createSelector(
+	selector_commentsByVideo,
+	comments => Object.keys(comments).length > 0,
 );
