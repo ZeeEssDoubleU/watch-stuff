@@ -33,10 +33,11 @@ export const action_fetchWatchDetails = {
 };
 
 export const action_fetchRelatedVideos = {
-	request: (videoId, amount) => ({
+	request: (videoId, nextPageToken, amount) => ({
 		type: types.RELATED_VIDEOS_REQUEST,
 		payload: {
 			videoId,
+			nextPageToken,
 			amount,
 		},
 	}),

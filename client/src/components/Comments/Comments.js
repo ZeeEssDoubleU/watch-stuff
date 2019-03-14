@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
@@ -7,6 +7,7 @@ import "./Comments.scss";
 import CommentsHeader from "./CommentsHeader";
 import AddComment from "./AddComment";
 import Comment from "./Comment";
+import InfiniteScroll from "../InfiniteScroll/InfiniteScroll";
 
 import * as watchActions from "../../store/actions/watch";
 import {
@@ -14,19 +15,27 @@ import {
 	selector_commentsNextPageToken,
 	selector_commentsByVideo,
 } from "../../store/reducers/comments";
-import InfiniteScroll from "../InfiniteScroll/InfiniteScroll";
 
 const Comments = props => {
+	// initialize .comments elem state and variables to determine comments infinite scroll height
+	const [commentsHeight, setCommentsHeight] = useState(0);
+	const commentsElem = document.querySelector(".comments");
+	const commentsElemHeight = commentsElem
+		? window.innerHeight - commentsElem.offsetTop
+		: window.innerHeight;
+	useEffect(() => {
+		setCommentsHeight(commentsElemHeight);
+	}, [commentsElemHeight]);
+
+	// fetchMoreComments & shouldShowLoader functions used in InfiniteScroll
 	const fetchMoreComments = () => {
 		if (props.commentsLoaded && props.commentsNextPageToken) {
-			console.log("FALKAJFALKFJDFKLJFDF");
 			props.fetchComments(
 				props.match.params.videoId,
 				props.commentsNextPageToken,
 			);
 		}
 	};
-
 	const shouldShowLoader = () => {
 		return props.commentsNextPageToken ? true : false;
 	};
@@ -36,12 +45,6 @@ const Comments = props => {
 				<Comment comment={comment} key={comment.id} />
 		  ))
 		: null;
-
-	// variables to determine scrollable height of comments
-	const commentsElem = document.querySelector(".comments");
-	const commentsHeight = commentsElem
-		? window.innerHeight - commentsElem.offsetTop
-		: window.innerHeight;
 
 	return (
 		<div className="comments-container">
@@ -61,6 +64,8 @@ const Comments = props => {
 	);
 };
 
+Comments.propTypes = {};
+
 const mapStateToProps = (state, props) => ({
 	comments: selector_commentsByVideo(state, props.match.params.videoId),
 	commentsLoaded: selector_commentsLoaded(state, props.match.params.videoId),
@@ -73,8 +78,6 @@ const mapStateToProps = (state, props) => ({
 const actionCreators = {
 	fetchComments: watchActions.action_fetchComments.request,
 };
-
-Comments.propTypes = {};
 
 export default withRouter(
 	connect(

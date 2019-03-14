@@ -25,23 +25,20 @@ export default reducer_comments;
 const reducer_fetchComments = (payload, state) => {
 	const comments = payload.response.items;
 	const videoId = payload.videoId;
-   // if data exists, grabs prev comment ids from comment byVideo.ids array
+	// if data exists, grabs prev comment ids from comment byVideo.ids array
 	const prevIds = state.byVideo[videoId] ? state.byVideo[videoId].ids : [];
-   // initialize comment byVideo and byId maps
-	let byVideoMap = {};
+	const newIds = comments.map(comment => comment.id);
+	// initialize comment byVideo and byId maps
 	const byIdMap = {};
 
-	byVideoMap = {
-		nextPageToken: payload.response.nextPageToken,
-		ids: prevIds, // sets byVideoMap ids to previous state's ids
-	};
+	// for each comment, push comment.id into byVideoMap ids array
+	// for each comment, add comment to byIdMap object
+	comments.forEach(comment => (byIdMap[comment.id] = comment));
 
-   // for each comment, push comment.id into byVideoMap ids array
-   // for each comment, add comment to byIdMap object
-	comments.forEach(comment => {
-		byVideoMap.ids.push(comment.id);
-		byIdMap[comment.id] = comment;
-	});
+	const byVideoMap = {
+		nextPageToken: payload.response.nextPageToken,
+		ids: Array.from(new Set([...prevIds, ...newIds])), // sets byVideoMap ids to previous state's ids
+	};
 
 	console.log("PAYLOAD - COMMENTS", payload);
 	console.log("COMMENTS BY ID", byIdMap);

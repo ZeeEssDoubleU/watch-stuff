@@ -6,6 +6,7 @@ import { connect } from "react-redux";
 import HeaderNav from "./components/HeaderNav/HeaderNav";
 import Home from "./components/Home/Home";
 import Watch from "./components/Watch/Watch";
+import Trending from "./components/Trending/Trending";
 
 // import actions / reducers / sagas
 import { action_youtubeLibraryLoaded } from "./store/actions/api";
@@ -13,7 +14,7 @@ import { action_youtubeLibraryLoaded } from "./store/actions/api";
 // import styles
 import "./App.scss";
 
-const API_KEY = "AIzaSyA0t_dxWokLiVuDqSM672p6T6Z_Lnyyg-Y";
+const API_KEY = "AIzaSyAm-orYtDHytDv9DA6zha6Dd_QKLjBpbVc";
 
 const App = props => {
 	useEffect(() => {
@@ -54,6 +55,7 @@ const App = props => {
 			<div className="app-layout">
 				<Switch>
 					<Route exact path="/" component={Home} />
+					<Route exact path="/feed/trending" component={Trending} />
 					<Route path="/watch/:videoId" component={Watch} />
 				</Switch>
 			</div>

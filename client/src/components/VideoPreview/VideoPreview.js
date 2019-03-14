@@ -11,9 +11,7 @@ import {
 } from "../../utils/format-time";
 
 const VideoPreview = props => {
-	const horizontal = props.horizontal ? " horizontal" : "";
 	const video = props.video;
-
 	if (!video) return <div />;
 
 	const formattedDuration = video => {
@@ -37,9 +35,13 @@ const VideoPreview = props => {
 		return "";
 	};
 
+	const horizontal = props.horizontal ? " horizontal" : "";
+	const expanded = props.expanded ? " expanded" : "";
+	const description = props.expanded ? video.snippet.description : null;
+
 	return (
 		<Link to={`/watch/${video.id}`}>
-			<div className={"video-preview" + horizontal}>
+			<div className={"video-preview" + horizontal + expanded}>
 				<div className="image-container">
 					<Image src={video.snippet.thumbnails.medium.url} />
 					<div className="time-label">
@@ -47,7 +49,7 @@ const VideoPreview = props => {
 					</div>
 				</div>
 				<div className="video-info">
-					<div className="semi-bold show-max-two-lines">
+					<div className={"semi-bold show-max-two-lines" + expanded}>
 						{video.snippet.title}
 					</div>
 					<div className="video-preview-metadata-container">
@@ -57,6 +59,7 @@ const VideoPreview = props => {
 						<div>
 							<span>{formattedViewAndTime(video)}</span>
 						</div>
+						<div className='show-max-two-lines'>{description}</div>
 					</div>
 				</div>
 			</div>

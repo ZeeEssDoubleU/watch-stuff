@@ -48,6 +48,12 @@ const reducer_fetchRelatedVideos = (payload, state) => {
 // SELECTORS
 //***************
 
-export const selector_watchDetails = state => state.watch.details;
-export const selector_relatedVideoIds = state =>
-	state.watch.relatedVideos.videoids;
+export const selector_watchDetails = createSelector(
+	state => state.watch.details,
+	details => (details ? details : null),
+);
+
+export const selector_videoById = createSelector(
+	(state, videoId) => state.videos.byId[videoId],
+	video => (video ? video : null),
+);

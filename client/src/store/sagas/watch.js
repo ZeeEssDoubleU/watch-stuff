@@ -28,16 +28,16 @@ export function* saga_watchRelatedVideos() {
 	);
 }
 export function* saga_fetchRelatedVideos(action) {
+	const videoId = action.payload.videoId;
+	const nextPageToken = action.payload.nextPageToken;
+	const amount = action.payload.amount;
 	console.log("ACTION - FETCH RELATED VIDEOS", action);
 	const request = () =>
-		youtubeApi.buildRelatedVideosRequest(
-			action.payload.videoId,
-			action.payload.amount,
-		);
+		youtubeApi.buildRelatedVideosRequest(videoId, nextPageToken, amount);
 	yield rootSagas.saga_fetchEntity(
 		request,
 		watchActions.action_fetchRelatedVideos,
-		action.payload.videoId,
+		videoId,
 	);
 }
 

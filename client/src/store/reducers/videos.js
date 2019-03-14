@@ -144,15 +144,19 @@ const reducer_fetchWatchDetails = (payload, state) => {
 
 const reducer_fetchRelatedVideos = (payload, state) => {
 	const response = payload.response;
-	const videoIds = response.items.map(item => item.id.videoId);
+	const videoId = payload.videoId;
+	const prevIds = state.related[videoId]
+		? state.related[videoId].videoIds
+		: [];
+	const newIds = response.items.map(item => item.id.videoId);
 
 	console.log("PAYLOAD - RELATED VIDEOS", payload);
-	console.log("MAP - RELATED VIDEO IDS", videoIds);
+	console.log("MAP - RELATED VIDEO IDS", newIds);
 
 	const relatedVideos = {
 		totalResults: response.pageInfo.totalResults,
 		nextPageToken: response.nextPageToken,
-		videoIds,
+		videoIds: Array.from(new Set([...prevIds, ...newIds])),
 	};
 
 	// place related video ids into lookup table based on original videoId
@@ -160,7 +164,7 @@ const reducer_fetchRelatedVideos = (payload, state) => {
 		...state,
 		related: {
 			...state.related,
-			[payload.videoId]: relatedVideos,
+			[videoId]: relatedVideos,
 		},
 	};
 };
@@ -240,15 +244,28 @@ export const selector_mostPopularVideosByCategoryLength = createSelector(
 );
 
 // this selector is mirrored in watch.js as selector_watchDetails
-export const selector_videoById = (state, videoId) =>
-	state.videos.byId[videoId];
+export const selector_videoById = createSelector(
+	(state, videoId) => state.videos.byId[videoId],
+	video => (video ? video : null),
+);
 
-const selector_relatedVideoIds = (state, videoId) => {
-	const related = state.videos.related[videoId];
-	return related ? related.videoIds : [];
-};
+export const selector_relatedVideoIds = createSelector(
+	(state, videoId) => state.videos.related[videoId],
+	related => (related ? related.videoIds : []),
+);
+
+export const selector_relatedVidsNextPageToken = createSelector(
+	(state, videoId) => state.videos.related[videoId],
+	related => (related ? related.nextPageToken : null),
+);
+
 export const selector_relatedVideos = createSelector(
 	selector_relatedVideoIds,
 	state => state.videos.byId,
 	(relatedIds, videos) => relatedIds.map(videoId => videos[videoId]),
+);
+
+export const selector_relatedVidsLoaded = createSelector(
+	selector_relatedVideos,
+	relatedVids => (relatedVids ? relatedVids.length > 0 : false),
 );
