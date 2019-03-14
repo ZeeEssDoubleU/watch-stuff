@@ -62,7 +62,7 @@ const HomeContent = props => {
 		<div className="home-content">
 			<div className="responsive-video-grid-container">
 				<InfiniteScroll
-					lazyLoadCallback={lazyLoadVideoCategories}
+					bottomReachedCallback={lazyLoadVideoCategories}
 					showLoader={shouldShowLoader()}>
 					<VideoGrid title="Trending" videos={props.mostPopular} />
 					{categoryGrids}

@@ -8,7 +8,7 @@ import "./InfiniteScroll.scss";
 const InfiniteScroll = props => (
 	<>
 		{props.children}
-		<Waypoint onEnter={props.lazyLoadCallback}>
+		<Waypoint onEnter={props.bottomReachedCallback}>
 			<div className="loader-container">
 				<Loader active={props.showLoader} inline="centered" />
 			</div>
