@@ -14,11 +14,11 @@ import {
 
 const HomeContent = props => {
 	const [lazyLoadIndex, setLazyLoadIndex] = useState(0);
-	const homeContentHeight =
-		document.querySelector(".home-content").offsetHeight -
-		document.querySelector(".loader-container").offsetHeight;
 
 	useEffect(() => {
+		const homeContentHeight =
+			document.querySelector(".home-content").offsetHeight -
+			document.querySelector(".loader-container").offsetHeight;
 		if (
 			// if height of loaded content is less than window height, load more content
 			props.videosByCategoryLoaded &&

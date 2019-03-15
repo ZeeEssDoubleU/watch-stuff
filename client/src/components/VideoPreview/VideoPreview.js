@@ -48,18 +48,18 @@ const VideoPreview = props => {
 						<span>{formattedDuration(video)}</span>
 					</div>
 				</div>
-				<div className="video-info">
+				<div className="preview-info">
 					<div className={"semi-bold show-max-two-lines" + expanded}>
 						{video.snippet.title}
 					</div>
-					<div className="video-preview-metadata-container">
+					<div className="preview-metadata-container">
 						<div className="channel-title semi-bold show-max-two-lines">
 							{video.snippet.channelTitle}
 						</div>
-						<div>
+						<div className="view-and-time">
 							<span>{formattedViewAndTime(video)}</span>
 						</div>
-						<div className='show-max-two-lines'>{description}</div>
+						<div className="show-max-two-lines preview-description">{description}</div>
 					</div>
 				</div>
 			</div>

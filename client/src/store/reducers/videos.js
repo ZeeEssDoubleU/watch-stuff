@@ -197,12 +197,17 @@ export const selector_mostPopularVideos = createSelector(
 	state => state.videos.mostPopular,
 	(videosById, mostPopular) => {
 		// if no mostPopular items exist, return []
-		if (!mostPopular || !mostPopular.itemIds) {
-			return [];
-		}
 		// map mostPopular items to an array, using mostPopular itemIds in byId lookup table
-		return mostPopular.itemIds.map(id => videosById[id]);
+		return !mostPopular || !mostPopular.itemIds
+			? []
+			: mostPopular.itemIds.map(id => videosById[id]);
 	},
+);
+
+export const selector_mostPopularLoaded = createSelector(
+	state => state.videos.mostPopular,
+	mostPopular =>
+		mostPopular.itemIds ? mostPopular.itemIds.length > 0 : false,
 );
 
 export const selector_videoCategories = createSelector(

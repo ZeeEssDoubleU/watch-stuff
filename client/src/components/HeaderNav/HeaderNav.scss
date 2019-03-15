@@ -1,6 +1,7 @@
 @import "../../styles/shared.scss";
 .ui.menu.top-menu {
    border: none; // remove Semantic UI's bottom border
+   height: 64px;
    .nav-container {
       display: flex;
       flex-grow: 1; // take available space in flex container

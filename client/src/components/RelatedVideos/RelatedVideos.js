@@ -35,7 +35,7 @@ const RelatedVideos = props => {
 			props.fetchRelatedVideos(
 				props.match.params.videoId,
 				props.relatedNextPageToken,
-				5,
+				5
 			);
 		}
 	};

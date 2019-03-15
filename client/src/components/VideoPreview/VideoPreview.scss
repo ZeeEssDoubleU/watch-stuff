@@ -1,54 +1,64 @@
 @import "../../styles/shared.scss";
 .video-preview {
-   display: grid;
-   grid: 118px auto / 210px;
-   .image-container {
-      position: relative;
-      grid-row: 1 / 2;
-      grid-column: 1 / 2;
-      .time-label {
-         position: absolute;
-         background: $text-color-dark;
-         bottom: 0;
-         right: 0;
-         opacity: 0.8;
-         font-weight: 500;
-         color: white;
-         margin: 6px 8px;
-         padding: 4px;
-         line-height: 12px;
-      }
-   }
-   .video-info {
-      color: $text-color-dark;
-      grid-row: 2 / 3;
-      grid-column: 1 / 2;
-      padding-top: 5px;
-      .video-preview-metadata-container {
-         padding-top: 5px;
-         font-size: 13px;
-         color: #6e6e6e;
-         .channel-title {
-            margin-bottom: 3px;
-         }
-      }
-      .show-max-two-lines {
-         overflow: hidden;
-         text-overflow: ellipsis;
-         line-height: 1.4em;
-         max-height: 2.8em;
-      }
-      .semi-bold {
-         font-weight: 600;
-      }
-   }
-   &.horizontal {
-      grid: 94px / 168px auto;
-      grid-column-gap: 4px;
-      margin-bottom: 10px;
-      .video-info {
-         grid-row: 1 / 2;
-         grid-column: 2 / 3;
-      }
-   }
+	display: grid;
+	grid: 118px auto / 210px;
+	.image-container {
+		position: relative;
+		grid-row: 1 / 2;
+		grid-column: 1 / 2;
+		.time-label {
+			position: absolute;
+			background: $text-color-dark;
+			bottom: 0;
+			right: 0;
+			opacity: 0.8;
+			font-weight: 500;
+			color: white;
+			margin: 6px 8px;
+			padding: 4px;
+			line-height: 12px;
+		}
+	}
+	.preview-info {
+		color: $text-color-dark;
+		grid-row: 2 / 3;
+		grid-column: 1 / 2;
+		padding-top: 5px;
+		.preview-metadata-container {
+			padding-top: 5px;
+			font-size: 13px;
+			color: #6e6e6e;
+			.channel-title {
+				margin-bottom: 3px;
+			}
+		}
+		.show-max-two-lines {
+			overflow: hidden;
+			text-overflow: ellipsis;
+			line-height: 1.4em;
+			max-height: 2.8em;
+		}
+		.semi-bold {
+			font-weight: 600;
+			&.expanded {
+				font-weight: 400;
+				font-size: 1.3rem;
+			}
+		}
+	}
+	&.horizontal {
+		grid: 94px / 168px auto;
+		grid-column-gap: 4px;
+		margin-bottom: 10px;
+		.preview-info {
+			grid-row: 1 / 2;
+			grid-column: 2 / 3;
+			.preview-description {
+				margin-top: 10px;
+			}
+		}
+		&.expanded {
+			grid: auto / 246px auto;
+		}
+	}
 }
