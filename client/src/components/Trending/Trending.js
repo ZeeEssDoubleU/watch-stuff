@@ -33,7 +33,11 @@ const Trending = props => {
 	return (
 		<>
 			<SideBar />
-			<div className="trending">{videoPreviews}</div>
+			<div className="trending">
+				<div className="responsive-video-grid-container">
+					{videoPreviews}
+				</div>
+			</div>
 		</>
 	);
 };
