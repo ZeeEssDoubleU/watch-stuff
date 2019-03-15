@@ -10,8 +10,10 @@ const Ratings = props => {
 	const likes = props.likes ? getAbbrevNumber(props.likes) : null;
 	const dislikes = props.dislikes ? getAbbrevNumber(props.dislikes) : null;
 
+	const comment = props.comment ? "comment-" : "";
+
 	return (
-		<div className="ratings">
+		<div className={comment + "ratings"}>
 			<div className="thumbs-up">
 				<Icon name="thumbs outline up" />
 				<span>{likes}</span>

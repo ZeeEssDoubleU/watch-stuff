@@ -1,9 +1,18 @@
 .ratings {
    display: flex;
    justify-content: space-around;
-   .thumbs-up {
+   .thumbs-up,
+   .thumbs-down {
       cursor: pointer;
    }
+}
+
+.comment-ratings {
+   display: flex;
+   justify-content: space-between;
+   width: 75px;
+   height: max-content;
+   .thumbs-up,
    .thumbs-down {
       cursor: pointer;
    }

@@ -39,7 +39,7 @@ const Comment = props => {
 					</Button>
 				</div>
 				<div className="comment-actions">
-					<Ratings likes={commentLikes} />{" "}
+					<Ratings likes={commentLikes} comment={true} />
 					<Button size="mini" compact>
 						REPLY
 					</Button>
