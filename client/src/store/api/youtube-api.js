@@ -124,11 +124,17 @@ export function buildApiRequest(requestMethod, path, params, properties) {
 }
 
 // function that passes 'most popular videos' data to buildApiRequest function
-export const buildMostPopularVideosRequest = (
+export function buildMostPopularVideosRequest(
 	amount = 12,
+	loadDescription = false,
 	nextPageToken = null,
 	videoCategoryId = null,
-) => {
+) {
+	let fields =
+		"nextPageToken,prevPageToken,items(contentDetails/duration,id,snippet(channelId,channelTitle,publishedAt,thumbnails/medium,title),statistics/viewCount),pageInfo(totalResults)";
+	if (loadDescription) {
+		fields += ",items/snippet/description";
+	}
 	return buildApiRequest(
 		"GET",
 		"/youtube/v3/videos",
@@ -138,13 +144,12 @@ export const buildMostPopularVideosRequest = (
 			maxResults: amount,
 			regionCode: "US",
 			pageToken: nextPageToken,
-			fields:
-				"nextPageToken,prevPageToken,items(contentDetails/duration,id,snippet(channelId,channelTitle,publishedAt,thumbnails/medium,title),statistics/viewCount),pageInfo(totalResults)",
+			fields,
 			videoCategoryId,
 		},
 		null,
 	);
-};
+}
 
 // builds request to fetch all available video categories
 export const buildVideoCategoriesRequest = () => {
@@ -175,7 +180,11 @@ export const buildVideoDetailsRequest = videoId => {
 };
 
 // builds request to fetch videos related to target video
-export const buildRelatedVideosRequest = (videoId, nextPageToken = null, amount = 25) => {
+export const buildRelatedVideosRequest = (
+	videoId,
+	nextPageToken = null,
+	amount = 25,
+) => {
 	return buildApiRequest(
 		"GET",
 		"/youtube/v3/search",

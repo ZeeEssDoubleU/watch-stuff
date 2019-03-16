@@ -15,6 +15,7 @@ export function* saga_fetchMostPopular(action) {
 	const request = () =>
 		youtubeApi.buildMostPopularVideosRequest(
 			action.payload.amount,
+			action.payload.loadDescription,
 			action.payload.nextPageToken,
 		);
 	yield rootSagas.saga_fetchEntity(
@@ -48,6 +49,7 @@ export function* saga_fetchMostPopularByCategory(action) {
 	const requests = action.payload.categories.map(category => {
 		const request = youtubeApi.buildMostPopularVideosRequest(
 			action.payload.amount,
+			action.payload.loadDescription,
 			action.payload.nextPageToken,
 			category,
 		);

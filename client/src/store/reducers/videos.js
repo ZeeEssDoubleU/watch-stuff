@@ -36,25 +36,18 @@ const reducer_videos = (state = initialState, action) => {
 export default reducer_videos;
 
 const reducer_fetchMostPopular = (payload, state) => {
-	const videoMap = payload.items.reduce((obj, item) => {
-		obj[item.id] = item;
-		return obj;
-	}, {});
+	const prevIds = state.mostPopular.itemIds ? state.mostPopular.itemIds : [];
+	const newIds = payload.items.map(item => item.id);
+	const videoMap = {};
+	payload.items.forEach(item => videoMap[item.id] = item);
 
-	let itemIds = Object.keys(videoMap);
 	console.log("PAYLOAD - MOST POPULAR VIDEOS", payload);
 	console.log("MAP - MOST POPULAR VIDEOS BY ID", videoMap);
-
-	// if prevPageToken exists, previous vids (items) have already been fetched from endpoint
-	// combine previous vids into mostPopular itemIds (video ids)
-	if (payload.hasOwnProperty("prevPageToken") && state.mostPopular) {
-		itemIds = [...state.mostPopular.itemIds, ...itemIds];
-	}
 
 	const mostPopular = {
 		totalResults: payload.pageInfo.totalResults,
 		nextPageToken: payload.nextPageToken,
-		itemIds,
+		itemIds: Array.from(new Set([...prevIds, ...newIds])),
 	};
 
 	// combine previous vids into state (same as above)
@@ -225,6 +218,11 @@ export const selector_mostPopularLoaded = createSelector(
 // 	selector_mostPopularVideos,
 // 	mostPopular => mostPopular.length > 0
 // )
+
+export const selector_mostPopularNextPageToken = createSelector(
+	state => state.videos.mostPopular,
+	mostPopular => (mostPopular ? mostPopular.nextPageToken : null),
+);
 
 export const selector_categories = createSelector(
 	state => state.videos.categories,

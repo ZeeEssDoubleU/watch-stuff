@@ -4,20 +4,32 @@ import { connect } from "react-redux";
 import "./Trending.scss";
 import VideoPreview from "../../components/VideoPreview/VideoPreview";
 import SideBar from "../SideBar/SideBar";
+import InfiniteScroll from "../InfiniteScroll/InfiniteScroll";
 
 import * as videoActions from "../../store/actions/videos";
 import { selector_youtubeLibraryLoaded } from "../../store/reducers/api";
 import {
 	selector_mostPopularLoaded,
 	selector_mostPopularVideos,
+	selector_mostPopularNextPageToken,
 } from "../../store/reducers/videos";
 
 const Trending = props => {
 	useEffect(() => {
 		if (props.youtubeLibraryLoaded && !props.mostPopularLoaded) {
-			props.fetchMostPopular();
+			props.fetchMostPopular(20, true);
 		}
 	}, [props.youtubeLibraryLoaded]);
+
+	// fetchMoreVideos & shouldShowLoader functions used in InfiniteScroll
+	const fetchMoreVideos = () => {
+		if (props.mostPopularNextPageToken) {
+			props.fetchMostPopular(5, true, props.mostPopularNextPageToken);
+		}
+	};
+	const shouldShowLoader = () => {
+		return props.mostPopularNextPageToken ? true : false;
+	};
 
 	const videoPreviews = props.mostPopular
 		? props.mostPopular.map(video => (
@@ -35,7 +47,11 @@ const Trending = props => {
 			<SideBar />
 			<div className="trending">
 				<div className="responsive-video-grid-container">
-					{videoPreviews}
+					<InfiniteScroll
+						bottomReachedCallback={() => fetchMoreVideos()}
+						showLoader={shouldShowLoader()}>
+						{videoPreviews}
+					</InfiniteScroll>
 				</div>
 			</div>
 		</>
@@ -46,6 +62,7 @@ const mapStateToProps = state => ({
 	youtubeLibraryLoaded: selector_youtubeLibraryLoaded(state),
 	mostPopularLoaded: selector_mostPopularLoaded(state),
 	mostPopular: selector_mostPopularVideos(state),
+	mostPopularNextPageToken: selector_mostPopularNextPageToken(state),
 });
 
 const actionCreators = {

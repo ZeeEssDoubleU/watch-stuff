@@ -9,10 +9,8 @@ import { selector_youtubeLibraryLoaded } from "../../store/reducers/api";
 import {
 	selector_categories,
 	selector_categoriesLoaded,
-	selector_mostPopularVideos,
 	selector_mostPopularLoaded,
 	selector_videosByCategoryLoaded,
-	selector_videosByCategoryLength,
 } from "../../store/reducers/videos";
 
 const Home = props => {
@@ -47,10 +45,8 @@ const mapStateToProps = state => ({
 	youtubeLibraryLoaded: selector_youtubeLibraryLoaded(state),
 	categories: selector_categories(state),
 	categoriesLoaded: selector_categoriesLoaded(state),
-	mostPopular: selector_mostPopularVideos(state),
 	mostPopularLoaded: selector_mostPopularLoaded(state),
 	byCategoryLoaded: selector_videosByCategoryLoaded(state),
-	byCategoryLength: selector_videosByCategoryLength(state),
 });
 
 // action creators
