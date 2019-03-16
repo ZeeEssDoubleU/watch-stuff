@@ -9,10 +9,9 @@ import AddComment from "./AddComment";
 import Comment from "./Comment";
 import InfiniteScroll from "../InfiniteScroll/InfiniteScroll";
 
-import * as watchActions from "../../store/actions/watch";
 import {
 	selector_commentsLoaded,
-	selector_commentsNextPageToken,
+	selector_commentsNPT,
 	selector_commentsByVideo,
 } from "../../store/reducers/comments";
 
@@ -27,17 +26,21 @@ const Comments = props => {
 		setCommentsHeight(commentsElemHeight);
 	}, [commentsElemHeight]);
 
-	// fetchMoreComments & shouldShowLoader functions used in InfiniteScroll
-	const fetchMoreComments = () => {
-		if (props.commentsLoaded && props.commentsNextPageToken) {
-			props.fetchComments(
-				props.match.params.videoId,
-				props.commentsNextPageToken,
-			);
+	// variables and effect to fetch more related videos based on visibilty of loader
+	const loader = document.querySelector(".comments > .loader-container");
+	const loaderOffset = loader ? loader.offsetTop : 0;
+	const loaderVisible = loaderOffset < window.innerHeight;
+	useEffect(() => {
+		if (loaderVisible) {
+			props.fetchComments(props.videoId, props.commentsNPT);
 		}
-	};
-	const shouldShowLoader = () => {
-		return props.commentsNextPageToken ? true : false;
+	}, [loaderOffset]);
+
+	// fetchMoreComments functions used in InfiniteScroll
+	const fetchMoreComments = () => {
+		if (props.commentsLoaded && props.commentsNPT) {
+			props.fetchComments(props.videoId, props.commentsNPT);
+		}
 	};
 
 	const comments = props.comments
@@ -56,7 +59,7 @@ const Comments = props => {
 			<div className="comments" style={{ height: commentsHeight }}>
 				<InfiniteScroll
 					bottomReachedCallback={() => fetchMoreComments()}
-					showLoader={shouldShowLoader()}>
+					showLoader={props.commentsNPT ? true : false}>
 					{comments}
 				</InfiniteScroll>
 			</div>
@@ -67,21 +70,14 @@ const Comments = props => {
 Comments.propTypes = {};
 
 const mapStateToProps = (state, props) => ({
-	comments: selector_commentsByVideo(state, props.match.params.videoId),
-	commentsLoaded: selector_commentsLoaded(state, props.match.params.videoId),
-	commentsNextPageToken: selector_commentsNextPageToken(
-		state,
-		props.match.params.videoId,
-	),
+	comments: selector_commentsByVideo(state, props.videoId),
+	commentsLoaded: selector_commentsLoaded(state, props.videoId),
+	commentsNPT: selector_commentsNPT(state, props.videoId),
 });
-
-const actionCreators = {
-	fetchComments: watchActions.action_fetchComments.request,
-};
 
 export default withRouter(
 	connect(
 		mapStateToProps,
-		actionCreators,
+		null,
 	)(Comments),
 );

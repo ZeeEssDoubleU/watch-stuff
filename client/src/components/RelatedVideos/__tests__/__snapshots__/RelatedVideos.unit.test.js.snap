@@ -2,7 +2,7 @@
 
 exports[`renders RelatedVideos 1`] = `
 <div
-  className="related-videos"
+  className="related-vids"
 >
   <NextUpVideo />
   <VideoPreview

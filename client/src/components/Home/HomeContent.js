@@ -39,7 +39,7 @@ const HomeContent = props => {
 	};
 
 	const shouldShowLoader = () => {
-		// if vidoesByCategory loaded, return true if lazyLoadIndex < total categories
+		// if videooesByCategory loaded, return true if lazyLoadIndex < total categories
 		return props.videosByCategoryLoaded &&
 			lazyLoadIndex < props.validCategoriesLength
 			? true

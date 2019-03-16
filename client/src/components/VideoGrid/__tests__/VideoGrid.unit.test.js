@@ -14,7 +14,7 @@ describe("VideoGrid", () => {
 		expect(wrapper).toMatchSnapshot();
 	});
 
-	test("renders without divider", () => {
+	test("renders without divideoer", () => {
 		const wrapper = shallow(<VideoGrid hideDivider={true} />);
 		expect(wrapper).toMatchSnapshot();
 	});

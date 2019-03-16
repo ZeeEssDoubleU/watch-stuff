@@ -2,6 +2,6 @@
 
 exports[`VideoGrid renders with title prop 1`] = `<div />`;
 
-exports[`VideoGrid renders without divider 1`] = `<div />`;
+exports[`VideoGrid renders without divideoer 1`] = `<div />`;
 
 exports[`VideoGrid renders without props 1`] = `<div />`;

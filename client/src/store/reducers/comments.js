@@ -72,7 +72,7 @@ export const selector_commentsCount = createSelector(
 	video => (video ? video.statistics.commentCount : null),
 );
 
-export const selector_commentsNextPageToken = createSelector(
+export const selector_commentsNPT = createSelector(
 	(state, videoId) => state.comments.byVideo[videoId],
 	comment => (comment ? comment.nextPageToken : null),
 );

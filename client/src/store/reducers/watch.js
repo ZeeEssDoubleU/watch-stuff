@@ -37,7 +37,7 @@ const reducer_fetchRelatedVideos = (payload, state) => {
 		videoIds,
 	};
 
-	// combine previous vids into state (same as above)
+	// combine previous videos into state (same as above)
 	return {
 		...state,
 		relatedVideos,

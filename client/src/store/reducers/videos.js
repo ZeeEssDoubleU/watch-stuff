@@ -50,7 +50,7 @@ const reducer_fetchMostPopular = (payload, state) => {
 		itemIds: Array.from(new Set([...prevIds, ...newIds])),
 	};
 
-	// combine previous vids into state (same as above)
+	// combine previous videos into state (same as above)
 	return {
 		...state,
 		mostPopular,
@@ -70,7 +70,7 @@ const reducer_fetchVideoCategories = (payload, state) => {
 	console.log("PAYLOAD - VIDEO CATEGORIES", payload);
 	console.log("MAP - VIDEO CATEGORIES", categoryMap);
 
-	// combine previous vids into state (same as above)
+	// combine previous videos into state (same as above)
 	return {
 		...state,
 		categories: categoryMap,
@@ -219,7 +219,7 @@ export const selector_mostPopularLoaded = createSelector(
 // 	mostPopular => mostPopular.length > 0
 // )
 
-export const selector_mostPopularNextPageToken = createSelector(
+export const selector_mostPopularNPT = createSelector(
 	state => state.videos.mostPopular,
 	mostPopular => (mostPopular ? mostPopular.nextPageToken : null),
 );
@@ -267,14 +267,14 @@ export const selector_videosByCategory = createSelector(
 // // returns amount of videosByCategory DO exist in state.video.byId
 // export const selector_videosByCategoryLength = createSelector(
 // 	selector_videosByCategory,
-// 	vidsByCategory => {
-// 		const categories = Object.keys(vidsByCategory);
-// 		let totalVids = 0;
+// 	videosByCategory => {
+// 		const categories = Object.keys(videosByCategory);
+// 		let totalVideos = 0;
 // 		categories.forEach(category => {
-// 			const categoryCount = vidsByCategory[category].length;
-// 			totalVids += categoryCount;
+// 			const categoryCount = videosByCategory[category].length;
+// 			totalVideos += categoryCount;
 // 		});
-// 		return totalVids;
+// 		return totalVideos;
 // 	},
 // );
 
@@ -333,7 +333,7 @@ export const selector_relatedVideoIds = createSelector(
 	related => (related ? related.videoIds : []),
 );
 
-export const selector_relatedVidsNextPageToken = createSelector(
+export const selector_relatedVideosNPT = createSelector(
 	(state, videoId) => state.videos.related[videoId],
 	related => (related ? related.nextPageToken : null),
 );
@@ -344,7 +344,7 @@ export const selector_relatedVideos = createSelector(
 	(relatedIds, videos) => relatedIds.map(videoId => videos[videoId]),
 );
 
-export const selector_relatedVidsLoaded = createSelector(
+export const selector_relatedVideosLoaded = createSelector(
 	selector_relatedVideos,
-	relatedVids => (relatedVids ? relatedVids.length > 0 : false),
+	relatedVideos => (relatedVideos ? relatedVideos.length > 0 : false),
 );

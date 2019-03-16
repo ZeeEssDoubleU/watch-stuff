@@ -11,7 +11,7 @@ import { selector_youtubeLibraryLoaded } from "../../store/reducers/api";
 import {
 	selector_mostPopularLoaded,
 	selector_mostPopularVideos,
-	selector_mostPopularNextPageToken,
+	selector_mostPopularNPT,
 } from "../../store/reducers/videos";
 
 const Trending = props => {
@@ -23,12 +23,12 @@ const Trending = props => {
 
 	// fetchMoreVideos & shouldShowLoader functions used in InfiniteScroll
 	const fetchMoreVideos = () => {
-		if (props.mostPopularNextPageToken) {
-			props.fetchMostPopular(5, true, props.mostPopularNextPageToken);
+		if (props.mostPopularNPT) {
+			props.fetchMostPopular(5, true, props.mostPopularNPT);
 		}
 	};
 	const shouldShowLoader = () => {
-		return props.mostPopularNextPageToken ? true : false;
+		return props.mostPopularNPT ? true : false;
 	};
 
 	const videoPreviews = props.mostPopular
@@ -62,7 +62,7 @@ const mapStateToProps = state => ({
 	youtubeLibraryLoaded: selector_youtubeLibraryLoaded(state),
 	mostPopularLoaded: selector_mostPopularLoaded(state),
 	mostPopular: selector_mostPopularVideos(state),
-	mostPopularNextPageToken: selector_mostPopularNextPageToken(state),
+	mostPopularNPT: selector_mostPopularNPT(state),
 });
 
 const actionCreators = {

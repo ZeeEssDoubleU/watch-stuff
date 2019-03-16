@@ -183,7 +183,7 @@ export const buildVideoDetailsRequest = videoId => {
 export const buildRelatedVideosRequest = (
 	videoId,
 	nextPageToken = null,
-	amount = 25,
+	amount = 20,
 ) => {
 	return buildApiRequest(
 		"GET",
@@ -215,7 +215,11 @@ export const buildChannelRequest = channelId => {
 };
 
 // builds request to fetch video comments
-export const buildCommentsRequest = (videoId, nextPageToken = null) => {
+export const buildCommentsRequest = (
+	videoId,
+	nextPageToken = null,
+	amount = 20,
+) => {
 	return buildApiRequest(
 		"GET",
 		"/youtube/v3/commentThreads",
@@ -223,6 +227,7 @@ export const buildCommentsRequest = (videoId, nextPageToken = null) => {
 			part: "id,snippet",
 			pageToken: nextPageToken,
 			videoId,
+			maxResults: amount,
 		},
 		null,
 	);

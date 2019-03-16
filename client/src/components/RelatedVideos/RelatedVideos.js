@@ -8,39 +8,41 @@ import NextUpVideo from "./NextUpVideo/NextUpVideo";
 import VideoPreview from "../VideoPreview/VideoPreview";
 import InfiniteScroll from "../InfiniteScroll/InfiniteScroll";
 
-import * as watchActions from "../../store/actions/watch";
 import {
-	selector_relatedVidsNextPageToken,
-	selector_relatedVidsLoaded,
+	selector_relatedVideosNPT,
+	selector_relatedVideosLoaded,
 } from "../../store/reducers/videos";
 
 const RelatedVideos = props => {
-	// initialize .remaining-videos elem state and variables to determine remaining videos infinite scroll height
-	const [remainingVidsHeight, setremainingVidsHeight] = useState(0);
-	const remainingVidsElem = document.querySelector(".remaining-videos");
-	const remainingVidsElemHeight = remainingVidsElem
-		? window.innerHeight - remainingVidsElem.offsetTop
-		: window.innerHeight;
-	useEffect(() => {
-		setremainingVidsHeight(remainingVidsElemHeight);
-	}, [remainingVidsElemHeight]);
-
 	// if no related videos available, return empty div
 	if (!props.videos || props.videos.length === 0)
-		return <div className="related-videos" />;
+		return <div className="related-vids" />;
 
-	// fetchMoreVideos & shouldShowLoader functions used in InfiniteScroll
-	const fetchMoreVideos = () => {
-		if (props.relatedNextPageToken && props.relatedLoaded) {
-			props.fetchRelatedVideos(
-				props.match.params.videoId,
-				props.relatedNextPageToken,
-				5
-			);
+	// initialize .remaining-vids elem state and variables to determine remaining videos infinite scroll height
+	const [remainingVideosHeight, setremainingVideosHeight] = useState(0);
+	const remainingVideosElem = document.querySelector(".remaining-vids");
+	const remainingVideosElemHeight = remainingVideosElem
+		? window.innerHeight - remainingVideosElem.offsetTop
+		: window.innerHeight;
+	useEffect(() => {
+		setremainingVideosHeight(remainingVideosElemHeight);
+	}, [remainingVideosElemHeight]);
+
+	// variables and effect to fetch more related videos based on visibilty of loader
+	const loader = document.querySelector(".remaining-vids > .loader-container");
+	const loaderOffset = loader ? loader.offsetTop : 0;
+	const loaderVisible = loaderOffset < window.innerHeight;
+	useEffect(() => {
+		if (loaderVisible) {
+			props.fetchRelatedVideos(props.videoId, props.relatedNPT, 5);
 		}
-	};
-	const shouldShowLoader = () => {
-		return props.relatedNextPageToken ? true : false;
+	}, [loaderOffset]);
+
+	// fetchMoreVideos functions used in InfiniteScroll
+	const fetchMoreVideos = () => {
+		if (props.relatedNPT && props.relatedLoaded) {
+			props.fetchRelatedVideos(props.videoId, props.relatedNPT, 5);
+		}
 	};
 
 	const nextUpVideo = props.videos[0];
@@ -52,14 +54,14 @@ const RelatedVideos = props => {
 	});
 
 	return (
-		<div className="related-videos">
+		<div className="related-vids">
 			<NextUpVideo video={nextUpVideo} />
 			<div
-				className="remaining-videos"
-				style={{ height: remainingVidsHeight }}>
+				className="remaining-vids"
+				style={{ height: remainingVideosHeight }}>
 				<InfiniteScroll
 					bottomReachedCallback={() => fetchMoreVideos()}
-					showLoader={shouldShowLoader()}>
+					showLoader={props.relatedNPT ? true : false}>
 					{relatedPreviews}
 				</InfiniteScroll>
 			</div>
@@ -70,20 +72,13 @@ const RelatedVideos = props => {
 RelatedVideos.propTypes = {};
 
 const mapStateToProps = (state, props) => ({
-	relatedNextPageToken: selector_relatedVidsNextPageToken(
-		state,
-		props.match.params.videoId,
-	),
-	relatedLoaded: selector_relatedVidsLoaded(state, props.match.params.videoId),
+	relatedNPT: selector_relatedVideosNPT(state, props.videoId),
+	relatedLoaded: selector_relatedVideosLoaded(state, props.videoId),
 });
-
-const actionCreators = {
-	fetchRelatedVideos: watchActions.action_fetchRelatedVideos.request,
-};
 
 export default withRouter(
 	connect(
 		mapStateToProps,
-		actionCreators,
+		null,
 	)(RelatedVideos),
 );
