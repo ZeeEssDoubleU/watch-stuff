@@ -193,43 +193,70 @@ const reducer_fetchRelatedVideoDetails = (payload, state) => {
 // SELECTORS
 //***************
 export const selector_mostPopularVideos = createSelector(
-	state => state.videos.byId,
 	state => state.videos.mostPopular,
-	(videosById, mostPopular) => {
-		// if no mostPopular items exist, return []
-		// map mostPopular items to an array, using mostPopular itemIds in byId lookup table
+	state => state.videos.byId,
+	(mostPopular, videosById) => {
+		// return [] - no mostPopular items exist
+		// return array - map videos using mostPopular itemIds to look up video data from videosById
 		return !mostPopular || !mostPopular.itemIds
 			? []
 			: mostPopular.itemIds.map(id => videosById[id]);
 	},
 );
 
+// mostPopularLoaded - VERSION 1
+// checks if ALL mostPopular itemIds have been loaded to state.video.byId
 export const selector_mostPopularLoaded = createSelector(
 	state => state.videos.mostPopular,
-	mostPopular =>
-		mostPopular.itemIds ? mostPopular.itemIds.length > 0 : false,
+	state => state.videos.byId,
+	(mostPopular, videosById) => {
+		// return false - no mostPopular itemIds or no videosById exist
+		// return true - every mostPopular itemId exists in videosById
+		// return false - any mostPopular itemId doesn't exist in videosById
+		return !mostPopular || !mostPopular.itemIds || !videosById
+			? false
+			: mostPopular.itemIds.every(id => id in videosById);
+	},
 );
 
-export const selector_videoCategories = createSelector(
+// // mostPopularLoaded - VERSION 2
+// // returns true if only 1 mostPopular video has been loaded to state.video.byId
+// export const selector_mostPopularLoaded = createSelector(
+// 	selector_mostPopularVideos,
+// 	mostPopular => mostPopular.length > 0
+// )
+
+export const selector_categories = createSelector(
 	state => state.videos.categories,
 	categories => Object.keys(categories),
 );
 
-export const selector_videoCategoriesLoaded = createSelector(
-	state => state.videos.categories,
-	categories => Object.keys(categories).length > 0,
+export const selector_categoriesLoaded = createSelector(
+	selector_categories,
+	categoriesArray => categoriesArray.length > 0,
 );
 
-export const selector_mostPopularVideosByCategory = createSelector(
+export const selector_validCategoriesLength = createSelector(
+	state => state.videos.byCategory,
+	categories => (categories ? Object.keys(categories).length : 0),
+);
+
+export const selector_validCategoriesLoaded = createSelector(
+	selector_validCategoriesLength,
+	length => length > 0,
+);
+
+// returns object of videos sorted by category names
+export const selector_videosByCategory = createSelector(
 	state => state.videos.categories,
 	state => state.videos.byCategory,
 	state => state.videos.byId,
-	(videoCategories, videosByCategory, videosById) => {
+	(categories, videoIdsByCategory, videosById) => {
 		const byCategory = {};
-		const categoryIds = Object.keys(videosByCategory);
+		const categoryIds = Object.keys(videoIdsByCategory);
 		categoryIds.forEach(categoryId => {
-			const categoryName = videoCategories[categoryId];
-			const videoIds = videosByCategory[categoryId].items;
+			const categoryName = categories[categoryId];
+			const videoIds = videoIdsByCategory[categoryId].items;
 			byCategory[categoryName] = videoIds.map(
 				videoId => videosById[videoId],
 			);
@@ -238,15 +265,64 @@ export const selector_mostPopularVideosByCategory = createSelector(
 	},
 );
 
-export const selector_mostPopularVideosByCategoryLoaded = createSelector(
+// // videosByCategoryLength - VERSION 1
+// // returns amount of videosByCategory DO exist in state.video.byId
+// export const selector_videosByCategoryLength = createSelector(
+// 	selector_videosByCategory,
+// 	vidsByCategory => {
+// 		const categories = Object.keys(vidsByCategory);
+// 		let totalVids = 0;
+// 		categories.forEach(category => {
+// 			const categoryCount = vidsByCategory[category].length;
+// 			totalVids += categoryCount;
+// 		});
+// 		return totalVids;
+// 	},
+// );
+
+// videosByCategoryLength - VERSION 2
+// returns amount of videoIds that SHOULD exist in state.video.byId
+export const selector_videosByCategoryLength = createSelector(
 	state => state.videos.byCategory,
-	byCategory => Object.keys(byCategory).length > 0,
+	byCategory => {
+		let totalVideos = 0;
+		const categories = Object.keys(byCategory);
+		categories.forEach(category => {
+			const vidCount = byCategory[category].items.length;
+			totalVideos += vidCount;
+		});
+		return totalVideos;
+	},
 );
 
-export const selector_mostPopularVideosByCategoryLength = createSelector(
+// videosByCategoryLoaded - VERSION 1
+// checks if ALL videosByCategory itemIds have been loaded to state.video.byId
+export const selector_videosByCategoryLoaded = createSelector(
 	state => state.videos.byCategory,
-	byCategory => Object.keys(byCategory).length,
+	state => state.videos.byId,
+	(byCategory, videosById) => {
+		const categories = Object.keys(byCategory);
+		const videoIds = Object.keys(videosById);
+		let totalIds = [];
+		categories.forEach(category => {
+			const videoIds = byCategory[category].items;
+			totalIds.push(...videoIds);
+		});
+		// return false - no byCategories or byIds exist
+		// return true - EVERY videosByCategory videoId exists in state.videos.byId
+		// return false - ANY videosByCategory videoId doesn't exist in state.videos.byId
+		return !categories.length || !videoIds.length
+			? false
+			: totalIds.every(id => id in videosById);
+	},
 );
+
+// // videosByCategoryLoaded - VERSION 2
+// // return true if only 1 videosByCategory video has been loaded to state.videos.byId
+// export const selector_videosByCategoryLoaded = createSelector(
+// 	selector_videosByCategoryLength,
+// 	length => length > 0,
+// );
 
 // this selector is mirrored in watch.js as selector_watchDetails
 export const selector_videoById = createSelector(

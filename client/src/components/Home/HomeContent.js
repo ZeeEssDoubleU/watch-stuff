@@ -7,9 +7,9 @@ import InfiniteScroll from "../InfiniteScroll/InfiniteScroll";
 
 import {
 	selector_mostPopularVideos,
-	selector_mostPopularVideosByCategory,
-	selector_mostPopularVideosByCategoryLoaded,
-	selector_mostPopularVideosByCategoryLength,
+	selector_videosByCategory,
+	selector_videosByCategoryLoaded,
+	selector_validCategoriesLength,
 } from "../../store/reducers/videos";
 
 const HomeContent = props => {
@@ -32,7 +32,7 @@ const HomeContent = props => {
 	const lazyLoadVideoCategories = () => {
 		if (
 			props.videosByCategoryLoaded &&
-			lazyLoadIndex < props.videosByCategoryLength
+			lazyLoadIndex < props.validCategoriesLength
 		) {
 			setLazyLoadIndex(lazyLoadIndex + 1);
 		}
@@ -41,7 +41,7 @@ const HomeContent = props => {
 	const shouldShowLoader = () => {
 		// if vidoesByCategory loaded, return true if lazyLoadIndex < total categories
 		return props.videosByCategoryLoaded &&
-			lazyLoadIndex < props.videosByCategoryLength
+			lazyLoadIndex < props.validCategoriesLength
 			? true
 			: false;
 	};
@@ -74,9 +74,9 @@ const HomeContent = props => {
 
 const mapStateToProps = state => ({
 	mostPopular: selector_mostPopularVideos(state),
-	videosByCategory: selector_mostPopularVideosByCategory(state),
-	videosByCategoryLoaded: selector_mostPopularVideosByCategoryLoaded(state),
-	videosByCategoryLength: selector_mostPopularVideosByCategoryLength(state),
+	videosByCategory: selector_videosByCategory(state),
+	videosByCategoryLoaded: selector_videosByCategoryLoaded(state),
+	validCategoriesLength: selector_validCategoriesLength(state),
 });
 
 export default connect(
