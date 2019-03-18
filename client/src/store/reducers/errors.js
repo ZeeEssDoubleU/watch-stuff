@@ -1,10 +1,13 @@
-import { createSelector } from "reselect";
 import * as videoActions from "../actions/videos";
 import * as watchActions from "../actions/watch";
 
 const initialState = {
 	errors: {},
 };
+
+//***************
+// root reducer
+//***************
 
 const reducer_errors = (state = initialState, action) => {
 	switch (action.type) {
@@ -23,5 +26,4 @@ const reducer_errors = (state = initialState, action) => {
 			return state;
 	}
 };
-
 export default reducer_errors;

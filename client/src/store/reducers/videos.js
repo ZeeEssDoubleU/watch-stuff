@@ -1,13 +1,13 @@
 import { createSelector } from "reselect";
 import * as videoActions from "../actions/videos";
 import * as watchActions from "../actions/watch";
+import * as searchActions from "../actions/search";
 
 const initialState = {
 	categories: {},
 	mostPopular: {},
 	byId: {},
 	byCategory: {},
-	related: {},
 };
 
 //***************
@@ -25,7 +25,8 @@ const reducer_videos = (state = initialState, action) => {
 		case watchActions.types.WATCH_DETAILS_SUCCESS:
 			return reducer_fetchWatchDetails(action.payload, state);
 		case watchActions.types.RELATED_VIDEO_DETAILS_SUCCESS:
-			return reducer_fetchRelatedVideoDetails(action.payload, state);
+		case searchActions.types.SEARCH_VIDEOS_DETAILS_SUCCESS:
+			return reducer_fetchVideoDetails(action.payload, state);
 		default:
 			return state;
 	}
@@ -117,14 +118,15 @@ const reducer_fetchMostPopularByCategory = (payload, state) => {
 };
 
 //***************
-// sub reducers - watch
+// sub reducers - watch / search
 //***************
 
 // this reducer is mirrors in watch.js as reducer_fetchWatchDetails
 const reducer_fetchWatchDetails = (payload, state) => {
-	console.log("PAYLOAD - FETCH WATCH DETAILS", payload);
 	const details = payload.items[0];
 	const videoId = details.id;
+
+	console.log("PAYLOAD - FETCH WATCH DETAILS", payload);
 
 	// add watch video details to byId lookup table
 	return {
@@ -136,13 +138,15 @@ const reducer_fetchWatchDetails = (payload, state) => {
 	};
 };
 
-const reducer_fetchRelatedVideoDetails = (payload, state) => {
-	const videoMap = payload.reduce((obj, response) => {
-		const video = response.items ? response.items[0] : null;
-		if (!video) return obj;
-		obj[video.id] = video;
-		return obj;
-	}, {});
+// fetches additional data for related videos and adds them to state.videos.byId
+// fetches details for watch related videos and search videos
+const reducer_fetchVideoDetails = (payload, state) => {
+	const videoMap = {};
+	payload.forEach(response => {
+		const video = response.items[0] || null;
+		videoMap[video.id] = video || null;
+	});
+
 	console.log("PAYLOAD - FETCH RELATED VIDEO DETAILS", payload);
 	console.log("MAP - RELATED VIDEOS BY ID", videoMap);
 
@@ -263,6 +267,6 @@ export const selector_videosByCategoryLoaded = createSelector(
 
 // this selector is mirrored in watch.js as selector_watchDetails
 export const selector_videoById = createSelector(
-	(state, videoId) => state.videos.byId[videoId],
+	(state, videoId) => state.videos.byId[videoId] || null,
 	video => (video ? video : null),
 );

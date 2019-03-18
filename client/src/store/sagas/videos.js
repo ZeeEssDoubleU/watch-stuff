@@ -11,12 +11,13 @@ export function* saga_watchMostPopular() {
 	);
 }
 export function* saga_fetchMostPopular(action) {
+	const { amount, loadDescription, nextPageToken } = action.payload;
 	console.log("ACTION - FETCH MOST POPULAR VIDEOS", action);
 	const request = () =>
 		youtubeApi.buildMostPopularVideosRequest(
-			action.payload.amount,
-			action.payload.loadDescription,
-			action.payload.nextPageToken,
+			amount,
+			loadDescription,
+			nextPageToken,
 		);
 	yield rootSagas.saga_fetchEntity(
 		request,
@@ -45,12 +46,13 @@ export function* saga_watchMostPopularByCategory() {
 	);
 }
 export function* saga_fetchMostPopularByCategory(action) {
+	const { categories, amount, loadDescription, nextPageToken } = action.payload;
 	console.log("ACTION - FETCH MOST POPULAR VIDEOS BY CATEGORY", action);
-	const requests = action.payload.categories.map(category => {
+	const requests = categories.map(category => {
 		const request = youtubeApi.buildMostPopularVideosRequest(
-			action.payload.amount,
-			action.payload.loadDescription,
-			action.payload.nextPageToken,
+			amount,
+			loadDescription,
+			nextPageToken,
 			category,
 		);
 		// ignoreErrors is imported helper function that allows request to return responses and errors
@@ -59,6 +61,6 @@ export function* saga_fetchMostPopularByCategory(action) {
 	yield rootSagas.saga_fetchEntities(
 		requests,
 		videoActions.action_fetchMostPopularByCategory,
-		action.payload.categories,
+		categories,
 	);
 }

@@ -36,7 +36,7 @@ const reducer_fetchRelatedVideos = (payload, state) => {
 	const prevIds = state.relatedVideos.videoIds || [];
 	const newIds = response.items.map(item => item.id.videoId);
 
-	console.log("PAYLOAD - RELATED VIDEOS", payload);
+	console.log("PAYLOAD - FETCH RELATED VIDEOS", payload);
 
 	const relatedVideos = {
 		totalResults: payload.response.pageInfo.totalResults,
@@ -54,16 +54,6 @@ const reducer_fetchRelatedVideos = (payload, state) => {
 //***************
 // selectors
 //***************
-
-export const selector_watchDetails = createSelector(
-	state => state.watch.details,
-	details => details || null,
-);
-
-export const selector_videoById = createSelector(
-	(state, videoId) => state.videos.byId[videoId],
-	video => video || null,
-);
 
 export const selector_relatedVideoIds = createSelector(
 	state => state.watch.relatedVideos,

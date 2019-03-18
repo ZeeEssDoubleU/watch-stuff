@@ -9,34 +9,34 @@ export const types = {
 };
 
 export const action_fetchSearchVideos = {
-	request: (searchQuery, nextPageToken, amount) => ({
+	request: (query, nextPageToken, amount) => ({
 		type: types.SEARCH_VIDEOS_REQUEST,
 		payload: {
-			searchQuery,
+			query,
 			nextPageToken,
 			amount,
 		},
 	}),
-	success: (response, searchQuery) => ({
+	success: (response, query) => ({
 		type: types.SEARCH_VIDEOS_SUCCESS,
 		payload: {
 			response,
-			searchQuery,
+			query,
 		},
 	}),
-	failure: (response, searchQuery) => ({
+	failure: (response, query) => ({
 		type: types.SEARCH_VIDEOS_FAILURE,
 		payload: {
 			response,
-			searchQuery,
+			query,
 		},
 	}),
 };
 
 export const action_fetchSearchVideosDetails = {
-	request: searchQuery => ({
+	request: videoIds => ({
 		type: types.SEARCH_VIDEOS_DETAILS_REQUEST,
-		payload: { searchQuery },
+		payload: { videoIds },
 	}),
 	success: response => ({
 		type: types.SEARCH_VIDEOS_DETAILS_SUCCESS,

@@ -243,7 +243,7 @@ export const buildSearchRequest = (
 		"GET",
 		"/youtube/v3/search",
 		{
-			part: "id, snippet",
+			part: "id",
 			q: query,
 			pageToken: nextPageToken,
 			type: "video",
