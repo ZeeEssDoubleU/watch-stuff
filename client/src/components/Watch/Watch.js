@@ -25,21 +25,18 @@ import {
 } from "../../store/reducers/comments";
 
 const Watch = props => {
+	const { videoId } = props.match.params;
 	useEffect(() => {
 		if (props.youtubeLibraryLoaded) {
-			props.fetchWatchDetails(props.match.params.videoId);
-			props.fetchRelatedVideos(
-				props.match.params.videoId,
-				props.relatedNPT,
-				20,
-			);
-			props.fetchComments(props.match.params.videoId, props.commentsNPT, 20);
+			props.fetchWatchDetails(videoId);
+			props.fetchRelatedVideos(videoId, props.relatedNPT, 20);
+			props.fetchComments(videoId, props.commentsNPT, 20);
 		}
 	}, [props.youtubeLibraryLoaded]);
 
 	return (
 		<div className="watch-grid">
-			<Video id={props.match.params.videoId} className="video-container" />
+			<Video id={videoId} className="video-container" />
 			<VideoMetadata className="video-metadata" video={props.video} />
 			<VideoInfo
 				className="video-info-container"
@@ -51,13 +48,13 @@ const Watch = props => {
 				comments={props.comments}
 				commentsCount={props.commentsCount}
 				fetchComments={props.fetchComments}
-				videoId={props.match.params.videoId}
+				videoId={videoId}
 			/>
 			<RelatedVideos
 				className="related-vids"
 				videos={props.relatedVideos}
 				fetchRelatedVideos={props.fetchRelatedVideos}
-				videoId={props.match.params.videoId}
+				videoId={videoId}
 			/>
 		</div>
 	);

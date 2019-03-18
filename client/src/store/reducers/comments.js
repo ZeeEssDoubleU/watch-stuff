@@ -8,7 +8,7 @@ const initialState = {
 };
 
 //***************
-// COMMENTS REDUCERS
+// root reducer
 //***************
 
 const reducer_comments = (state = initialState, action) => {
@@ -19,12 +19,15 @@ const reducer_comments = (state = initialState, action) => {
 			return state;
 	}
 };
-
 export default reducer_comments;
 
+//***************
+// sub reducers
+//***************
+
 const reducer_fetchComments = (payload, state) => {
-	const comments = payload.response.items;
-	const videoId = payload.videoId;
+	const {response, videoId} = payload;
+	const comments = response.items;
 	// if data exists, grabs prev comment ids from comment byVideo.ids array
 	const prevIds = state.byVideo[videoId] ? state.byVideo[videoId].ids : [];
 	const newIds = comments.map(comment => comment.id);
@@ -36,7 +39,7 @@ const reducer_fetchComments = (payload, state) => {
 	comments.forEach(comment => (byIdMap[comment.id] = comment));
 
 	const byVideoMap = {
-		nextPageToken: payload.response.nextPageToken,
+		nextPageToken: response.nextPageToken,
 		ids: Array.from(new Set([...prevIds, ...newIds])), // sets byVideoMap ids to previous state's ids
 	};
 
@@ -58,7 +61,7 @@ const reducer_fetchComments = (payload, state) => {
 };
 
 //***************
-// SELECTORS
+// selectors
 //***************
 export const selector_commentsByVideo = createSelector(
 	(state, videoId) => state.comments.byVideo[videoId],

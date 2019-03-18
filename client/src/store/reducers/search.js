@@ -4,7 +4,7 @@ import * as searchActions from "../actions/search";
 const initialState = {};
 
 //***************
-// reducers
+// root reducer
 //***************
 
 const reducer_search = (state = initialState, action) => {
@@ -16,6 +16,10 @@ const reducer_search = (state = initialState, action) => {
 	}
 };
 export default reducer_search;
+
+//***************
+// sub reducers
+//***************
 
 const reducer_fetchSearchVideos = (payload, state) => {
 	const { response, searchQuery } = payload;

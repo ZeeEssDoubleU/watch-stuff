@@ -33,7 +33,7 @@ const RelatedVideos = props => {
 	const loaderOffset = loader ? loader.offsetTop : 0;
 	const loaderVisible = loaderOffset < window.innerHeight;
 	useEffect(() => {
-		if (props.relatedNPT && props.relatedLoaded && loaderVisible) {
+		if (props.relatedLoaded && loaderVisible) {
 			props.fetchRelatedVideos(props.videoId, props.relatedNPT, 10);
 		}
 	}, [loaderOffset]);

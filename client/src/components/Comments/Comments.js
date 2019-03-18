@@ -31,7 +31,7 @@ const Comments = props => {
 	const loaderOffset = loader ? loader.offsetTop : 0;
 	const loaderVisible = loaderOffset < window.innerHeight;
 	useEffect(() => {
-		if (loaderVisible) {
+		if (props.commentsLoaded && loaderVisible) {
 			props.fetchComments(props.videoId, props.commentsNPT);
 		}
 	}, [loaderOffset]);

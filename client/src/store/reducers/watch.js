@@ -67,7 +67,7 @@ export const selector_videoById = createSelector(
 
 export const selector_relatedVideoIds = createSelector(
 	state => state.watch.relatedVideos,
-	related => (related ? related.videoIds : []),
+	related => (related ? related.videoIds : null),
 );
 
 export const selector_relatedVideosNPT = createSelector(
@@ -82,7 +82,18 @@ export const selector_relatedVideos = createSelector(
 		relatedIds ? relatedIds.map(videoId => videos[videoId]) : null,
 );
 
+// // relatedVideosLoaded - VERSION 1
+// // checks if at least 1 relatedVideo has been loaded to state.videos.byId
+// export const selector_relatedVideosLoaded = createSelector(
+// 	selector_relatedVideos,
+// 	relatedVideos => (relatedVideos ? relatedVideos.length > 0 : false),
+// );
+
+// // relatedVideosLoaded - VERSION 2
+// // checks if ALL relatedVideos have been loaded to state.videos.byId
 export const selector_relatedVideosLoaded = createSelector(
-	selector_relatedVideos,
-	relatedVideos => (relatedVideos ? relatedVideos.length > 0 : false),
+	selector_relatedVideoIds,
+	state => state.videos.byId,
+	(relatedIds, videosById) =>
+		relatedIds ? relatedIds.every(id => id in videosById) : false,
 );

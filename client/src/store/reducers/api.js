@@ -1,8 +1,13 @@
+import { createSelector } from "reselect";
 import * as apiActions from "../actions/api";
 
 const initialState = {
 	libraryLoaded: false,
 };
+
+//***************
+// root reducer
+//***************
 
 const reducer_api = (state = initialState, action) => {
 	switch (action.type) {
@@ -14,8 +19,16 @@ const reducer_api = (state = initialState, action) => {
 			return state;
 	}
 };
-
 export default reducer_api;
 
-// SELECTORS
-export const selector_youtubeLibraryLoaded = state => state.api.libraryLoaded;
+//***************
+// sub reducers
+//***************
+
+//***************
+// selectors
+//***************
+export const selector_youtubeLibraryLoaded = createSelector(
+	state => state.api.libraryLoaded,
+	loaded => loaded,
+);

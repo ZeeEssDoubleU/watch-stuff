@@ -187,7 +187,7 @@ export const selector_mostPopularLoaded = createSelector(
 );
 
 // // mostPopularLoaded - VERSION 2
-// // returns true if only 1 mostPopular video has been loaded to state.video.byId
+// // returns true if at least 1 mostPopular video has been loaded to state.video.byId
 // export const selector_mostPopularLoaded = createSelector(
 // 	selector_mostPopularVideos,
 // 	mostPopular => mostPopular.length > 0
@@ -213,11 +213,6 @@ export const selector_validCategoriesLength = createSelector(
 	categories => (categories ? Object.keys(categories).length : 0),
 );
 
-export const selector_validCategoriesLoaded = createSelector(
-	selector_validCategoriesLength,
-	length => length > 0,
-);
-
 // returns object of videos sorted by category names
 export const selector_videosByCategory = createSelector(
 	state => state.videos.categories,
@@ -234,36 +229,6 @@ export const selector_videosByCategory = createSelector(
 			);
 		});
 		return byCategory;
-	},
-);
-
-// // videosByCategoryLength - VERSION 1
-// // returns amount of videosByCategory DO exist in state.video.byId
-// export const selector_videosByCategoryLength = createSelector(
-// 	selector_videosByCategory,
-// 	videosByCategory => {
-// 		const categories = Object.keys(videosByCategory);
-// 		let totalVideos = 0;
-// 		categories.forEach(category => {
-// 			const categoryCount = videosByCategory[category].length;
-// 			totalVideos += categoryCount;
-// 		});
-// 		return totalVideos;
-// 	},
-// );
-
-// videosByCategoryLength - VERSION 2
-// returns amount of videoIds that SHOULD exist in state.video.byId
-export const selector_videosByCategoryLength = createSelector(
-	state => state.videos.byCategory,
-	byCategory => {
-		let totalVideos = 0;
-		const categories = Object.keys(byCategory);
-		categories.forEach(category => {
-			const vidCount = byCategory[category].items.length;
-			totalVideos += vidCount;
-		});
-		return totalVideos;
 	},
 );
 
@@ -290,7 +255,7 @@ export const selector_videosByCategoryLoaded = createSelector(
 );
 
 // // videosByCategoryLoaded - VERSION 2
-// // return true if only 1 videosByCategory video has been loaded to state.videos.byId
+// // return true if at least 1 videosByCategory video has been loaded to state.videos.byId
 // export const selector_videosByCategoryLoaded = createSelector(
 // 	selector_videosByCategoryLength,
 // 	length => length > 0,
