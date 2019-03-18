@@ -6,7 +6,7 @@ const initialState = {
 };
 
 //***************
-// CHANNELS REDUCERS
+// root reducer
 //***************
 
 const reducer_channels = (state = initialState, action) => {
@@ -17,8 +17,11 @@ const reducer_channels = (state = initialState, action) => {
 			return state;
 	}
 };
-
 export default reducer_channels;
+
+//***************
+// sub reducers
+//***************
 
 const reducer_fetchChannelDetails = (payload, state) => {
 	const channel = payload.items[0];
@@ -34,7 +37,7 @@ const reducer_fetchChannelDetails = (payload, state) => {
 };
 
 //***************
-// SELECTORS
+// selectors
 //***************
 
 export const selector_channelDetails = createSelector(

@@ -7,7 +7,7 @@ const initialState = {
 };
 
 //***************
-// WATCH REDUCERS
+// root reducer
 //***************
 
 const reducer_watch = (state = initialState, action) => {
@@ -20,8 +20,11 @@ const reducer_watch = (state = initialState, action) => {
 			return state;
 	}
 };
-
 export default reducer_watch;
+
+//***************
+// sub reducers
+//***************
 
 const reducer_fetchWatchDetails = (payload, state) => ({
 	...state,
@@ -29,12 +32,16 @@ const reducer_fetchWatchDetails = (payload, state) => ({
 });
 
 const reducer_fetchRelatedVideos = (payload, state) => {
-	const videoIds = payload.response.items.map(item => item.id.videoId);
+	const { response } = payload;
+	const prevIds = state.relatedVideos.videoIds || [];
+	const newIds = response.items.map(item => item.id.videoId);
+
+	console.log("PAYLOAD - RELATED VIDEOS", payload);
 
 	const relatedVideos = {
 		totalResults: payload.response.pageInfo.totalResults,
 		nextPageToken: payload.response.nextPageToken,
-		videoIds,
+		videoIds: Array.from(new Set([...prevIds, ...newIds])),
 	};
 
 	// combine previous videos into state (same as above)
@@ -45,15 +52,37 @@ const reducer_fetchRelatedVideos = (payload, state) => {
 };
 
 //***************
-// SELECTORS
+// selectors
 //***************
 
 export const selector_watchDetails = createSelector(
 	state => state.watch.details,
-	details => (details ? details : null),
+	details => details || null,
 );
 
 export const selector_videoById = createSelector(
 	(state, videoId) => state.videos.byId[videoId],
-	video => (video ? video : null),
+	video => video || null,
+);
+
+export const selector_relatedVideoIds = createSelector(
+	state => state.watch.relatedVideos,
+	related => (related ? related.videoIds : []),
+);
+
+export const selector_relatedVideosNPT = createSelector(
+	state => state.watch.relatedVideos,
+	related => (related ? related.nextPageToken : null),
+);
+
+export const selector_relatedVideos = createSelector(
+	selector_relatedVideoIds,
+	state => state.videos.byId,
+	(relatedIds, videos) =>
+		relatedIds ? relatedIds.map(videoId => videos[videoId]) : null,
+);
+
+export const selector_relatedVideosLoaded = createSelector(
+	selector_relatedVideos,
+	relatedVideos => (relatedVideos ? relatedVideos.length > 0 : false),
 );

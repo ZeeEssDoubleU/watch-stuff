@@ -11,7 +11,7 @@ const initialState = {
 };
 
 //***************
-// VIDEO REDUCERS
+// root reducer
 //***************
 
 const reducer_videos = (state = initialState, action) => {
@@ -24,22 +24,23 @@ const reducer_videos = (state = initialState, action) => {
 			return reducer_fetchMostPopularByCategory(action.payload, state);
 		case watchActions.types.WATCH_DETAILS_SUCCESS:
 			return reducer_fetchWatchDetails(action.payload, state);
-		case watchActions.types.RELATED_VIDEOS_SUCCESS:
-			return reducer_fetchRelatedVideos(action.payload, state);
 		case watchActions.types.RELATED_VIDEO_DETAILS_SUCCESS:
 			return reducer_fetchRelatedVideoDetails(action.payload, state);
 		default:
 			return state;
 	}
 };
-
 export default reducer_videos;
 
+//***************
+// sub reducers - videos
+//***************
+
 const reducer_fetchMostPopular = (payload, state) => {
-	const prevIds = state.mostPopular.itemIds ? state.mostPopular.itemIds : [];
+	const prevIds = state.mostPopular.itemIds || [];
 	const newIds = payload.items.map(item => item.id);
 	const videoMap = {};
-	payload.items.forEach(item => videoMap[item.id] = item);
+	payload.items.forEach(item => (videoMap[item.id] = item));
 
 	console.log("PAYLOAD - MOST POPULAR VIDEOS", payload);
 	console.log("MAP - MOST POPULAR VIDEOS BY ID", videoMap);
@@ -116,7 +117,7 @@ const reducer_fetchMostPopularByCategory = (payload, state) => {
 };
 
 //***************
-// WATCH REDUCERS
+// sub reducers - watch
 //***************
 
 // this reducer is mirrors in watch.js as reducer_fetchWatchDetails
@@ -131,33 +132,6 @@ const reducer_fetchWatchDetails = (payload, state) => {
 		byId: {
 			...state.byId,
 			[videoId]: details,
-		},
-	};
-};
-
-const reducer_fetchRelatedVideos = (payload, state) => {
-	const response = payload.response;
-	const videoId = payload.videoId;
-	const prevIds = state.related[videoId]
-		? state.related[videoId].videoIds
-		: [];
-	const newIds = response.items.map(item => item.id.videoId);
-
-	console.log("PAYLOAD - RELATED VIDEOS", payload);
-	console.log("MAP - RELATED VIDEO IDS", newIds);
-
-	const relatedVideos = {
-		totalResults: response.pageInfo.totalResults,
-		nextPageToken: response.nextPageToken,
-		videoIds: Array.from(new Set([...prevIds, ...newIds])),
-	};
-
-	// place related video ids into lookup table based on original videoId
-	return {
-		...state,
-		related: {
-			...state.related,
-			[videoId]: relatedVideos,
 		},
 	};
 };
@@ -183,7 +157,7 @@ const reducer_fetchRelatedVideoDetails = (payload, state) => {
 };
 
 //***************
-// SELECTORS
+// selectors
 //***************
 export const selector_mostPopularVideos = createSelector(
 	state => state.videos.mostPopular,
@@ -326,25 +300,4 @@ export const selector_videosByCategoryLoaded = createSelector(
 export const selector_videoById = createSelector(
 	(state, videoId) => state.videos.byId[videoId],
 	video => (video ? video : null),
-);
-
-export const selector_relatedVideoIds = createSelector(
-	(state, videoId) => state.videos.related[videoId],
-	related => (related ? related.videoIds : []),
-);
-
-export const selector_relatedVideosNPT = createSelector(
-	(state, videoId) => state.videos.related[videoId],
-	related => (related ? related.nextPageToken : null),
-);
-
-export const selector_relatedVideos = createSelector(
-	selector_relatedVideoIds,
-	state => state.videos.byId,
-	(relatedIds, videos) => relatedIds.map(videoId => videos[videoId]),
-);
-
-export const selector_relatedVideosLoaded = createSelector(
-	selector_relatedVideos,
-	relatedVideos => (relatedVideos ? relatedVideos.length > 0 : false),
 );

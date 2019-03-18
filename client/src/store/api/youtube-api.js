@@ -232,3 +232,23 @@ export const buildCommentsRequest = (
 		null,
 	);
 };
+
+// builds request to fetch videos based on search
+export const buildSearchRequest = (
+	query,
+	nextPageToken = null,
+	amount = 12,
+) => {
+	return buildApiRequest(
+		"GET",
+		"/youtube/v3/search",
+		{
+			part: "id, snippet",
+			q: query,
+			pageToken: nextPageToken,
+			type: "video",
+			maxResults: amount,
+		},
+		null,
+	);
+};

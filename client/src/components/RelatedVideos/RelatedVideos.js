@@ -11,7 +11,7 @@ import InfiniteScroll from "../InfiniteScroll/InfiniteScroll";
 import {
 	selector_relatedVideosNPT,
 	selector_relatedVideosLoaded,
-} from "../../store/reducers/videos";
+} from "../../store/reducers/watch";
 
 const RelatedVideos = props => {
 	// if no related videos available, return empty div
@@ -33,15 +33,15 @@ const RelatedVideos = props => {
 	const loaderOffset = loader ? loader.offsetTop : 0;
 	const loaderVisible = loaderOffset < window.innerHeight;
 	useEffect(() => {
-		if (loaderVisible) {
-			props.fetchRelatedVideos(props.videoId, props.relatedNPT, 5);
+		if (props.relatedNPT && props.relatedLoaded && loaderVisible) {
+			props.fetchRelatedVideos(props.videoId, props.relatedNPT, 10);
 		}
 	}, [loaderOffset]);
 
 	// fetchMoreVideos functions used in InfiniteScroll
 	const fetchMoreVideos = () => {
-		if (props.relatedNPT && props.relatedLoaded) {
-			props.fetchRelatedVideos(props.videoId, props.relatedNPT, 5);
+		if (props.relatedNPT && props.relatedLoaded && !loaderVisible) {
+			props.fetchRelatedVideos(props.videoId, props.relatedNPT, 10);
 		}
 	};
 

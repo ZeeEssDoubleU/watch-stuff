@@ -2,6 +2,7 @@ import { all, call, put, fork } from "redux-saga/effects";
 
 import * as videoSagas from "./videos";
 import * as watchSagas from "./watch";
+import * as searchSagas from "./search";
 
 export default function*() {
 	yield all([
@@ -13,6 +14,7 @@ export default function*() {
 		fork(watchSagas.saga_watchRelatedVideoDetails),
 		fork(watchSagas.saga_watchChannelDetails),
 		fork(watchSagas.saga_watchComments),
+		fork(searchSagas.saga_watchSearchVideos),
 	]);
 }
 

@@ -12,11 +12,11 @@ import Comments from "../Comments/Comments";
 
 import * as watchActions from "../../store/actions/watch";
 import { selector_youtubeLibraryLoaded } from "../../store/reducers/api";
+import { selector_videoById } from "../../store/reducers/videos";
 import {
-	selector_videoById,
 	selector_relatedVideos,
 	selector_relatedVideosNPT,
-} from "../../store/reducers/videos";
+} from "../../store/reducers/watch";
 import { selector_channelDetails } from "../../store/reducers/channels";
 import {
 	selector_commentsByVideo,
@@ -28,7 +28,11 @@ const Watch = props => {
 	useEffect(() => {
 		if (props.youtubeLibraryLoaded) {
 			props.fetchWatchDetails(props.match.params.videoId);
-			props.fetchRelatedVideos(props.match.params.videoId, props.relatedNPT, 20);
+			props.fetchRelatedVideos(
+				props.match.params.videoId,
+				props.relatedNPT,
+				20,
+			);
 			props.fetchComments(props.match.params.videoId, props.commentsNPT, 20);
 		}
 	}, [props.youtubeLibraryLoaded]);

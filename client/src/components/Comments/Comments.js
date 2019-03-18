@@ -39,7 +39,7 @@ const Comments = props => {
 	// fetchMoreComments functions used in InfiniteScroll
 	const fetchMoreComments = () => {
 		if (props.commentsLoaded && props.commentsNPT) {
-			props.fetchComments(props.videoId, props.commentsNPT);
+			props.fetchComments(props.videoId, props.commentsNPT, 10);
 		}
 	};
 
