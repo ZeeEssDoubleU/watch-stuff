@@ -24,6 +24,8 @@ const reducer_videos = (state = initialState, action) => {
 			return reducer_fetchMostPopularByCategory(action.payload, state);
 		case watchActions.types.WATCH_DETAILS_SUCCESS:
 			return reducer_fetchWatchDetails(action.payload, state);
+		// case searchActions.types.SEARCH_VIDEOS_SUCCESS:
+		// 	return reducer_fetchSearchVideos(action.payload, state);
 		case watchActions.types.RELATED_VIDEO_DETAILS_SUCCESS:
 		case searchActions.types.SEARCH_VIDEOS_DETAILS_SUCCESS:
 			return reducer_fetchVideoDetails(action.payload, state);
@@ -121,7 +123,8 @@ const reducer_fetchMostPopularByCategory = (payload, state) => {
 // sub reducers - watch / search
 //***************
 
-// this reducer is mirrors in watch.js as reducer_fetchWatchDetails
+// reducers adds watch details to state.videos.byId
+// another version exists in watch.js
 const reducer_fetchWatchDetails = (payload, state) => {
 	const details = payload.items[0];
 	const videoId = details.id;
@@ -137,6 +140,27 @@ const reducer_fetchWatchDetails = (payload, state) => {
 		},
 	};
 };
+
+// // reducers adds initial search video results to state.videos.byId
+// // another version exists in seartch.js
+// const reducer_fetchSearchVideos = (payload, state) => {
+// 	const videoMap = {};
+// 	payload.response.items.forEach(item => {
+// 		videoMap[item.id.videoId] = item || null;
+// 	});
+
+// 	console.log("PAYLOAD - FETCH SEARCH VIDEOS (VIDEOS)", payload);
+// 	console.log("MAP - RELATED/SEARCH VIDEOS BY ID", videoMap);
+
+// 	// add related video details to byId lookup table
+// 	return {
+// 		...state,
+// 		byId: {
+// 			...state.byId,
+// 			...videoMap,
+// 		},
+// 	};
+// };
 
 // fetches additional data for related videos and adds them to state.videos.byId
 // fetches details for watch related videos and search videos

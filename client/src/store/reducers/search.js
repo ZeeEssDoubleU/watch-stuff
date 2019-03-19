@@ -23,8 +23,8 @@ export default reducer_search;
 
 const reducer_fetchSearchVideos = (payload, state) => {
 	const { response, query } = payload;
-	const prevResults = state.results || [];
-	const newResults = response.items.map(item => item.id.videoId) || [];
+	const prevIds = state.results || [];
+	const newIds = response.items.map(item => item.id.videoId) || [];
 
 	console.log("PAYLOAD - FETCH SEARCH VIDEOS (SEARCH)", payload);
 
@@ -32,7 +32,7 @@ const reducer_fetchSearchVideos = (payload, state) => {
 		query,
 		totalResults: response.pageInfo.totalResults,
 		nextPageToken: response.nextPageToken,
-		results: Array.from(new Set([...prevResults, ...newResults])),
+		results: Array.from(new Set([...prevIds, ...newIds])),
 	};
 };
 

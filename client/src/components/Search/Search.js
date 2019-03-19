@@ -12,14 +12,14 @@ import {
 } from "../../store/reducers/search";
 
 const Search = props => {
-   const { query } = props.match.params;
+	const { query } = props.match.params;
 
 	useEffect(() => {
 		if (props.youtubeLibraryLoaded && !props.searchResultsLoaded) {
 			props.fetchSearchVideos(query, null, 20);
 		}
-   }, [props.youtubeLibraryLoaded]);
-
+	}, [props.youtubeLibraryLoaded]);
+   
 	// fetchMoreVideos & shouldShowLoader functions used in InfiniteScroll
 	const fetchMoreVideos = () => {
 		if (props.searchNPT && props.searchResultsLoaded) {

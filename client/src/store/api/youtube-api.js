@@ -164,20 +164,6 @@ export const buildVideoCategoriesRequest = () => {
 	);
 };
 
-// builds request to fetch individual video details
-export const buildVideoDetailsRequest = videoId => {
-	return buildApiRequest(
-		"GET",
-		"/youtube/v3/videos",
-		{
-			part: "snippet,contentDetails,statistics",
-			id: videoId,
-			fields:
-				"kind,items(contentDetails/duration,id,snippet(channelId,channelTitle,description,publishedAt,thumbnails/medium,title),statistics)",
-		},
-		null,
-	);
-};
 
 // builds request to fetch videos related to target video
 export const buildRelatedVideosRequest = (
@@ -194,6 +180,41 @@ export const buildRelatedVideosRequest = (
 			pageToken: nextPageToken,
 			type: "video",
 			maxResults: amount,
+		},
+		null,
+	);
+};
+
+// builds request to fetch videos based on search
+export const buildSearchRequest = (
+	query,
+	nextPageToken = null,
+	amount = 12,
+) => {
+	return buildApiRequest(
+		"GET",
+		"/youtube/v3/search",
+		{
+			part: "id, snippet",
+			q: query,
+			pageToken: nextPageToken,
+			type: "video",
+			maxResults: amount,
+		},
+		null,
+	);
+};
+
+// builds request to fetch individual video details
+export const buildVideoDetailsRequest = videoId => {
+	return buildApiRequest(
+		"GET",
+		"/youtube/v3/videos",
+		{
+			part: "id, snippet,contentDetails,statistics",
+			id: videoId,
+			fields:
+				"kind,items(contentDetails/duration,id,snippet(channelId,channelTitle,description,publishedAt,thumbnails/medium,title),statistics)",
 		},
 		null,
 	);
@@ -233,22 +254,3 @@ export const buildCommentsRequest = (
 	);
 };
 
-// builds request to fetch videos based on search
-export const buildSearchRequest = (
-	query,
-	nextPageToken = null,
-	amount = 12,
-) => {
-	return buildApiRequest(
-		"GET",
-		"/youtube/v3/search",
-		{
-			part: "id",
-			q: query,
-			pageToken: nextPageToken,
-			type: "video",
-			maxResults: amount,
-		},
-		null,
-	);
-};
