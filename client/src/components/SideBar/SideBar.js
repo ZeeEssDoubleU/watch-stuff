@@ -10,7 +10,7 @@ import SideBarFooter from "./SideBarFooter";
 const SideBar = props => (
 	<Menu borderless vertical stackable fixed="left" className="side-nav">
 		<SideBarItem path="/" label="Home" icon="home" />
-		<SideBarItem path="/feed/trending/" label="Trending" icon="fire" />
+		<SideBarItem path="/feed/trending" label="Trending" icon="fire" />
 		<SideBarItem label="Followers" icon="spy" />
 		<Divider />
 		<SideBarHeader title="Library" />

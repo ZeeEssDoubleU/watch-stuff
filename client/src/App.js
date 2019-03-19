@@ -7,6 +7,7 @@ import HeaderNav from "./components/HeaderNav/HeaderNav";
 import Home from "./components/Home/Home";
 import Watch from "./components/Watch/Watch";
 import Trending from "./components/Trending/Trending";
+import Search from "./components/Search/Search";
 
 // import actions / reducers / sagas
 import { action_youtubeLibraryLoaded } from "./store/actions/api";
@@ -14,12 +15,12 @@ import { action_youtubeLibraryLoaded } from "./store/actions/api";
 // import styles
 import "./App.scss";
 
-const API_KEY = "AIzaSyDOJTifSTiPYSxoQoq7JgETyHf2K6Onv5w";
+const API_KEY = "AIzaSyCENkoE3lOYhyz2cCpIUnAltnViAt4V8GE";
 
 const App = props => {
 	useEffect(() => {
 		loadYoutubeApi();
-	});
+	}, []);
 
 	const loadYoutubeApi = () => {
 		const script = document.createElement("script");
@@ -55,7 +56,8 @@ const App = props => {
 			<div className="app-layout">
 				<Switch>
 					<Route exact path="/" component={Home} />
-					<Route exact path="/feed/trending" component={Trending} />
+					<Route path="/feed/trending" component={Trending} />
+					<Route path="/search/:query" component={Search} />
 					<Route path="/watch/:videoId" component={Watch} />
 				</Switch>
 			</div>

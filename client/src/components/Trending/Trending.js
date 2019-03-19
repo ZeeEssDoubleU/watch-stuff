@@ -1,10 +1,7 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
-import "./Trending.scss";
-import VideoPreview from "../../components/VideoPreview/VideoPreview";
-import SideBar from "../SideBar/SideBar";
-import InfiniteScroll from "../InfiniteScroll/InfiniteScroll";
+import VideoList from "../VideoList/VideoList";
 
 import * as videoActions from "../../store/actions/videos";
 import { selector_youtubeLibraryLoaded } from "../../store/reducers/api";
@@ -23,38 +20,20 @@ const Trending = props => {
 
 	// fetchMoreVideos & shouldShowLoader functions used in InfiniteScroll
 	const fetchMoreVideos = () => {
-		if (props.mostPopularNPT) {
-			props.fetchMostPopular(5, true, props.mostPopularNPT);
+		if (props.mostPopularNPT && props.mostPopularLoaded) {
+			props.fetchMostPopular(10, true, props.mostPopularNPT);
 		}
 	};
 	const shouldShowLoader = () => {
 		return props.mostPopularNPT ? true : false;
 	};
 
-	const videoPreviews = props.mostPopular
-		? props.mostPopular.map(video => (
-				<VideoPreview
-					horizontal={true}
-					expanded={true}
-					video={video}
-					key={video.id}
-				/>
-		  ))
-		: null;
-
 	return (
-		<>
-			<SideBar />
-			<div className="trending">
-				<div className="responsive-video-grid-container">
-					<InfiniteScroll
-						bottomReachedCallback={() => fetchMoreVideos()}
-						showLoader={shouldShowLoader()}>
-						{videoPreviews}
-					</InfiniteScroll>
-				</div>
-			</div>
-		</>
+		<VideoList
+			bottomReachedCallback={() => fetchMoreVideos()}
+			showLoader={shouldShowLoader()}
+			videos={props.mostPopular}
+		/>
 	);
 };
 

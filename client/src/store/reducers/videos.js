@@ -147,8 +147,8 @@ const reducer_fetchVideoDetails = (payload, state) => {
 		videoMap[video.id] = video || null;
 	});
 
-	console.log("PAYLOAD - FETCH RELATED VIDEO DETAILS", payload);
-	console.log("MAP - RELATED VIDEOS BY ID", videoMap);
+	console.log("PAYLOAD - FETCH RELATED/SEARCH VIDEOS DETAILS", payload);
+	console.log("MAP - RELATED/SEARCH VIDEOS BY ID", videoMap);
 
 	// add related video details to byId lookup table
 	return {

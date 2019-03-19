@@ -34,7 +34,7 @@ const reducer_fetchWatchDetails = (payload, state) => ({
 const reducer_fetchRelatedVideos = (payload, state) => {
 	const { response } = payload;
 	const prevIds = state.relatedVideos.videoIds || [];
-	const newIds = response.items.map(item => item.id.videoId);
+	const newIds = response.items.map(item => item.id.videoId) || [];
 
 	console.log("PAYLOAD - FETCH RELATED VIDEOS", payload);
 
@@ -60,18 +60,6 @@ export const selector_relatedVideoIds = createSelector(
 	related => (related ? related.videoIds : null),
 );
 
-export const selector_relatedVideosNPT = createSelector(
-	state => state.watch.relatedVideos,
-	related => (related ? related.nextPageToken : null),
-);
-
-export const selector_relatedVideos = createSelector(
-	selector_relatedVideoIds,
-	state => state.videos.byId,
-	(relatedIds, videos) =>
-		relatedIds ? relatedIds.map(videoId => videos[videoId]) : null,
-);
-
 // // relatedVideosLoaded - VERSION 1
 // // checks if at least 1 relatedVideo has been loaded to state.videos.byId
 // export const selector_relatedVideosLoaded = createSelector(
@@ -86,4 +74,15 @@ export const selector_relatedVideosLoaded = createSelector(
 	state => state.videos.byId,
 	(relatedIds, videosById) =>
 		relatedIds ? relatedIds.every(id => id in videosById) : false,
+);
+
+export const selector_relatedVideosNPT = createSelector(
+	state => state.watch.relatedVideos,
+	related => (related ? related.nextPageToken : null),
+);
+export const selector_relatedVideos = createSelector(
+	selector_relatedVideoIds,
+	state => state.videos.byId,
+	(relatedIds, videos) =>
+		relatedIds ? relatedIds.map(videoId => videos[videoId]) : null,
 );

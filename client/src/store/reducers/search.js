@@ -24,10 +24,9 @@ export default reducer_search;
 const reducer_fetchSearchVideos = (payload, state) => {
 	const { response, query } = payload;
 	const prevResults = state.results || [];
-	const newResults = response.items || [];
+	const newResults = response.items.map(item => item.id.videoId) || [];
+
 	console.log("PAYLOAD - FETCH SEARCH VIDEOS (SEARCH)", payload);
-	console.log("PAYLOAD - PREV RESULTS", prevResults);
-	console.log("PAYLOAD - NEW RESULTS", newResults);
 
 	return {
 		query,
@@ -41,11 +40,18 @@ const reducer_fetchSearchVideos = (payload, state) => {
 // selectors
 //***************
 
-export const selector_getSearchResults = createSelector(
-	state => state.search,
-	search => search.results,
+export const selector_searchResultsLoaded = createSelector(
+	state => state.search.results,
+	state => state.videos.byId,
+	(searchIds, videosById) =>
+		searchIds ? searchIds.every(id => id in videosById) : false,
 );
-export const getSearchNextPageToken = createSelector(
+export const selector_searchNPT = createSelector(
 	state => state.search,
 	search => search.nextPageToken,
+);
+export const selector_searchResults = createSelector(
+	state => state.search.results,
+	state => state.videos.byId,
+	(searchIds, videos) => (searchIds ? searchIds.map(id => videos[id]) : null),
 );
