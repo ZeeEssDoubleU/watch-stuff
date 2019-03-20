@@ -15,7 +15,7 @@ import { action_youtubeLibraryLoaded } from "./store/actions/api";
 // import styles
 import "./App.scss";
 
-const API_KEY = "AIzaSyBnb4Fui_q1YLJ6h0wOXuB75ACVXgYy_Ok";
+const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
 const App = props => {
 	useEffect(() => {
