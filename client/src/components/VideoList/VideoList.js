@@ -12,16 +12,20 @@ const VideoList = props => {
 		!props.videos || !props.videos[0] ? (
 			<div>There are no videos.</div>
 		) : (
-			props.videos.map(video =>
-				video ? (
-					<VideoPreview
-						horizontal={true}
-						expanded={true}
-						video={video}
-						key={video.id}
-					/>
-				) : null,
-			)
+			props.videos.map((video, index) => {
+				if (video) {
+					return (
+						<VideoPreview
+							horizontal={true}
+							expanded={true}
+							video={video}
+							key={index}
+						/>
+					);
+				} else {
+					return null;
+				}
+			})
 		);
 
 	return (

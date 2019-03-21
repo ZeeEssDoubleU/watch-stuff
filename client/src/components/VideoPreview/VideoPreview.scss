@@ -70,7 +70,8 @@
          }
       }
       &.expanded {
-         grid: auto / $item-width-h-ex auto;
+         grid-template-rows: 140px;
+         grid-template-columns: $item-width-h-ex auto;
       }
    }
 }
