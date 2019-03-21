@@ -13,13 +13,18 @@ const VideoGrid = props => {
 		return <VideoPreview video={video} key={video.id} />;
 	});
 
-	const divideoer = props.hideDivider ? null : <Divider />;
+	const divider = props.hideDivider ? null : <Divider />;
 	return (
 		<div className="video-section-container">
 			<div className="video-section">
-				<VideoGridHeader title={props.title} />
-				<div className="video-grid">{gridItems}</div>
-				{divideoer}
+				<div className="video-grid">
+					<VideoGridHeader
+						className="video-grid-header"
+						title={props.title}
+					/>
+					{gridItems}
+				</div>
+				{divider}
 			</div>
 		</div>
 	);

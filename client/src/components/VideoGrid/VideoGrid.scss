@@ -1,9 +1,30 @@
-.video-grid {
-   display: flex;
-   flex-wrap: wrap;
-
-   a > div {
-      margin-left: 4px;
-      margin-bottom: 24px;
+@import "../../styles/shared.scss";
+@mixin grid-size($numColumns) {
+   @media (min-width: ($numColumns * 210px) + (($numColumns - 1) * 4px) + $content-margin-left + $content-margin-right) {
+      grid-template-rows: 30px repeat($numColumns - 1, $item-height-v);
+      grid-template-columns: repeat($numColumns, $item-width-v);
+      grid-gap: 24px 4px;
+      .video-grid-header {
+         grid-row-start: 1;
+         grid-row-end: 2;
+         grid-column-start: 1;
+         grid-column-end: $numColumns + 1;
+      }
+      @if $numColumns>3 {
+         height: $header-height + (2 * ($item-height-v + 24px));
+      }
+      @if $numColumns < 3 {
+         height: $header-height + (3 * ($item-height-v + 24px));
+      }
    }
+}
+
+.video-grid {
+   display: grid;
+   overflow: hidden;
+   @include grid-size(2);
+   @include grid-size(3);
+   @include grid-size(4);
+   @include grid-size(5);
+   @include grid-size(6);
 }

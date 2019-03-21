@@ -15,6 +15,7 @@ import { action_youtubeLibraryLoaded } from "./store/actions/api";
 
 // import styles
 import "./App.scss";
+import SideBar from "./components/SideBar/SideBar";
 
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
@@ -54,6 +55,7 @@ const App = props => {
 	return (
 		<>
 			<HeaderNav />
+			<SideBar />
 			<div className="app-layout">
 				<Switch>
 					<Route exact path="/" component={Home} />

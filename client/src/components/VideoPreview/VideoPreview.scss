@@ -1,7 +1,7 @@
 @import "../../styles/shared.scss";
 .video-preview {
    display: grid;
-   grid: 118px auto / 210px;
+   grid: $thumb-height-v auto / $item-width-v;
    .image-container {
       position: relative;
       grid-row: 1 / 2;
@@ -10,8 +10,8 @@
       border-radius: 5px;
       overflow: hidden;
       img {
-			transform: scale(1.02);
-			transition: transform .6s;
+         transform: scale(1.02);
+         transition: transform .6s;
       }
       img:hover {
          transform: scale(1.1);
@@ -59,7 +59,7 @@
       }
    }
    &.horizontal {
-      grid: 94px / 168px auto;
+      grid: $thumb-height-h / $item-width-h auto;
       grid-column-gap: 4px;
       margin-bottom: 10px;
       .preview-info {
@@ -70,7 +70,7 @@
          }
       }
       &.expanded {
-         grid: auto / 246px auto;
+         grid: auto / $item-width-h-ex auto;
       }
    }
 }

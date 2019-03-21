@@ -33,12 +33,7 @@ const Home = props => {
 		}
 	}, [props.categories]);
 
-	return (
-		<>
-			<SideBar />
-			<HomeContent />
-		</>
-	);
+	return <HomeContent />;
 };
 
 const mapStateToProps = state => ({

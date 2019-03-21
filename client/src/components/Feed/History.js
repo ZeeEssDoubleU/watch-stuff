@@ -6,11 +6,7 @@ import VideoList from "../VideoList/VideoList";
 import { selector_watchHistory } from "../../store/reducers/watch";
 
 const History = props => {
-	return (
-		<VideoList
-			videos={props.watchHistory}
-		/>
-	);
+	return <VideoList videos={props.watchHistory} />;
 };
 
 const mapStateToProps = state => ({

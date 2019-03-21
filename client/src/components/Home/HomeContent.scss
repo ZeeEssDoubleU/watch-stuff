@@ -1,45 +1,16 @@
-@import '../../styles/shared.scss';
+@import "../../styles/shared.scss";
 
 .home-content {
-   margin-top: $header-nav-height;
-   margin-left: $sidebar-left-width;
+   margin-top: $content-margin-top;
+   margin-left: $content-margin-left;
+   margin-right: $content-margin-right;
+
    display: grid;
    grid: auto / auto;
    justify-content: center;
-}
-
-@media all and (min-width: 476px) {
+   align-items: center;
    .responsive-video-grid-container {
-      max-width: 240px;
-   }
-}
-
-@media all and (min-width: 700px) {
-   .responsive-video-grid-container {
-      max-width: 472px;
-   }
-}
-
-@media all and (min-width: 900px) {
-   .responsive-video-grid-container {
-      max-width: 667px;
-   }
-}
-
-@media all and (min-width: 1096px) {
-   .responsive-video-grid-container {
-      max-width: 864px;
-   }
-}
-
-@media all and (min-width: 1370px) {
-   .responsive-video-grid-container {
-      max-width: 1096px;
-   }
-}
-
-@media all and (min-width: 1560px) {
-   .responsive-video-grid-container {
+      margin: auto;
       max-width: 1284px;
    }
 }
