@@ -33,15 +33,15 @@ const RelatedVideos = props => {
 	const loaderOffset = loader ? loader.offsetTop : 0;
 	const loaderVisible = loaderOffset < window.innerHeight;
 	useEffect(() => {
-		if (props.relatedLoaded && loaderVisible) {
-			props.fetchRelatedVideos(props.videoId, props.relatedNPT, 10);
+		if (loaderVisible) {
+			props.fetchRelatedVideos(props.videoId, props.relatedNPT, 5);
 		}
 	}, [loaderOffset]);
 
 	// fetchMoreVideos functions used in InfiniteScroll
 	const fetchMoreVideos = () => {
-		if (props.relatedNPT && props.relatedLoaded && !loaderVisible) {
-			props.fetchRelatedVideos(props.videoId, props.relatedNPT, 10);
+		if (props.relatedNPT && !loaderVisible) {
+			props.fetchRelatedVideos(props.videoId, props.relatedNPT, 5);
 		}
 	};
 

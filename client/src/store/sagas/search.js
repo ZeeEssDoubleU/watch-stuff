@@ -31,7 +31,9 @@ export function* saga_watchSearchVideosDetails() {
 }
 export function* saga_fetchSearchVideosDetails(action) {
 	const { response } = action.payload;
-	const videoIds = response.items.map(item => item.id.videoId);
+	const videoIds = response.items.map(item =>
+		!item.contentDetails || !item.statistics ? item.id.videoId : null,
+	);
 	console.log("ACTION - FETCH SEARCH VIDEO DETAILS", action);
 
 	const requests = videoIds.map(videoId => {

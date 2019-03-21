@@ -4,6 +4,7 @@ import * as watchActions from "../actions/watch";
 const initialState = {
 	details: {},
 	relatedVideos: {},
+	history: [],
 };
 
 //***************
@@ -12,6 +13,8 @@ const initialState = {
 
 const reducer_watch = (state = initialState, action) => {
 	switch (action.type) {
+		case watchActions.types.WATCH_DETAILS_REQUEST:
+			return reducer_updateWatchHistory(action.payload, state);
 		case watchActions.types.WATCH_DETAILS_SUCCESS:
 			return reducer_fetchWatchDetails(action.payload, state);
 		case watchActions.types.RELATED_VIDEOS_SUCCESS:
@@ -26,22 +29,47 @@ export default reducer_watch;
 // sub reducers
 //***************
 
-const reducer_fetchWatchDetails = (payload, state) => ({
-	...state,
-	details: payload.items[0],
-});
+const reducer_updateWatchHistory = (payload, state) => {
+	const { videoId } = payload;
+	const timestamp = Date.now();
+	const item = {
+		videoId,
+		timestamp,
+	};
+	return {
+		...state,
+		history: [item, ...state.history],
+	};
+};
+
+const reducer_fetchWatchDetails = (payload, state) => {
+	const details = payload.items[0];
+
+	return {
+		...state,
+		details,
+	};
+};
 
 const reducer_fetchRelatedVideos = (payload, state) => {
 	const { response } = payload;
 	const prevIds = state.relatedVideos.videoIds || [];
 	const newIds = response.items.map(item => item.id.videoId) || [];
+	const prevWatchId = state.relatedVideos.videoId;
+	const newWatchId = payload.videoId;
 
 	console.log("PAYLOAD - FETCH RELATED VIDEOS", payload);
 
+	const videoIds =
+		prevWatchId === newWatchId
+			? Array.from(new Set([...prevIds, ...newIds]))
+			: newIds;
+
 	const relatedVideos = {
+		videoId: newWatchId,
 		totalResults: payload.response.pageInfo.totalResults,
 		nextPageToken: payload.response.nextPageToken,
-		videoIds: Array.from(new Set([...prevIds, ...newIds])),
+		videoIds,
 	};
 
 	// combine previous videos into state (same as above)
@@ -85,4 +113,11 @@ export const selector_relatedVideos = createSelector(
 	state => state.videos.byId,
 	(relatedIds, videos) =>
 		relatedIds ? relatedIds.map(videoId => videos[videoId]) : null,
+);
+
+export const selector_watchHistory = createSelector(
+	state => state.watch.history,
+	state => state.videos.byId,
+	(historyItems, videos) =>
+		historyItems ? historyItems.map(item => videos[item.videoId]) : null,
 );

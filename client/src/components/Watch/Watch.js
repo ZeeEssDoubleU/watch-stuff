@@ -29,10 +29,10 @@ const Watch = props => {
 	useEffect(() => {
 		if (props.youtubeLibraryLoaded) {
 			props.fetchWatchDetails(videoId);
-			props.fetchRelatedVideos(videoId, props.relatedNPT, 20);
-			props.fetchComments(videoId, props.commentsNPT, 20);
+			props.fetchRelatedVideos(videoId, props.relatedNPT, 5);
+			props.fetchComments(videoId, props.commentsNPT, 5);
 		}
-	}, [props.youtubeLibraryLoaded]);
+	}, [props.youtubeLibraryLoaded, videoId]);
 
 	return (
 		<div className="watch-grid">

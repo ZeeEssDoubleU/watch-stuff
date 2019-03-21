@@ -6,7 +6,8 @@ import { connect } from "react-redux";
 import HeaderNav from "./components/HeaderNav/HeaderNav";
 import Home from "./components/Home/Home";
 import Watch from "./components/Watch/Watch";
-import Trending from "./components/Trending/Trending";
+import Trending from "./components/Feed/Trending";
+import History from "./components/Feed/History";
 import Search from "./components/Search/Search";
 
 // import actions / reducers / sagas
@@ -57,6 +58,7 @@ const App = props => {
 				<Switch>
 					<Route exact path="/" component={Home} />
 					<Route path="/feed/trending" component={Trending} />
+					<Route path="/feed/history" component={History} />
 					<Route path="/search/:query" component={Search} />
 					<Route path="/watch/:videoId" component={Watch} />
 				</Switch>

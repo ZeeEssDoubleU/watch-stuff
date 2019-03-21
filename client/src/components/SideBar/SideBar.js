@@ -14,9 +14,9 @@ const SideBar = props => (
 		<SideBarItem label="Followers" icon="spy" />
 		<Divider />
 		<SideBarHeader title="Library" />
-		<SideBarItem label="History" icon="history" />
-		<SideBarItem label="Watch" icon="clock" />
-		<SideBarItem label="Liked videos" icon="thumbs up" />
+		<SideBarItem path='/feed/history' label="History" icon="history" />
+		<SideBarItem path='feed/saved' label="Watch later" icon="clock" />
+		<SideBarItem path='feed/liked' label="Liked videos" icon="thumbs up" />
 		<Divider />
 		<Subscriptions />
 		<SideBarHeader title="More From Youtube" />
