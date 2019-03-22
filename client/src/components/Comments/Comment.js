@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
 import { Button, Image } from "semantic-ui-react";
 
 import { getFormattedTimeAgo } from "../../utils/format-time";
@@ -48,7 +47,5 @@ const Comment = props => {
 		</div>
 	);
 };
-
-Comment.propTypes = {};
 
 export default Comment;

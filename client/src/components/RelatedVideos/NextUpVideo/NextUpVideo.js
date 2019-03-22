@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Checkbox, Divider } from "semantic-ui-react";
 
 import "./NextUpVideo.scss";
@@ -26,7 +25,5 @@ const NextUpVideo = props => {
 		</div>
 	);
 };
-
-NextUpVideo.propTypes = {};
 
 export default NextUpVideo;

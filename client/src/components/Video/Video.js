@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 import "./Video.scss";
 
@@ -19,7 +18,5 @@ const Video = props => {
 		</div>
 	);
 };
-
-Video.propTypes = {};
 
 export default Video;

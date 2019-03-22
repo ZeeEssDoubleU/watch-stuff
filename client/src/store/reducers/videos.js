@@ -45,8 +45,8 @@ const reducer_fetchMostPopular = (payload, state) => {
 	const videoMap = {};
 	payload.items.forEach(item => (videoMap[item.id] = item));
 
-	console.log("PAYLOAD - MOST POPULAR VIDEOS", payload);
-	console.log("MAP - MOST POPULAR VIDEOS BY ID", videoMap);
+	// console.log("PAYLOAD - MOST POPULAR VIDEOS", payload);
+	// console.log("MAP - MOST POPULAR VIDEOS BY ID", videoMap);
 
 	const mostPopular = {
 		totalResults: payload.pageInfo.totalResults,
@@ -71,8 +71,8 @@ const reducer_fetchVideoCategories = (payload, state) => {
 		return obj;
 	}, {});
 
-	console.log("PAYLOAD - VIDEO CATEGORIES", payload);
-	console.log("MAP - VIDEO CATEGORIES", categoryMap);
+	// console.log("PAYLOAD - VIDEO CATEGORIES", payload);
+	// console.log("MAP - VIDEO CATEGORIES", categoryMap);
 
 	// combine previous videos into state (same as above)
 	return {
@@ -102,9 +102,9 @@ const reducer_fetchMostPopularByCategory = (payload, state) => {
 		}
 	});
 
-	console.log("PAYLOAD - MOST POPULAR VIDEOS BY CATEGORY", payload);
-	console.log("MAP - MOST POPULAR VIDEOS BY CATEGORY", byCategoryMap);
-	console.log("MAP - CATEGORY VIDEOS BY ID", byIdMap);
+	// console.log("PAYLOAD - MOST POPULAR VIDEOS BY CATEGORY", payload);
+	// console.log("MAP - MOST POPULAR VIDEOS BY CATEGORY", byCategoryMap);
+	// console.log("MAP - CATEGORY VIDEOS BY ID", byIdMap);
 
 	return {
 		...state,
@@ -129,7 +129,7 @@ const reducer_fetchWatchDetails = (payload, state) => {
 	const details = payload.items[0];
 	const videoId = details.id;
 
-	console.log("PAYLOAD - FETCH WATCH DETAILS", payload);
+	// console.log("PAYLOAD - FETCH WATCH DETAILS", payload);
 
 	// add watch video details to byId lookup table
 	return {
@@ -149,8 +149,8 @@ const reducer_fetchWatchDetails = (payload, state) => {
 // 		videoMap[item.id.videoId] = item || null;
 // 	});
 
-// 	console.log("PAYLOAD - FETCH SEARCH VIDEOS (VIDEOS)", payload);
-// 	console.log("MAP - RELATED/SEARCH VIDEOS BY ID", videoMap);
+// 	// console.log("PAYLOAD - FETCH SEARCH VIDEOS (VIDEOS)", payload);
+// 	// console.log("MAP - RELATED/SEARCH VIDEOS BY ID", videoMap);
 
 // 	// add related video details to byId lookup table
 // 	return {
@@ -171,8 +171,8 @@ const reducer_fetchVideoDetails = (payload, state) => {
 		videoMap[video.id] = video || null;
 	});
 
-	console.log("PAYLOAD - FETCH RELATED/SEARCH VIDEOS DETAILS", payload);
-	console.log("MAP - RELATED/SEARCH VIDEOS BY ID", videoMap);
+	// console.log("PAYLOAD - FETCH RELATED/SEARCH VIDEOS DETAILS", payload);
+	// console.log("MAP - RELATED/SEARCH VIDEOS BY ID", videoMap);
 
 	// add related video details to byId lookup table
 	return {

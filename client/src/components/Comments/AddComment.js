@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Image, Form, TextArea } from "semantic-ui-react";
 
 import "./AddComment.scss";
@@ -20,7 +19,5 @@ const AddComment = props => (
 		</Form>
 	</div>
 );
-
-AddComment.propTypes = {};
 
 export default AddComment;

@@ -12,7 +12,7 @@ export function* saga_watchSearchVideos() {
 }
 export function* saga_fetchSearchVideos(action) {
 	const { query, nextPageToken, amount } = action.payload;
-	console.log("ACTION - FETCH SEARCH VIDEOS", action);
+	// console.log("ACTION - FETCH SEARCH VIDEOS", action);
 	const request = () =>
 		youtubeApi.buildSearchRequest(query, nextPageToken, amount);
 	yield rootSagas.saga_fetchEntity(
@@ -34,7 +34,7 @@ export function* saga_fetchSearchVideosDetails(action) {
 	const videoIds = response.items.map(item =>
 		!item.contentDetails || !item.statistics ? item.id.videoId : null,
 	);
-	console.log("ACTION - FETCH SEARCH VIDEO DETAILS", action);
+	// console.log("ACTION - FETCH SEARCH VIDEO DETAILS", action);
 
 	const requests = videoIds.map(videoId => {
 		const request = youtubeApi.buildVideoDetailsRequest(videoId);

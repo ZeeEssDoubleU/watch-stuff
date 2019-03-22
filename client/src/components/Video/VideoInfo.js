@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import PropTypes from "prop-types";
 import { Button, Image } from "semantic-ui-react";
 import Linkify from "react-linkify";
 
@@ -56,7 +55,5 @@ const VideoInfo = props => {
 		</div>
 	);
 };
-
-VideoInfo.propTypes = {};
 
 export default VideoInfo;

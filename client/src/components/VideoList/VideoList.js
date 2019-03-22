@@ -1,8 +1,8 @@
 import React from "react";
-
+// import styles
 import "./VideoList.scss";
+// import components
 import VideoPreview from "../../components/VideoPreview/VideoPreview";
-import SideBar from "../SideBar/SideBar";
 import InfiniteScroll from "../InfiniteScroll/InfiniteScroll";
 
 const VideoList = props => {
@@ -29,17 +29,15 @@ const VideoList = props => {
 		);
 
 	return (
-		<>
-			<div className="video-list">
-				<div className="responsive-video-grid-container">
-					<InfiniteScroll
-						bottomReachedCallback={props.bottomReachedCallback}
-						showLoader={props.showLoader}>
-						{videoPreviews}
-					</InfiniteScroll>
-				</div>
+		<div className="video-list">
+			<div className="responsive-content">
+				<InfiniteScroll
+					bottomReachedCallback={props.bottomReachedCallback}
+					showLoader={props.showLoader}>
+					{videoPreviews}
+				</InfiniteScroll>
 			</div>
-		</>
+		</div>
 	);
 };
 

@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Waypoint } from "react-waypoint";
 import { Loader } from "semantic-ui-react";
 

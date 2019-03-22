@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-
+// import styles
 import "./HomeContent.scss";
+// import components
 import VideoGrid from "../VideoGrid/VideoGrid";
 import InfiniteScroll from "../InfiniteScroll/InfiniteScroll";
-
+// import reducers, selectors, sagas
 import {
 	selector_mostPopularVideos,
 	selector_videosByCategory,
@@ -16,13 +17,13 @@ const HomeContent = props => {
 	const [lazyLoadIndex, setLazyLoadIndex] = useState(0);
 
 	useEffect(() => {
-		const homeContentHeight =
-			document.querySelector(".home-content").offsetHeight -
+		const responsiveHeight =
+			document.querySelector(".responsive-content").offsetHeight -
 			document.querySelector(".loader-container").offsetHeight;
 		if (
 			// if height of loaded content is less than window height, load more content
 			props.videosByCategoryLoaded &&
-			homeContentHeight < window.innerHeight
+			responsiveHeight < window.innerHeight
 		) {
 			lazyLoadVideoCategories();
 		}
@@ -60,7 +61,7 @@ const HomeContent = props => {
 
 	return (
 		<div className="home-content">
-			<div className="responsive-video-grid-container">
+			<div className="responsive-content">
 				<InfiniteScroll
 					bottomReachedCallback={lazyLoadVideoCategories}
 					showLoader={shouldShowLoader()}>

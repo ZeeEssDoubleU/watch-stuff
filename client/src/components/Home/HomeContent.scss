@@ -1,16 +1,13 @@
 @import "../../styles/shared.scss";
 
 .home-content {
-   margin-top: $content-margin-top;
-   margin-left: $content-margin-left;
-   margin-right: $content-margin-right;
-
    display: grid;
    grid: auto / auto;
    justify-content: center;
-   align-items: center;
-   .responsive-video-grid-container {
-      margin: auto;
+   padding: 24px;
+
+   .responsive-content {
       max-width: 1284px;
+      margin: auto;
    }
 }

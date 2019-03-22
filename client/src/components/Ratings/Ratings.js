@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Icon } from "semantic-ui-react";
 
 import "./Ratings.scss";
@@ -25,7 +24,5 @@ const Ratings = props => {
 		</div>
 	);
 };
-
-Ratings.propTypes = {};
 
 export default Ratings;

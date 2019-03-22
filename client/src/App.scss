@@ -1,7 +1,9 @@
 @import './styles/shared.scss';
-
 .app-layout {
    margin-top: $header-nav-height;
+   margin-left: $sidebar-left-width;
+
+   transition: $responsive-layout-trans;
 
    ::-webkit-scrollbar {
       width: 6px;

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import PropTypes from "prop-types";
 
 import "./Comments.scss";
 import CommentsHeader from "./CommentsHeader";
@@ -66,8 +65,6 @@ const Comments = props => {
 		</div>
 	);
 };
-
-Comments.propTypes = {};
 
 const mapStateToProps = (state, props) => ({
 	comments: selector_commentsByVideo(state, props.videoId),

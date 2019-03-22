@@ -25,23 +25,23 @@ export default function*() {
 export function* saga_fetchEntity(request, entity, ...args) {
 	try {
 		const response = yield call(request);
-		console.log("ENTITY SUCCESS", entity.success(response.result, ...args));
+		// console.log("ENTITY SUCCESS", entity.success(response.result, ...args));
 		// return response.result, throwing away headers/status text
 		// if headers/status are needed, return full response instead of response.result
 		yield put(entity.success(response.result, ...args));
 	} catch (error) {
-		console.log("ENTITY FAILURE", entity.failure(error, ...args));
+		// console.log("ENTITY FAILURE", entity.failure(error, ...args));
 		yield put(entity.failure(error, ...args));
 	}
 }
 export function* saga_fetchEntities(requests, entity, ...args) {
 	try {
 		const response = yield all(requests);
-		console.log("ENTITIES SUCCESS", entity.success(response, ...args));
+		// console.log("ENTITIES SUCCESS", entity.success(response, ...args));
 		// only returns result if passed through ignore errors below
 		yield put(entity.success(response, ...args));
 	} catch (error) {
-		console.log("ENTITIES FAILURE", entity.failure(error, ...args));
+		// console.log("ENTITIES FAILURE", entity.failure(error, ...args));
 		yield put(entity.failure(error, ...args));
 	}
 }

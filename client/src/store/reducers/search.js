@@ -26,7 +26,7 @@ const reducer_fetchSearchVideos = (payload, state) => {
 	const prevIds = state.results || [];
 	const newIds = response.items.map(item => item.id.videoId) || [];
 
-	console.log("PAYLOAD - FETCH SEARCH VIDEOS (SEARCH)", payload);
+	// console.log("PAYLOAD - FETCH SEARCH VIDEOS (SEARCH)", payload);
 
 	return {
 		query,

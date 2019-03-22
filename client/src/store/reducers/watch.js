@@ -58,7 +58,7 @@ const reducer_fetchRelatedVideos = (payload, state) => {
 	const prevWatchId = state.relatedVideos.videoId;
 	const newWatchId = payload.videoId;
 
-	console.log("PAYLOAD - FETCH RELATED VIDEOS", payload);
+	// console.log("PAYLOAD - FETCH RELATED VIDEOS", payload);
 
 	const videoIds =
 		prevWatchId === newWatchId

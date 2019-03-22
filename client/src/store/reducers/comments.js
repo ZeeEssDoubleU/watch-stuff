@@ -43,9 +43,9 @@ const reducer_fetchComments = (payload, state) => {
 		ids: Array.from(new Set([...prevIds, ...newIds])), // sets byVideoMap ids to previous state's ids
 	};
 
-	console.log("PAYLOAD - COMMENTS", payload);
-	console.log("COMMENTS BY ID", byIdMap);
-	console.log("COMMENTS BY VIDEO", byVideoMap);
+	// console.log("PAYLOAD - COMMENTS", payload);
+	// console.log("COMMENTS BY ID", byIdMap);
+	// console.log("COMMENTS BY VIDEO", byVideoMap);
 
 	return {
 		...state,

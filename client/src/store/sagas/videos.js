@@ -12,7 +12,7 @@ export function* saga_watchMostPopular() {
 }
 export function* saga_fetchMostPopular(action) {
 	const { amount, loadDescription, nextPageToken } = action.payload;
-	console.log("ACTION - FETCH MOST POPULAR VIDEOS", action);
+	// console.log("ACTION - FETCH MOST POPULAR VIDEOS", action);
 	const request = () =>
 		youtubeApi.buildMostPopularVideosRequest(
 			amount,
@@ -33,7 +33,7 @@ export function* saga_watchCategories() {
 	);
 }
 export function* saga_fetchCategories(action) {
-	console.log("ACTION - FETCH VIDEO CATEGORIES", action);
+	// console.log("ACTION - FETCH VIDEO CATEGORIES", action);
 	const request = () => youtubeApi.buildVideoCategoriesRequest();
 	yield rootSagas.saga_fetchEntity(request, videoActions.action_fetchCategory);
 }
@@ -47,7 +47,7 @@ export function* saga_watchMostPopularByCategory() {
 }
 export function* saga_fetchMostPopularByCategory(action) {
 	const { categories, amount, loadDescription, nextPageToken } = action.payload;
-	console.log("ACTION - FETCH MOST POPULAR VIDEOS BY CATEGORY", action);
+	// console.log("ACTION - FETCH MOST POPULAR VIDEOS BY CATEGORY", action);
 	const requests = categories.map(category => {
 		const request = youtubeApi.buildMostPopularVideosRequest(
 			amount,

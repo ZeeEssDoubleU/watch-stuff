@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import PropTypes from "prop-types";
 
 import "./RelatedVideos.scss";
 import NextUpVideo from "./NextUpVideo/NextUpVideo";
@@ -68,8 +67,6 @@ const RelatedVideos = props => {
 		</div>
 	);
 };
-
-RelatedVideos.propTypes = {};
 
 const mapStateToProps = (state, props) => ({
 	relatedNPT: selector_relatedVideosNPT(state, props.videoId),

@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Button, Divider, Icon } from "semantic-ui-react";
 
 import "./VideoMetadata.scss";
@@ -39,7 +38,5 @@ const VideoMetadata = props => {
 		</div>
 	);
 };
-
-VideoMetadata.propTypes = {};
 
 export default VideoMetadata;

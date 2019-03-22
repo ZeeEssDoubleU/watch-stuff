@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 
 import "./VideogridHeader.scss";
 
@@ -10,7 +9,5 @@ const VideoGridHeader = props => {
 		</div>
 	);
 };
-
-VideoGridHeader.propTypes = {};
 
 export default VideoGridHeader;

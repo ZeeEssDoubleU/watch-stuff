@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Progress } from "semantic-ui-react";
 
 const RatingsBar = props => {
@@ -11,7 +10,5 @@ const RatingsBar = props => {
 
 	return <>{percentLikesBar}</>;
 };
-
-RatingsBar.propTypes = {};
 
 export default RatingsBar;

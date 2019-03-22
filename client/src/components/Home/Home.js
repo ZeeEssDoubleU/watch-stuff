@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
+// import components
 import HomeContent from "./HomeContent";
-import SideBar from "../SideBar/SideBar";
 
+// import actions / reducers / sagas
 import * as videoActions from "../../store/actions/videos";
 import { selector_youtubeLibraryLoaded } from "../../store/reducers/api";
 import {

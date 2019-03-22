@@ -25,7 +25,7 @@ export default reducer_channels;
 
 const reducer_fetchChannelDetails = (payload, state) => {
 	const channel = payload.items[0];
-	console.log("PAYLOAD - CHANNEL DETAILS", payload);
+	// console.log("PAYLOAD - CHANNEL DETAILS", payload);
 
 	return {
 		...state,

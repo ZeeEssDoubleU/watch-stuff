@@ -11,7 +11,7 @@ export function* saga_watchWatchDetails() {
 	);
 }
 export function* saga_fetchWatchDetails(action) {
-	console.log("ACTION - FETCH WATCH DETAILS", action);
+	// console.log("ACTION - FETCH WATCH DETAILS", action);
 	const request = () =>
 		youtubeApi.buildVideoDetailsRequest(action.payload.videoId);
 	yield rootSagas.saga_fetchEntity(
@@ -29,7 +29,7 @@ export function* saga_watchRelatedVideos() {
 }
 export function* saga_fetchRelatedVideos(action) {
 	const { videoId, nextPageToken, amount } = action.payload;
-	console.log("ACTION - FETCH RELATED VIDEOS", action);
+	// console.log("ACTION - FETCH RELATED VIDEOS", action);
 	const request = () =>
 		youtubeApi.buildRelatedVideosRequest(videoId, nextPageToken, amount);
 	yield rootSagas.saga_fetchEntity(
@@ -51,7 +51,7 @@ export function* saga_fetchRelatedVideoDetails(action) {
 	const videoIds = response.items.map(item =>
 		!item.contentDetails || !item.statistics ? item.id.videoId : null,
 	);
-	console.log("ACTION - FETCH RELATED VIDEO DETAILS", action);
+	// console.log("ACTION - FETCH RELATED VIDEO DETAILS", action);
 
 	const requests = videoIds.map(videoId => {
 		const request = youtubeApi.buildVideoDetailsRequest(videoId);
@@ -73,7 +73,7 @@ export function* saga_watchChannelDetails() {
 }
 export function* saga_fetchChannelDetails(action) {
 	const { channelId } = action.payload.items[0].snippet;
-	console.log("ACTION - FETCH CHANNEL DETAILS", action);
+	// console.log("ACTION - FETCH CHANNEL DETAILS", action);
 
 	const request = () => youtubeApi.buildChannelRequest(channelId);
 	yield rootSagas.saga_fetchEntity(
@@ -88,7 +88,7 @@ export function* saga_watchComments() {
 }
 export function* saga_fetchComments(action) {
 	const { videoId, nextPageToken, amount } = action.payload;
-	console.log("ACTION - FETCH COMMENTS", action);
+	// console.log("ACTION - FETCH COMMENTS", action);
 
 	const request = () =>
 		youtubeApi.buildCommentsRequest(videoId, nextPageToken, amount);

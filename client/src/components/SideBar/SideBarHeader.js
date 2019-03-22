@@ -14,6 +14,4 @@ const SideBarHeader = props => {
 	);
 };
 
-SideBarHeader.propTypes = {};
-
 export default SideBarHeader;

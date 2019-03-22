@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import PropTypes from "prop-types";
 
 import "./Watch.scss";
 import Video from "../Video/Video";
@@ -59,8 +58,6 @@ const Watch = props => {
 		</div>
 	);
 };
-
-Watch.propTypes = {};
 
 const mapStateToProps = (state, props) => ({
 	youtubeLibraryLoaded: selector_youtubeLibraryLoaded(state),

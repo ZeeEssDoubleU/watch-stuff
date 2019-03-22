@@ -2,22 +2,17 @@
 $grey: #888888;
 $red: #ff0002;
 $text-color-dark: #111111;
-
 // header
 $header-nav-height: 64px;
-
 // sidebar
 $sidebar-left-width: 240px;
-
 // avatars
 $avatar-diameter: 48px;
 $avatar-margin: 10px;
-
 // content areas (ie any component containing VideoGrid or VideoList)
-$content-margin-left: $sidebar-left-width + 20px;
+$content-margin-left: $sidebar-left-width+20px;
 $content-margin-right: 20px;
-$content-margin-top: $header-nav-height + 10px;
-
+$content-margin-top: $header-nav-height+10px;
 // grids
 $item-width-v: 210px;
 $item-width-h: 168px;
@@ -27,3 +22,6 @@ $thumb-height-v: 118px;
 $thumb-height-h: 94px;
 $item-height-h-ex: 140px;
 $header-height: 30px;
+// animations
+$sidebar-trans: transform .3s;
+$responsive-layout-trans: margin-left .3s;

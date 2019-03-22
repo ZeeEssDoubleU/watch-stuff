@@ -6,7 +6,7 @@
    overflow-y: auto;
    padding-bottom: $header-nav-height;
    width: $sidebar-left-width;
-   transition: transform .3s;
+   transition: $sidebar-trans;
 
    .sidebar-item:hover {
       background: #ebebeb;

@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import { Button, Icon } from "semantic-ui-react";
 
 import "./CommentsHeader.scss";
@@ -23,7 +22,5 @@ const CommentsHeader = props => {
 		</div>
 	);
 };
-
-CommentsHeader.propTypes = {};
 
 export default CommentsHeader;

@@ -1,14 +1,13 @@
-@import '../../styles/shared.scss';
+@import "../../styles/shared.scss";
+
 .video-list {
-   margin-top: $header-nav-height + 10px;
-   margin-left: $sidebar-left-width + 20px;
-   margin-right: 20px;
    display: grid;
    grid: auto / auto;
    justify-content: center;
-}
+   padding: 24px;
 
-.responsive-video-grid-container {
-   max-width: 1284px;
-   margin: auto;
+   .responsive-content {
+      max-width: 1284px;
+      margin: auto;
+   }
 }
