@@ -1,9 +1,10 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-
+// import components
 import VideoList from "../VideoList/VideoList";
-
+// import actions / reducers / sagas
 import * as videoActions from "../../store/actions/videos";
+import * as watchActions from '../../store/actions/watch';
 import { selector_youtubeLibraryLoaded } from "../../store/reducers/api";
 import {
 	selector_mostPopularLoaded,
@@ -12,11 +13,20 @@ import {
 } from "../../store/reducers/videos";
 
 const Trending = props => {
+	// effect fetches mostPopular vids on page/site refresh
 	useEffect(() => {
 		if (props.youtubeLibraryLoaded && !props.mostPopularLoaded) {
 			props.fetchMostPopular(20, true);
 		}
 	}, [props.youtubeLibraryLoaded]);
+	// effect checks all mostPopular items for detailed info and fetches missing info
+	useEffect(() => {
+		props.mostPopular.forEach(item => {
+			if (item.contentDetails || !item.statistics) {
+				props.fetchWatchDetails(item.id);
+			}
+		});
+	}, []);
 
 	// fetchMoreVideos & shouldShowLoader functions used in InfiniteScroll
 	const fetchMoreVideos = () => {
@@ -46,6 +56,7 @@ const mapStateToProps = state => ({
 
 const actionCreators = {
 	fetchMostPopular: videoActions.action_fetchMostPopular.request,
+	fetchWatchDetails: watchActions.action_fetchWatchDetails.request,
 };
 
 export default connect(

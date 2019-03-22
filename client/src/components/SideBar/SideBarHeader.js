@@ -5,13 +5,7 @@ import "./SideBarHeader.scss";
 
 const SideBarHeader = props => {
 	const heading = props.title ? props.title.toUpperCase() : "";
-	return (
-		<Menu.Item>
-         <Menu.Header className="side-bar-header">
-            {heading}
-         </Menu.Header>
-		</Menu.Item>
-	);
+	return <Menu.Header className="side-bar-header">{heading}</Menu.Header>;
 };
 
 export default SideBarHeader;
