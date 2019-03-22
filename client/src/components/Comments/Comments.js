@@ -19,8 +19,8 @@ const Comments = props => {
 	const [commentsHeight, setCommentsHeight] = useState(0);
 	const commentsElem = document.querySelector(".comments");
 	const commentsElemHeight = commentsElem
-		? window.innerHeight - commentsElem.offsetTop
-		: window.innerHeight;
+		? window.innerHeight * 1.5 - commentsElem.offsetTop
+		: window.innerHeight * 1.5;
 	useEffect(() => {
 		setCommentsHeight(commentsElemHeight);
 	}, [commentsElemHeight]);
@@ -28,7 +28,7 @@ const Comments = props => {
 	// variables and effect to fetch more related videos based on visibilty of loader
 	const loader = document.querySelector(".comments > .loader-container");
 	const loaderOffset = loader ? loader.offsetTop : 0;
-	const loaderVisible = loaderOffset < window.innerHeight;
+	const loaderVisible = loaderOffset < window.innerHeight * 1.5;
 	useEffect(() => {
 		if (props.commentsLoaded && loaderVisible) {
 			props.fetchComments(props.videoId, props.commentsNPT);

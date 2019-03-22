@@ -13,11 +13,13 @@ const HeaderNav = props => {
 	const { pathname } = props.location;
 	const appLayout = document.querySelector(".app-layout");
 	const sideNav = document.querySelector(".side-nav");
+	// hides sidebar when navigating to watch component
 	useEffect(() => {
 		if (pathname.includes("watch")) {
 			toggleSideBarVis(false);
 		}
 	}, [pathname]);
+	// toggles sidebar visibility
 	useEffect(() => {
 		if (sideNav) {
 			sideNav.style.transform = sideBarVis ? "" : "translateX(-240px)";
@@ -26,7 +28,7 @@ const HeaderNav = props => {
 			appLayout.style.marginLeft = sideBarVis ? "" : "0px";
 		}
 	}, [sideBarVis, sideNav, appLayout]);
-
+	// navigates to search URL when search is submitted in HeaderNav
 	const onSubmit = () => {
 		const queryParsed = encodeURI(searchQuery);
 		props.history.push(`/search/${queryParsed}`);

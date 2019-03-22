@@ -1,7 +1,8 @@
 @import "../../styles/shared.scss";
 .video-preview {
    display: grid;
-   grid: $thumb-height-v auto / $item-width-v;
+   grid-template-rows: $thumb-height-v auto;
+   grid-template-columns: $item-width-v;
    .image-container {
       position: relative;
       grid-row: 1 / 2;
@@ -59,7 +60,8 @@
       }
    }
    &.horizontal {
-      grid: $thumb-height-h / $item-width-h auto;
+      grid-template-rows: $thumb-height-h;
+      grid-template-columns: $item-width-h auto;
       grid-column-gap: 4px;
       margin-bottom: 10px;
       .preview-info {
