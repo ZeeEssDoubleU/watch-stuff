@@ -16,6 +16,7 @@ import { action_youtubeLibraryLoaded } from "./store/actions/api";
 // import api key
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
+// TODO - find way to ref sideBar
 const App = props => {
 	const [sideBarVisible, toggleSideBar] = useState(true);
 	const [windowSmall, setWindowSmall] = useState(window.innerWidth < 918);
@@ -29,18 +30,21 @@ const App = props => {
 		setWindowSmall(window.innerWidth < 918);
 	});
 
-	// toggles sidebar visibility when navigating to components
+	// toggle sidebar visibility on page load/navigation
 	useEffect(() => {
 		// small window or watch component
 		if (includesWatch || windowSmall) {
 			toggleSideBar(false);
-		} else {
+		}
+		// large window
+		// shift appLayout right with sideBar
+		if (!includesWatch && !windowSmall) {
 			appLayout.current.style.marginLeft = "240px";
 			toggleSideBar(true);
 		}
 	}, [includesWatch, pathname]);
 
-	// toggles sidebar visibility based on window resize
+	// toggle sidebar visibility on window resize
 	useEffect(() => {
 		// small window
 		// appLayout and sideBar are NOT affected by sideBarVisible
@@ -57,7 +61,7 @@ const App = props => {
 		}
 	}, [windowSmall]);
 
-	// toggles sidebar visibility based on clicking sidebar icon
+	// toggle sidebar visibility on click sidebar icon
 	useEffect(() => {
 		// small window or watch component
 		// appLayout does NOT move

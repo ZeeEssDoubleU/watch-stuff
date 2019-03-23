@@ -12,7 +12,7 @@ import {
 	selector_relatedVideosLoaded,
 } from "../../store/reducers/watch";
 
-// TODO - 1.5*
+// TODO - 1.5x when done testing
 const RelatedVideos = props => {
 	// if no related videos available, return empty div
 	if (!props.videos || props.videos.length === 0)

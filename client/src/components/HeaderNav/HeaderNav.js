@@ -7,12 +7,10 @@ import { Link } from "react-router-dom";
 import "./HeaderNav.scss";
 // import assets
 import logo from "../../assets/images/WatchStuff.svg";
-// import actions / reducers / sagas
-import { action_toggleSidebar } from "../../store/actions/layout";
 
 const HeaderNav = props => {
 	const [searchQuery, setSearchQuery] = useState("");
-	
+
 	// navigates to search URL when search is submitted in HeaderNav
 	const onSubmit = () => {
 		const queryParsed = encodeURI(searchQuery);
@@ -78,9 +76,4 @@ const HeaderNav = props => {
 	);
 };
 
-export default withRouter(
-	connect(
-		null,
-		{ action_toggleSidebar },
-	)(HeaderNav),
-);
+export default withRouter(HeaderNav);
