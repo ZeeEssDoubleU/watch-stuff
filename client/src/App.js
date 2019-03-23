@@ -1,10 +1,8 @@
 import React, { useEffect } from "react";
 import { Route, Switch, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-
 // import styles
 import "./App.scss";
-
 // import components
 import HeaderNav from "./components/HeaderNav/HeaderNav";
 import Home from "./components/Home/Home";
@@ -13,10 +11,8 @@ import Trending from "./components/Feed/Trending";
 import History from "./components/Feed/History";
 import Search from "./components/Search/Search";
 import SideBar from "./components/SideBar/SideBar";
-
 // import actions / reducers / sagas
 import { action_youtubeLibraryLoaded } from "./store/actions/api";
-
 // import api key
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 

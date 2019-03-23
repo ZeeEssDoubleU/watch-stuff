@@ -5,6 +5,7 @@ import reducer_watch from "./watch";
 import reducer_channels from "./channels";
 import reducer_comments from "./comments";
 import reducer_search from "./search";
+import reducer_layout from "./layout";
 import reducer_errors from "./errors";
 
 const reducer_root = combineReducers({
@@ -14,6 +15,7 @@ const reducer_root = combineReducers({
 	channels: reducer_channels,
 	comments: reducer_comments,
 	search: reducer_search,
+	layout: reducer_layout,
 	errors: reducer_errors,
 });
 export default reducer_root;

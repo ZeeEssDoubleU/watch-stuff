@@ -10,7 +10,7 @@
          grid-column-start: 1;
          grid-column-end: $numColumns + 1;
       }
-      @if $numColumns>3 {
+      @if $numColumns > 3 {
          height: $header-height + (2 * ($item-height-v + 24px));
       }
       @if $numColumns < 3 {
