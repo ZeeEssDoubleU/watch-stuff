@@ -12,6 +12,7 @@ import {
 	selector_relatedVideosLoaded,
 } from "../../store/reducers/watch";
 
+// TODO - 1.5*
 const RelatedVideos = props => {
 	// if no related videos available, return empty div
 	if (!props.videos || props.videos.length === 0)
@@ -21,8 +22,8 @@ const RelatedVideos = props => {
 	const [remainingVideosHeight, setremainingVideosHeight] = useState(0);
 	const remainingVideosElem = document.querySelector(".remaining-vids");
 	const remainingVideosElemHeight = remainingVideosElem
-		? window.innerHeight * 1.5 - remainingVideosElem.offsetTop
-		: window.innerHeight * 1.5;
+		? window.innerHeight - remainingVideosElem.offsetTop
+		: window.innerHeight;
 	useEffect(() => {
 		setremainingVideosHeight(remainingVideosElemHeight);
 	}, [remainingVideosElemHeight]);
@@ -30,7 +31,7 @@ const RelatedVideos = props => {
 	// variables and effect to fetch more related videos based on visibilty of loader
 	const loader = document.querySelector(".remaining-vids > .loader-container");
 	const loaderOffset = loader ? loader.offsetTop : 0;
-	const loaderVisible = loaderOffset < window.innerHeight * 1.5;
+	const loaderVisible = loaderOffset < window.innerHeight;
 	useEffect(() => {
 		if (loaderVisible) {
 			props.fetchRelatedVideos(props.videoId, props.relatedNPT, 5);

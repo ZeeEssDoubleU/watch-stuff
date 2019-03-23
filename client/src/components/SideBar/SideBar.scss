@@ -5,6 +5,7 @@
 	padding-bottom: $header-nav-height;
    width: $sidebar-left-width;
 	overflow-y: auto;
+	transform: translateX(0px);
 	transition: $sidebar-trans;
 	.item {
 		transition: all 0.2s;
@@ -12,5 +13,8 @@
 	.item:hover {
 		background: $hover-red;
 		transform: scale(1.1);
+	}
+	@media (max-width: $window-small) {
+      transform: translateX(-240px);
    }
 }

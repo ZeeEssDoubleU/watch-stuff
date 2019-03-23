@@ -3,6 +3,9 @@
    margin-top: $header-nav-height;
    margin-left: $sidebar-left-width;
    transition: $responsive-layout-trans;
+   background: red;
+   border: 30px solid white;
+   height: 100vh;
    ::-webkit-scrollbar {
       width: 6px;
    }

@@ -14,13 +14,14 @@ import {
 	selector_commentsByVideo,
 } from "../../store/reducers/comments";
 
+// TODO - 1.5*
 const Comments = props => {
 	// initialize .comments elem state and variables to determine comments infinite scroll height
 	const [commentsHeight, setCommentsHeight] = useState(0);
 	const commentsElem = document.querySelector(".comments");
 	const commentsElemHeight = commentsElem
-		? window.innerHeight * 1.5 - commentsElem.offsetTop
-		: window.innerHeight * 1.5;
+		? window.innerHeight - commentsElem.offsetTop
+		: window.innerHeight;
 	useEffect(() => {
 		setCommentsHeight(commentsElemHeight);
 	}, [commentsElemHeight]);
@@ -28,7 +29,7 @@ const Comments = props => {
 	// variables and effect to fetch more related videos based on visibilty of loader
 	const loader = document.querySelector(".comments > .loader-container");
 	const loaderOffset = loader ? loader.offsetTop : 0;
-	const loaderVisible = loaderOffset < window.innerHeight * 1.5;
+	const loaderVisible = loaderOffset < window.innerHeight;
 	useEffect(() => {
 		if (props.commentsLoaded && loaderVisible) {
 			props.fetchComments(props.videoId, props.commentsNPT);

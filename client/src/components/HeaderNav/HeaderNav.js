@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
 import { Image, Menu, Form, Input, Icon } from "semantic-ui-react";
@@ -12,62 +12,7 @@ import { action_toggleSidebar } from "../../store/actions/layout";
 
 const HeaderNav = props => {
 	const [searchQuery, setSearchQuery] = useState("");
-	const [sideBarVis, toggleSideBarVis] = useState(true);
-	const [windowSmall, setWindowSmall] = useState(window.innerWidth < 918);
-	const { pathname } = props.location;
-	const includesWatch = pathname.includes("watch");
-	const appLayout = document.querySelector(".app-layout");
-	const sideBar = document.querySelector(".side-nav");
-
-	// event listener that logs window width to state
-	window.addEventListener("resize", () => {
-		setWindowSmall(window.innerWidth < 918);
-	});
-
-	// toggles sidebar visibility when navigating to components
-	useEffect(() => {
-		// small window or watch component
-		if (includesWatch) {
-			toggleSideBarVis(false);
-		}
-	}, [includesWatch]);
-
-	// toggles sidebar visibility based on window resize
-	useEffect(() => {
-		// small window
-		// appLayout and sideBar are NOT affected by sideBarVis
-		if (windowSmall && appLayout && sideBar) {
-			appLayout.style.marginLeft = "0px";
-			sideBar.style.transform = "translateX(-240px)";
-		}
-		// large window
-		if (!windowSmall && !includesWatch && appLayout && sideBar) {
-			appLayout.style.marginLeft = sideBarVis ? "240px" : "0px";
-			sideBar.style.transform = sideBarVis
-				? "translateX(0px)"
-				: "translateX(-240px)";
-		}
-	}, [windowSmall]);
-
-	// toggles sidebar visibility based on clicking sidebar icon
-	useEffect(() => {
-		// small window or watch component
-		// appLayout does NOT move
-		if ((windowSmall || includesWatch) && appLayout && sideBar) {
-			appLayout.style.marginLeft = "0px";
-			sideBar.style.transform = sideBarVis
-				? "translateX(0px)"
-				: "translateX(-240px)";
-		}
-		// large window
-		if (!windowSmall && !includesWatch && appLayout && sideBar) {
-			appLayout.style.marginLeft = sideBarVis ? "240px" : "0px";
-			sideBar.style.transform = sideBarVis
-				? "translateX(0px)"
-				: "translateX(-240px)";
-		}
-	}, [sideBarVis]);
-
+	
 	// navigates to search URL when search is submitted in HeaderNav
 	const onSubmit = () => {
 		const queryParsed = encodeURI(searchQuery);
@@ -82,11 +27,7 @@ const HeaderNav = props => {
 						<Icon
 							size="large"
 							name="sidebar"
-							onClick={() => {
-								// TODO
-								toggleSideBarVis(!sideBarVis);
-								props.action_toggleSidebar();
-							}}
+							onClick={() => props.toggleSideBar()}
 						/>
 					</span>
 					<Link to="/">

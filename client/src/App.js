@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Route, Switch, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 // import styles
@@ -17,11 +17,67 @@ import { action_youtubeLibraryLoaded } from "./store/actions/api";
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
 const App = props => {
-	useEffect(() => {
-		loadYoutubeApi();
-	}, []);
+	const [sideBarVisible, toggleSideBar] = useState(true);
+	const [windowSmall, setWindowSmall] = useState(window.innerWidth < 918);
+	const { pathname } = props.location;
+	const includesWatch = pathname.includes("watch");
+	const appLayout = useRef(null);
+	const sideBar = document.querySelector(".side-nav");
 
-	const loadYoutubeApi = () => {
+	// event listener that logs window width to state
+	window.addEventListener("resize", () => {
+		setWindowSmall(window.innerWidth < 918);
+	});
+
+	// toggles sidebar visibility when navigating to components
+	useEffect(() => {
+		// small window or watch component
+		if (includesWatch || windowSmall) {
+			toggleSideBar(false);
+		} else {
+			appLayout.current.style.marginLeft = "240px";
+			toggleSideBar(true);
+		}
+	}, [includesWatch, pathname]);
+
+	// toggles sidebar visibility based on window resize
+	useEffect(() => {
+		// small window
+		// appLayout and sideBar are NOT affected by sideBarVisible
+		if (windowSmall && appLayout.current && sideBar) {
+			appLayout.current.style.marginLeft = "0px";
+			sideBar.style.transform = "translateX(-240px)";
+		}
+		// large window
+		if (!windowSmall && !includesWatch && appLayout.current && sideBar) {
+			appLayout.current.style.marginLeft = sideBarVisible ? "240px" : "0px";
+			sideBar.style.transform = sideBarVisible
+				? "translateX(0px)"
+				: "translateX(-240px)";
+		}
+	}, [windowSmall]);
+
+	// toggles sidebar visibility based on clicking sidebar icon
+	useEffect(() => {
+		// small window or watch component
+		// appLayout does NOT move
+		if ((windowSmall || includesWatch) && appLayout.current && sideBar) {
+			appLayout.current.style.marginLeft = "0px";
+			sideBar.style.transform = sideBarVisible
+				? "translateX(0px)"
+				: "translateX(-240px)";
+		}
+		// large window
+		if (!windowSmall && !includesWatch && appLayout.current && sideBar) {
+			appLayout.current.style.marginLeft = sideBarVisible ? "240px" : "0px";
+			sideBar.style.transform = sideBarVisible
+				? "translateX(0px)"
+				: "translateX(-240px)";
+		}
+	}, [sideBarVisible]);
+
+	// load youtube api library
+	useEffect(() => {
 		const script = document.createElement("script");
 		script.src = "https://apis.google.com/js/api.js";
 
@@ -47,13 +103,13 @@ const App = props => {
 			});
 		};
 		document.body.appendChild(script);
-	};
+	}, []);
 
 	return (
 		<>
-			<HeaderNav />
+			<HeaderNav toggleSideBar={() => toggleSideBar(!sideBarVisible)} />
 			<SideBar />
-			<div className="app-layout">
+			<div className="app-layout" ref={appLayout}>
 				<Switch>
 					<Route exact path="/" component={Home} />
 					<Route path="/feed/trending" component={Trending} />
