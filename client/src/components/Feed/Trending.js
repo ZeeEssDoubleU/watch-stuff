@@ -22,7 +22,7 @@ const Trending = props => {
 	// effect checks all mostPopular items for detailed info and fetches missing info
 	useEffect(() => {
 		props.mostPopular.forEach(item => {
-			if (item.contentDetails || !item.statistics) {
+			if (!item.contentDetails || !item.statistics) {
 				props.fetchWatchDetails(item.id);
 			}
 		});

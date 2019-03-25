@@ -8,7 +8,8 @@ import HeaderNav from "./components/HeaderNav/HeaderNav";
 import Home from "./components/Home/Home";
 import Watch from "./components/Watch/Watch";
 import Trending from "./components/Feed/Trending";
-import History from "./components/Feed/History";
+import History from "./components/Feed/WatchLater";
+import WatchLater from "./components/Feed/History";
 import Search from "./components/Search/Search";
 import SideBar from "./components/SideBar/SideBar";
 // import actions / reducers / sagas
@@ -118,6 +119,7 @@ const App = props => {
 					<Route exact path="/" component={Home} />
 					<Route path="/feed/trending" component={Trending} />
 					<Route path="/feed/history" component={History} />
+					<Route path="/feed/watch-later" component={WatchLater} />
 					<Route path="/search/:query" component={Search} />
 					<Route path="/watch/:videoId" component={Watch} />
 				</Switch>

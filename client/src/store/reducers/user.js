@@ -106,6 +106,12 @@ export const selector_watchHistory = createSelector(
 		historyItems ? historyItems.map(item => videos[item.videoId]) : null,
 );
 
+export const selector_savedVideos = createSelector(
+	state => state.user.saved.order,
+	state => state.videos.byId,
+	(savedIds, videos) => (savedIds ? savedIds.map(id => videos[id]) : null),
+);
+
 export const selector_savedVideoIdsCache = createSelector(
 	state => state.user.saved,
 	saved => (saved ? saved.cache : {}),

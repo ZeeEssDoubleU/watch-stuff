@@ -4,23 +4,23 @@ import { connect } from "react-redux";
 import VideoList from "../VideoList/VideoList";
 // import actions / reducers / sagas
 import * as watchActions from "../../store/actions/watch";
-import { selector_watchHistory } from "../../store/reducers/user";
+import { selector_savedVideos } from "../../store/reducers/user";
 
-const History = props => {
-	// effect checks all history items for detailed info and fetches missing info
+const WatchLater = props => {
+	// effect checks all saved videos for detailed info and fetches missing info
 	useEffect(() => {
-		props.watchHistory.forEach(item => {
+		props.savedVideos.forEach(item => {
 			if (!item.contentDetails || !item.statistics) {
 				props.fetchWatchDetails(item.id);
 			}
 		});
 	}, []);
 
-	return <VideoList videos={props.watchHistory} />;
+	return <VideoList videos={props.savedVideos} />;
 };
 
 const mapStateToProps = state => ({
-	watchHistory: selector_watchHistory(state),
+	savedVideos: selector_savedVideos(state),
 });
 
 const actionCreators = {
@@ -30,4 +30,4 @@ const actionCreators = {
 export default connect(
 	mapStateToProps,
 	actionCreators,
-)(History);
+)(WatchLater);

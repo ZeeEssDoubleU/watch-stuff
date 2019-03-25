@@ -6,11 +6,10 @@ import "./Watch.scss";
 import Video from "../Video/Video";
 import RelatedVideos from "../RelatedVideos/RelatedVideos";
 import VideoInfo from "../Video/VideoInfo";
-import VideoMetadata from "../Video/VIdeoMetadata";
+import VideoMetadata from "../Video/VideoMetadata";
 import Comments from "../Comments/Comments";
 
 import * as watchActions from "../../store/actions/watch";
-import * as userActions from "../../store/actions/user";
 import {
 	selector_youtubeLibraryLoaded,
 	selector_savedVideoIdsCache,
