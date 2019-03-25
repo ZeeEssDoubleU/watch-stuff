@@ -10,7 +10,11 @@ import VideoMetadata from "../Video/VIdeoMetadata";
 import Comments from "../Comments/Comments";
 
 import * as watchActions from "../../store/actions/watch";
-import { selector_youtubeLibraryLoaded } from "../../store/reducers/api";
+import * as userActions from "../../store/actions/user";
+import {
+	selector_youtubeLibraryLoaded,
+	selector_savedVideoIdsCache,
+} from "../../store/reducers/user";
 import { selector_videoById } from "../../store/reducers/videos";
 import {
 	selector_relatedVideos,
@@ -25,6 +29,7 @@ import {
 
 const Watch = props => {
 	const { videoId } = props.match.params;
+	const { pathname } = props.location;
 	useEffect(() => {
 		if (props.youtubeLibraryLoaded) {
 			props.fetchWatchDetails(videoId);
@@ -36,7 +41,13 @@ const Watch = props => {
 	return (
 		<div className="watch-grid">
 			<Video id={videoId} className="video-container" />
-			<VideoMetadata className="video-metadata" video={props.video} />
+			<VideoMetadata
+				className="video-metadata"
+				video={props.video}
+				saveVideo={props.saveVideo}
+				savedVidCache={props.savedVidCache}
+				pathname={pathname}
+			/>
 			<VideoInfo
 				className="video-info-container"
 				video={props.video}
@@ -68,12 +79,14 @@ const mapStateToProps = (state, props) => ({
 	comments: selector_commentsByVideo(state, props.match.params.videoId),
 	commentsCount: selector_commentsCount(state, props.match.params.videoId),
 	commentsNPT: selector_commentsNPT(state, props.match.params.videoId),
+	savedVidCache: selector_savedVideoIdsCache(state),
 });
 
 const actionCreators = {
 	fetchWatchDetails: watchActions.action_fetchWatchDetails.request,
 	fetchRelatedVideos: watchActions.action_fetchRelatedVideos.request,
 	fetchComments: watchActions.action_fetchComments.request,
+	saveVideo: watchActions.action_saveVideo,
 };
 
 export default withRouter(

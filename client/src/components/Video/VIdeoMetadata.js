@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Divider, Icon } from "semantic-ui-react";
 
 import "./VideoMetadata.scss";
@@ -7,6 +7,13 @@ import RatingsBar from "../Ratings/RatingsBar";
 
 const VideoMetadata = props => {
 	if (!props.video) return <div />;
+
+	const videoId = props.video.id;
+	const { pathname } = props;
+	const [saved, setSaved] = useState(props.savedVidCache[videoId]);
+	useEffect(() => {
+		setSaved(props.savedVidCache[videoId]);
+	}, [pathname, saved]);
 
 	const title = props.video.snippet.title;
 	const viewCount = Number(props.video.statistics.viewCount).toLocaleString();
@@ -21,13 +28,21 @@ const VideoMetadata = props => {
 				<div className="video-actions">
 					<Ratings likes={likeCount} dislikes={dislikeCount} />
 					<RatingsBar likes={likeCount} dislikes={dislikeCount} />
-					<Button basic labelPosition="left">
+					<Button className="button-share" basic labelPosition="left">
 						<Icon name="share" />
 						<span>SHARE</span>
 					</Button>
-					<Button basic labelPosition="left">
-						<Icon name="add circle" />
-						<span>SAVE</span>
+					<Button
+						basic
+						labelPosition="left"
+						onClick={() => {
+							props.saveVideo(videoId);
+							setSaved(props.savedVidCache[videoId]);
+						}}>
+						<Icon name="add circle" className={saved ? "saved" : ""} />
+						<span className={saved ? "saved" : ""}>
+							{saved ? "SAVED" : "SAVE"}
+						</span>
 					</Button>
 					<Button basic className="ellipsis">
 						<Icon name="ellipsis horizontal" />

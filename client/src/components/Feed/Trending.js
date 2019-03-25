@@ -5,7 +5,7 @@ import VideoList from "../VideoList/VideoList";
 // import actions / reducers / sagas
 import * as videoActions from "../../store/actions/videos";
 import * as watchActions from '../../store/actions/watch';
-import { selector_youtubeLibraryLoaded } from "../../store/reducers/api";
+import { selector_youtubeLibraryLoaded } from "../../store/reducers/user";
 import {
 	selector_mostPopularLoaded,
 	selector_mostPopularVideos,

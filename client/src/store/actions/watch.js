@@ -15,6 +15,7 @@ export const types = {
 	COMMENTS_REQUEST: "COMMENTS_REQUEST",
 	COMMENTS_SUCCESS: "COMMENTS_SUCCESS",
 	COMMENTS_FAILURE: "COMMENTS_FAILURE",
+	SAVE_VIDEO: "SAVE_VIDEO",
 };
 
 export const action_fetchWatchDetails = {
@@ -105,3 +106,8 @@ export const action_fetchComments = {
 		payload: response,
 	}),
 };
+
+export const action_saveVideo = videoId => ({
+	type: types.SAVE_VIDEO,
+	payload: { videoId },
+});

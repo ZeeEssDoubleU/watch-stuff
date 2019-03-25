@@ -2,9 +2,8 @@
 .app-layout {
    margin-top: $header-nav-height;
    margin-left: $sidebar-left-width;
-   transition: $responsive-layout-trans;
-   // TODO - remove 3 below props when done testing
-   background: red;
+   transition: $responsive-layout-trans; // TODO - remove 3 below props when done testing
+   background: lightblue;
    border: 30px solid white;
    height: 100vh;
    ::-webkit-scrollbar {

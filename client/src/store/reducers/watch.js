@@ -114,10 +114,3 @@ export const selector_relatedVideos = createSelector(
 	(relatedIds, videos) =>
 		relatedIds ? relatedIds.map(videoId => videos[videoId]) : null,
 );
-
-export const selector_watchHistory = createSelector(
-	state => state.watch.history,
-	state => state.videos.byId,
-	(historyItems, videos) =>
-		historyItems ? historyItems.map(item => videos[item.videoId]) : null,
-);

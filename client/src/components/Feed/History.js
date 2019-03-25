@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import VideoList from "../VideoList/VideoList";
 // import actions / reducers / sagas
 import * as watchActions from "../../store/actions/watch";
-import { selector_watchHistory } from "../../store/reducers/watch";
+import { selector_watchHistory } from "../../store/reducers/user";
 
 const History = props => {
 	// effect checks all history items for detailed info and fetches missing info
@@ -20,7 +20,7 @@ const History = props => {
 };
 
 const mapStateToProps = state => ({
-	watchHistory: selector_watchHistory(state),
+	watch: selector_watchHistory(state),
 });
 
 const actionCreators = {
