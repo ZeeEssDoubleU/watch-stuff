@@ -26,7 +26,12 @@ const VideoMetadata = props => {
 			<div className="video-stats">
 				<span>{viewCount} views</span>
 				<div className="video-actions">
-					<Ratings likes={likeCount} dislikes={dislikeCount} />
+					<Ratings
+						likes={likeCount}
+						dislikes={dislikeCount}
+						isVideo={true}
+						videoId={videoId}
+					/>
 					<RatingsBar likes={likeCount} dislikes={dislikeCount} />
 					<Button className="button-share" basic labelPosition="left">
 						<Icon name="share" />

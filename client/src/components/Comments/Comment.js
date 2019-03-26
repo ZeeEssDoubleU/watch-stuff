@@ -10,6 +10,7 @@ const Comment = props => {
 	const [collapsed, toggleCollapse] = useState(true);
 
 	const comment = props.comment.snippet.topLevelComment.snippet;
+	const commentId = props.comment.id;
 	const commentText = <p className="comment-text">{comment.textOriginal}</p>;
 	const commentAuthor = comment.authorDisplayName;
 	const commentDate = getFormattedTimeAgo(comment.updatedAt);
@@ -38,7 +39,11 @@ const Comment = props => {
 					</Button>
 				</div>
 				<div className="comment-actions">
-					<Ratings likes={commentLikes} comment={true} />
+					<Ratings
+						likes={commentLikes}
+						isComment={true}
+						commentId={commentId}
+					/>
 					<Button size="mini" compact>
 						REPLY
 					</Button>

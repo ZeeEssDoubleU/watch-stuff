@@ -14,7 +14,7 @@ const initialState = {
 const reducer_watch = (state = initialState, action) => {
 	switch (action.type) {
 		case watchActions.types.WATCH_DETAILS_REQUEST:
-			return reducer_updateWatchHistory(action.payload, state);
+			return reducer_WatchHistory(action.payload, state);
 		case watchActions.types.WATCH_DETAILS_SUCCESS:
 			return reducer_fetchWatchDetails(action.payload, state);
 		case watchActions.types.RELATED_VIDEOS_SUCCESS:
@@ -28,19 +28,6 @@ export default reducer_watch;
 //***************
 // sub reducers
 //***************
-
-const reducer_updateWatchHistory = (payload, state) => {
-	const { videoId } = payload;
-	const timestamp = Date.now();
-	const item = {
-		videoId,
-		timestamp,
-	};
-	return {
-		...state,
-		history: [item, ...state.history],
-	};
-};
 
 const reducer_fetchWatchDetails = (payload, state) => {
 	const details = payload.items[0];
@@ -76,6 +63,19 @@ const reducer_fetchRelatedVideos = (payload, state) => {
 	return {
 		...state,
 		relatedVideos,
+	};
+};
+
+const reducer_WatchHistory = (payload, state) => {
+	const { videoId } = payload;
+	const timestamp = Date.now();
+	const item = {
+		videoId,
+		timestamp,
+	};
+	return {
+		...state,
+		history: [item, ...state.history],
 	};
 };
 
