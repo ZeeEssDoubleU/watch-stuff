@@ -51,6 +51,7 @@ const Watch = props => {
 				className="video-info-container"
 				video={props.video}
 				channel={props.channel}
+				subscribe={props.subscribe}
 			/>
 			<Comments
 				className="comments-container"
@@ -86,6 +87,7 @@ const actionCreators = {
 	fetchRelatedVideos: watchActions.action_fetchRelatedVideos.request,
 	fetchComments: watchActions.action_fetchComments.request,
 	saveVideo: watchActions.action_saveVideo,
+	subscribe: watchActions.action_subscribe,
 };
 
 export default withRouter(

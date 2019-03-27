@@ -16,6 +16,7 @@ export const types = {
 	COMMENTS_SUCCESS: "COMMENTS_SUCCESS",
 	COMMENTS_FAILURE: "COMMENTS_FAILURE",
 	SAVE_VIDEO: "SAVE_VIDEO",
+	SUBSCRIBE: "SUBSCRIBE",
 };
 
 export const action_fetchWatchDetails = {
@@ -110,4 +111,13 @@ export const action_fetchComments = {
 export const action_saveVideo = videoId => ({
 	type: types.SAVE_VIDEO,
 	payload: { videoId },
+});
+
+export const action_subscribe = (channelId, channelTitle, channelIcon) => ({
+	type: types.SUBSCRIBE,
+	payload: {
+		channelId,
+		channelTitle,
+		channelIcon,
+	},
 });

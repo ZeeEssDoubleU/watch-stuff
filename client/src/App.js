@@ -112,7 +112,7 @@ const App = props => {
 	}, []);
 
 	return (
-		<>
+		<div className="app">
 			<HeaderNav toggleSideBar={() => toggleSideBar(!sideBarVisible)} />
 			<SideBar />
 			<div className="app-layout" ref={appLayout}>
@@ -126,7 +126,7 @@ const App = props => {
 					<Route path="/watch/:videoId" component={Watch} />
 				</Switch>
 			</div>
-		</>
+		</div>
 	);
 };
 

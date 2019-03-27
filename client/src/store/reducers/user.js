@@ -20,6 +20,7 @@ const initialState = {
 		videos: [],
 		cache: {},
 	},
+	subscriptions: {},
 };
 
 //***************
@@ -33,7 +34,9 @@ const reducer_user = (state = initialState, action) => {
 		case watchActions.types.WATCH_DETAILS_REQUEST:
 			return reducer_watchHistory(action.payload, state);
 		case watchActions.types.SAVE_VIDEO:
-			return reducer_watchLater(action.payload, state);
+			return reducer_saveVideo(action.payload, state);
+		case watchActions.types.SUBSCRIBE:
+			return reducer_subscribe(action.payload, state);
 		case userActions.types.VOTE_LIKE:
 		case userActions.types.VOTE_DISLIKE:
 			return reducer_vote(action.payload, state);
@@ -70,11 +73,11 @@ const reducer_watchHistory = (payload, state) => {
 	};
 };
 
-const reducer_watchLater = (payload, state) => {
+const reducer_saveVideo = (payload, state) => {
 	const { videoId } = payload;
 	const timestamp = Date.now();
-	let { order } = state.saved;
-	const { cache } = state.saved;
+	let newOrder = [...state.saved.order];
+	const newCache = { ...state.saved.cache };
 
 	console.log("PAYLOAD - WATCH LATER", payload);
 
@@ -83,21 +86,41 @@ const reducer_watchLater = (payload, state) => {
 		timestamp,
 	};
 
-	if (cache[videoId]) {
-		order.pop(order.indexOf(item.videoId));
-		delete cache[videoId];
+	if (newCache[videoId]) {
+		newOrder.pop(newOrder.indexOf(item.videoId));
+		delete newCache[videoId];
 	} else {
-		order.push(item);
-		cache[videoId] = item;
+		newOrder.push(item);
+		newCache[videoId] = item;
 	}
 
 	return {
 		...state,
 		saved: {
 			...state.saved,
-			order,
-			cache,
+			order: newOrder,
+			cache: newCache,
 		},
+	};
+};
+
+// TODO - Add data fetching for subscriptions and load them dynamically to SideNav
+const reducer_subscribe = (payload, state) => {
+	const newSubs = { ...state.subscriptions };
+	const { channelId, channelTitle, channelIcon } = payload;
+	const item = {
+		channelId,
+		channelTitle,
+		channelIcon,
+	};
+
+	console.log("PAYLOAD - SUBSCRIBE", payload);
+
+	newSubs[channelId] ? delete newSubs[channelId] : (newSubs[channelId] = item);
+
+	return {
+		...state,
+		subscriptions: newSubs,
 	};
 };
 
@@ -235,4 +258,9 @@ export const selector_likedIdsCache = createSelector(
 export const selector_dislikedIdsCache = createSelector(
 	state => state.user.disliked,
 	disliked => (disliked ? disliked.cache : {}),
+);
+
+export const selector_subscriptions = createSelector(
+	state => state.user.subscriptions,
+	subscriptions => subscriptions,
 );

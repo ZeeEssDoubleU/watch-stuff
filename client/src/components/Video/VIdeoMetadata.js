@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { Button, Divider, Icon } from "semantic-ui-react";
 
 import "./VideoMetadata.scss";
@@ -7,21 +7,15 @@ import Ratings from "../Ratings/Ratings";
 const VideoMetadata = props => {
 	if (!props.video) return <div />;
 
-	const { pathname } = props;
 	const videoId = props.video.id;
 	const isSaved = () => (props.savedVideos[videoId] ? true : false);
-	const [saved, setSaved] = useState(isSaved);
-	// effect updates local saved state (style) when url changes
-	useEffect(() => {
-		setSaved(isSaved());
-	}, [pathname]);
 
 	const title = props.video.snippet.title;
 	const viewCount = Number(props.video.statistics.viewCount).toLocaleString();
 	const likeCount = Number(props.video.statistics.likeCount);
 	const dislikeCount = Number(props.video.statistics.dislikeCount);
-	const saveText = saved ? "SAVED" : "SAVE";
-	const highlightSaved = saved ? " highlight" : "";
+	const saveText = isSaved() ? "SAVED" : "SAVE";
+	const highlightSaved = isSaved() ? " highlight" : "";
 
 	return (
 		<div className="video-metadata">
@@ -45,7 +39,6 @@ const VideoMetadata = props => {
 						labelPosition="left"
 						onClick={() => {
 							props.saveVideo(videoId);
-							setSaved(isSaved());
 						}}>
 						<Icon name="add circle" className={"save" + highlightSaved} />
 						<span className={highlightSaved}>{saveText}</span>

@@ -1,12 +1,28 @@
-@import './styles/shared.scss';
+@import "./styles/shared.scss";
+
 .app-layout {
-   margin-top: $header-nav-height;
-   margin-left: $sidebar-left-width;
-   transition: $responsive-layout-trans; 
-   ::-webkit-scrollbar {
-      width: 6px;
-   }
-   @media (max-width: $window-small) {
-      margin-left: 0px;
-   }
+	margin-top: $header-nav-height;
+	margin-left: $sidebar-left-width;
+	transition: $responsive-layout-trans;
+	z-index: 1;
+
+   // TODO - Overlay effect
+	// &:after {
+	// 	content: "";
+	// 	display: block;
+	// 	position: fixed;
+	// 	top: 0;
+	// 	left: 0;
+	// 	bottom: 0;
+	// 	right: 0;
+	// 	background: rgba(0, 0, 0, 0.8);
+	// }
+
+	::-webkit-scrollbar {
+		width: 6px;
+	}
+
+	@media (max-width: $window-small) {
+		margin-left: 0px;
+	}
 }

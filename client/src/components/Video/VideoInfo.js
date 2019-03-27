@@ -9,8 +9,7 @@ import { getAbbrevNumber } from "../../utils/format-number";
 
 const VideoInfo = props => {
 	const [collapsed, toggleCollapse] = useState(true);
-	const channel = props.channel;
-	const video = props.video;
+	const { channel, video, subscribe } = props;
 
 	if (!video) return <div />;
 
@@ -38,7 +37,10 @@ const VideoInfo = props => {
 					Published on {publishDate}
 				</div>
 			</div>
-			<Button className="subscribe-button" color="youtube">
+			<Button
+				className="subscribe-button"
+				color="youtube"
+				onClick={() => subscribe(channelId, channelTitle, channelIcon)}>
 				SUBSCRIBE {subCount}
 			</Button>
 			<div className="video-description">

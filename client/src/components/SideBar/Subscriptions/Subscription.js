@@ -1,25 +1,20 @@
 import React from "react";
-import { Menu, Icon, Image } from "semantic-ui-react";
+import { Menu, Image } from "semantic-ui-react";
 
-import './Subscription.scss';
+import "./Subscription.scss";
 
+// TODO - Update Subscription code to actually pull activity (broadcasting, new vids, etc) and update SideBar with data
+// TODO - Fix styling
 const Subscription = props => {
-	let rightElement = null;
-	if (props.broadcasting) {
-		rightElement = <Icon name="signal" />;
-	} else if (props.amountNewVideos) {
-		rightElement = <span className="new-videos-count">{props.amountNewVideos}</span>;
-	}
-
+	const channelUrl = `https://www.youtube.com/user/${props.id}`;
 	return (
 		<Menu.Item>
-			<div className="subscription">
+			<a className="subscription" href={channelUrl} target="_blank">
 				<div>
-					<Image src="http://via.placeholder.com/28x28" avatar />
+					<Image src={props.icon} avatar />
 					<span>{props.label}</span>
 				</div>
-				{rightElement}
-			</div>
+			</a>
 		</Menu.Item>
 	);
 };
