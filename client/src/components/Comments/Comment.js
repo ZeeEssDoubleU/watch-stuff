@@ -27,7 +27,9 @@ const Comment = props => {
 				<Image className="user-image" src={commentIcon} circular />
 			</a>
 			<div className="comment-items">
-				<div className="user-name">{commentAuthor}</div>
+				<a className="user-name" href={commentAuthorUrl} target="_blank">
+					{commentAuthor}
+				</a>
 				<div className="comment-date">{commentDate}</div>
 				<div className="comment-body">
 					<div className={commentVisibility}>{commentText}</div>

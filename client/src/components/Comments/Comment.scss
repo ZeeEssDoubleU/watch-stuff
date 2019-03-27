@@ -1,50 +1,63 @@
 @import "../../styles/shared.scss";
+
 .comment-container {
-   display: flex;
-   margin-bottom: 16px;
-   .user-image {
-      width: $avatar-diameter;
-      height: $avatar-diameter;
-      margin-right: $avatar-margin;
+	display: flex;
+	margin-bottom: 16px;
+
+	.user-image {
+		width: $avatar-diameter;
+		height: $avatar-diameter;
+		margin-right: $avatar-margin;
       flex-shrink: 0;
-   }
-   .user-name {
-      display: inline-block;
-      font-weight: 600;
-      margin-bottom: 8px;
-   }
-   .comment-date {
-      display: inline-block;
-      margin-bottom: 8px;
-      margin-left: 8px;
-   }
-   .comment-body {
-      margin-bottom: 12px;
-      &>.ui.button {
-         padding-left: 0;
-         padding-right: 0;
-         background: none;
-      }
-      p {
-         line-height: 2rem;
-         margin-bottom: 0;
-         white-space: pre-line;
-      }
-      .collapsed {
-         max-height: 4rem;
-         overflow-y: hidden;
-      }
-      .expanded {
-         max-height: none;
-      }
-   }
-   .comment-actions {
-      display: flex;
-      align-items: center;
+	}
+
+	.user-name {
+		display: inline-block;
+		font-weight: 600;
+		margin-bottom: 8px;
+		color: $text-color-dark;
+		@include hover-red;
+	}
+
+	.comment-date {
+		display: inline-block;
+		margin-bottom: 8px;
+		margin-left: 8px;
+	}
+
+	.comment-body {
+		margin-bottom: 12px;
+
+		& > .ui.button {
+			padding-left: 0;
+			padding-right: 0;
+			background: none;
+		}
+
+		p {
+			line-height: 2rem;
+			margin-bottom: 0;
+			white-space: pre-line;
+		}
+
+		.collapsed {
+			max-height: 4rem;
+			overflow-y: hidden;
+		}
+
+		.expanded {
+			max-height: none;
+		}
+	}
+
+	.comment-actions {
+		display: flex;
+		align-items: center;
 		width: max-content;
-      button {
-         margin-left: 8px;
-         background: none;
-      }
-   }
+
+		button {
+			margin-left: 8px;
+			background: none;
+		}
+	}
 }

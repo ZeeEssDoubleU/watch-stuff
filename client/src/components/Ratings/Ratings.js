@@ -41,7 +41,7 @@ const Ratings = props => {
 	const highlightDisliked = isDisliked() ? " highlight" : "";
 	const commentClass = isComment ? " comment" : "";
 
-	// TODO - Adjust to actually update likes/dislikes in global comment/video state 
+	// TODO - Adjust to actually update likes/dislikes in global comment/video state
 	// variables to display likes/dislikes below
 	const likes = props.likes
 		? getAbbrevNumber(isLiked() ? props.likes + 1 : props.likes)
@@ -57,7 +57,7 @@ const Ratings = props => {
 			className="ratings-bar"
 			percent={percentLikes}
 			size="tiny"
-			color={isLiked() ? "red" : null}
+			color={isLiked() || isDisliked() ? "red" : null}
 		/>
 	) : null;
 

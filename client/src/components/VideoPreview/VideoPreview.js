@@ -11,7 +11,10 @@ import {
 } from "../../utils/format-time";
 
 const VideoPreview = props => {
-	const video = props.video;
+	const { video } = props;
+	const { description, title, channelId, channelTitle } = video.snippet;
+	const channelUrl = `https://www.youtube.com/channel/${channelId}`;
+	const thumbnail = video.snippet.thumbnails.medium.url;
 	if (!video) return <div />;
 
 	const formattedDuration = video => {
@@ -37,33 +40,43 @@ const VideoPreview = props => {
 
 	const horizontal = props.horizontal ? " horizontal" : "";
 	const expanded = props.expanded ? " expanded" : "";
-	const description = props.expanded ? video.snippet.description : null;
+	const previewDesc = props.expanded ? description : null;
 
 	return (
-		<Link to={`/watch/${video.id}`}>
-			<div className={"video-preview" + horizontal + expanded}>
+		<div className={"video-preview" + horizontal + expanded}>
+			<Link to={`/watch/${video.id}`}>
 				<div className="image-container">
-					<Image src={video.snippet.thumbnails.medium.url} />
+					<Image src={thumbnail} />
 					<div className="time-label">
 						<span>{formattedDuration(video)}</span>
 					</div>
 				</div>
-				<div className="preview-info">
-					<div className={"semi-bold show-max-two-lines" + expanded}>
-						{video.snippet.title}
+			</Link>
+			<div className="preview-info">
+				<Link to={`/watch/${video.id}`}>
+					<div
+						className={
+							"video-title semi-bold show-max-two-lines" + expanded
+						}>
+						{title}
 					</div>
-					<div className="preview-metadata-container">
-						<div className="channel-title semi-bold show-max-two-lines">
-							{video.snippet.channelTitle}
-						</div>
-						<div className="view-and-time">
-							<span>{formattedViewAndTime(video)}</span>
-						</div>
-						<div className="show-max-two-lines preview-description">{description}</div>
+				</Link>
+				<div className="preview-metadata-container">
+					<a
+						className="channel-title semi-bold show-max-two-lines"
+						href={channelUrl}
+						target="_blank">
+						{channelTitle}
+					</a>
+					<div className="view-and-time">
+						<span>{formattedViewAndTime(video)}</span>
+					</div>
+					<div className="show-max-two-lines preview-description">
+						{previewDesc}
 					</div>
 				</div>
 			</div>
-		</Link>
+		</div>
 	);
 };
 

@@ -14,26 +14,26 @@ const VideoInfo = props => {
 
 	if (!video) return <div />;
 
-	const channelIcon =
-		"https://yt3.ggpht.com/a-/AAuE7mAWpJP0ftMStYJD1f_tGS-RlvHU2rk7zcxRbg=s240-mo-c-c0xffffffff-rj-k-no";
-	const channelName = channel
-		? channel.snippet.title
-		: video.snippet.channelTitle;
-	const publishDate = getFormattedDate(video.snippet.publishedAt);
-	const description = video.snippet.description;
+	const { channelId, channelTitle, publishedAt, description } = video.snippet;
+
+	const publishDate = getFormattedDate(publishedAt);
+	const channelUrl = channel
+		? `https://www.youtube.com/channel/${channelId}`
+		: null;
+	const channelIcon = channel ? channel.snippet.thumbnails.medium.url : null;
 	const subCount = channel
 		? getAbbrevNumber(channel.statistics.subscriberCount)
 		: null;
 
 	return (
 		<div className="video-info-container">
-			<Image
-				className="channel-image"
-				src={channelIcon}
-				circular
-			/>
+			<a href={channelUrl} target="_blank">
+				<Image className="channel-image" src={channelIcon} circular />
+			</a>
 			<div className="video-info">
-				<div className="channel-name">{channelName}</div>
+				<a className="channel-name" href={channelUrl} target="_blank">
+					{channelTitle}
+				</a>
 				<div className="videopublication-date">
 					Published on {publishDate}
 				</div>

@@ -1,20 +1,20 @@
 @import "../../styles/shared.scss";
+
 .ui.menu.fixed.side-nav {
 	background: #f5f5f5;
 	margin-top: $header-nav-height;
 	padding-bottom: $header-nav-height;
-   width: $sidebar-left-width;
+	width: $sidebar-left-width;
 	overflow-y: auto;
 	transform: translateX(0px);
 	transition: $sidebar-trans;
+
 	.item {
-		transition: all 0.2s;
+		@include hover-red-background;
+		@include hover-110x;
 	}
-	.item:hover {
-		background: $hover-red;
-		transform: scale(1.1);
-	}
+
 	@media (max-width: $window-small) {
-      transform: translateX(-240px);
-   }
+		transform: translateX(-240px);
+	}
 }

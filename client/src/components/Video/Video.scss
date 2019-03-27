@@ -1,12 +1,14 @@
 .video-container {
 	position: relative;
-	padding-top: 9/16 * 100%;
-   border: 1px solid black;
-   border-radius: 10px;
-   overflow: hidden;
-   iframe {
+	padding-top: 9/16 * 100%; // padding (as % of element width) determines height of element
+	border: 1px solid black;
+	border-radius: 10px;
+	overflow: hidden;
+
+	iframe {
       transform: scale(1.01);
-   }
+      height: 100%;
+	}
 }
 
 .video-player {

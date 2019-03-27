@@ -21,7 +21,7 @@ const VideoMetadata = props => {
 	const likeCount = Number(props.video.statistics.likeCount);
 	const dislikeCount = Number(props.video.statistics.dislikeCount);
 	const saveText = saved ? "SAVED" : "SAVE";
-	const saveClass = saved ? "saved" : "";
+	const highlightSaved = saved ? " highlight" : "";
 
 	return (
 		<div className="video-metadata">
@@ -36,7 +36,7 @@ const VideoMetadata = props => {
 						videoId={videoId}
 						ratingsBar={true}
 					/>
-					<Button className="button-share" basic labelPosition="left">
+					<Button className="share" basic labelPosition="left">
 						<Icon name="share" />
 						<span>SHARE</span>
 					</Button>
@@ -47,8 +47,8 @@ const VideoMetadata = props => {
 							props.saveVideo(videoId);
 							setSaved(isSaved());
 						}}>
-						<Icon name="add circle" className={saveClass} />
-						<span className={saveClass}>{saveText}</span>
+						<Icon name="add circle" className={"save" + highlightSaved} />
+						<span className={highlightSaved}>{saveText}</span>
 					</Button>
 					<Button basic className="ellipsis">
 						<Icon name="ellipsis horizontal" />

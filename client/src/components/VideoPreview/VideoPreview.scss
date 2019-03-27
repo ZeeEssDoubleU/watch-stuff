@@ -1,112 +1,114 @@
 @import "../../styles/shared.scss";
 
 .video-preview {
-   display: grid;
-   grid-template-rows: $thumb-height-v auto;
-   grid-template-columns: $item-width-v;
+	display: grid;
+	grid-template-rows: $thumb-height-v auto;
+	grid-template-columns: $item-width-v;
 
-   .image-container {
-      position: relative;
-      grid-row: 1 / 2;
-      grid-column: 1 / 2;
-      border: 1px solid;
-      border-color: black;
-      border-radius: 5px;
-      overflow: hidden;
-      transition: border-color 0.2s;
+	.image-container {
+		position: relative;
+		grid-row: 1 / 2;
+		grid-column: 1 / 2;
+		border: 1px solid;
+		border-color: black;
+		border-radius: 5px;
+		overflow: hidden;
+		transition: border-color 0.2s;
 
-      img {
-         transform: scale(1.02);
-         transition: transform 0.6s;
-      }
+		img {
+			transform: scale(1.02);
+			transition: transform 0.6s;
+		}
 
-      .time-label {
-         position: absolute;
-         background: $text-color-dark;
-         bottom: 0;
-         right: 0;
-         opacity: 0.8;
-         margin: 6px 8px;
-         padding: 4px;
-         color: white;
-         line-height: 12px;
-         font-size: 10px;
-         font-weight: 400;
-         border-radius: 5px;
-         transition: color 0.2s;
-      }
-   }
+		.time-label {
+			position: absolute;
+			background: $text-color-dark;
+			bottom: 0;
+			right: 0;
+			opacity: 0.8;
+			margin: 6px 8px;
+			padding: 4px;
+			color: white;
+			line-height: 12px;
+			font-size: 10px;
+			font-weight: 400;
+			border-radius: 5px;
+			transition: color 0.2s;
+		}
+	}
 
-   .preview-info {
-      color: $text-color-dark;
-      grid-row: 2 / 3;
-      grid-column: 1 / 2;
-      padding-top: 5px;
-      transition: color 0.2s;
+	.preview-info {
+		grid-row: 2 / 3;
+		grid-column: 1 / 2;
+		padding-top: 5px;
 
-      .preview-metadata-container {
-         padding-top: 5px;
-         font-size: 13px;
-         color: #6e6e6e;
+		.video-title {
+			color: $text-color-dark;
+			transition: color 0.2s;
+		}
 
-         .channel-title {
-            margin-bottom: 3px;
-         }
-      }
+		.preview-metadata-container {
+			padding-top: 5px;
+			font-size: 13px;
+			color: #6e6e6e;
 
-      .show-max-two-lines {
-         overflow: hidden;
-         text-overflow: ellipsis;
-         line-height: 1.4em;
-         max-height: 2.8em;
-      }
+			.channel-title {
+				margin-bottom: 3px;
+				color: #6e6e6e;
+				@include hover-dark;
+			}
+		}
 
-      .semi-bold {
-         font-weight: 600;
+		.show-max-two-lines {
+			overflow: hidden;
+			text-overflow: ellipsis;
+			line-height: 1.4em;
+			max-height: 2.8em;
+		}
 
-         &.expanded {
-            font-weight: 400;
-            font-size: 1.3rem;
-         }
-      }
-   }
+		.semi-bold {
+			font-weight: 600;
 
-   &.horizontal {
-      grid-template-rows: $thumb-height-h;
-      grid-template-columns: $item-width-h auto;
-      grid-column-gap: 4px;
-      margin-bottom: 10px;
+			&.expanded {
+				font-weight: 400;
+				font-size: 1.3rem;
+			}
+		}
+	}
 
-      .preview-info {
-         grid-row: 1 / 2;
-         grid-column: 2 / 3;
+	&.horizontal {
+		grid-template-rows: $thumb-height-h;
+		grid-template-columns: $item-width-h auto;
+		grid-column-gap: 4px;
+		margin-bottom: 10px;
 
-         .preview-description {
-            margin-top: 10px;
-         }
-      }
+		.preview-info {
+			grid-row: 1 / 2;
+			grid-column: 2 / 3;
 
-      &.expanded {
-         grid-template-rows: 140px;
-         grid-template-columns: $item-width-h-ex auto;
-      }
-   }
+			.preview-description {
+				margin-top: 10px;
+			}
+		}
 
-   &:hover {
-      .image-container {
-         border-color: red;
+		&.expanded {
+			grid-template-rows: 140px;
+			grid-template-columns: $item-width-h-ex auto;
+		}
+	}
 
-         img {
-            transform: scale(1.1);
-         }
+	&:hover {
+		.image-container {
+			border-color: red;
 
-         .time-label {
-            color: red;
-         }
-      }
+			img {
+				transform: scale(1.1);
+			}
+		}
 
-      .preview-info {
-         color: red;
-      }
-   }
+		.time-label,
+		.video-title {
+			color: red;
+		}
+	}
 }

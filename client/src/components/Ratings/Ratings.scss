@@ -1,27 +1,40 @@
+@import '../../styles/shared.scss';
+
 .ratings {
-	display: flex;
-	position: relative;
-	justify-content: space-around;
-	width: 150px;
+   display: flex;
+   position: relative;
+   justify-content: space-around;
+   width: 150px;
 
-	.thumbs-up,
-	.thumbs-down {
-		cursor: pointer;
+   .thumbs-up,
+   .thumbs-down {
+      cursor: pointer;
 
-		&.highlight {
-			color: red;
-		}
-	}
+      .icon {
+         transition: transform 0.2s;
+      }
 
-	.ratings-bar {
-		position: absolute;
-		width: 150px;
-		left: 0;
+      &:hover {
+         .icon {
+            transform: scale(1.2);
+         }
+      }
+
+      &.highlight {
+         color: red;
+      }
+
+   }
+
+   .ratings-bar {
+      position: absolute;
+      width: 150px;
+      left: 0;
       top: 25px;
-	}
+   }
 
-	&.comment {
-		justify-content: space-between;
-		width: 75px;
-	}
+   &.comment {
+      justify-content: space-between;
+      width: 75px;
+   }
 }
