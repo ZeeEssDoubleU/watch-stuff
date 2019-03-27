@@ -1,47 +1,38 @@
-@import '../../styles/shared.scss';
+@import "../../styles/shared.scss";
 .video-metadata {
-   color: #707070;
-   font-size: 16px;
-   h3 {
-      font-weight: 400;
-      color: $text-color-dark;
-   }
-   .video-stats {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-      align-items: center;
-      .video-actions {
-         display: flex;
-         position: relative;
-         align-items: center;
-         .ratings {
-            width: 150px;
-         }
-         .ratings-bar {
-            position: absolute;
-            width: 150px;
-            left: 0;
-            top: 25px;
-         }
-         .button {
-            height: 30px;
-            span {
-               margin-left: 5px;
-            }
-            .saved {
-               color: red;
-            }
-         }
-         .ellipsis {
-            padding: 0 5px;
-            border: none;
-            box-shadow: none;
-         }
-         &>* {
-            margin-left: 20px;
-            margin-right: 0;
-         }
-      }
-   }
+	color: #707070;
+	font-size: 16px;
+	h3 {
+		font-weight: 400;
+		color: $text-color-dark;
+	}
+	.video-stats {
+		display: flex;
+		justify-content: space-between;
+		width: 100%;
+		align-items: center;
+		.video-actions {
+			display: flex;
+			align-items: center;
+			
+			.button {
+				height: 30px;
+				span {
+					margin-left: 5px;
+				}
+				.saved {
+					color: red;
+				}
+			}
+			.ellipsis {
+				padding: 0 5px;
+				border: none;
+				box-shadow: none;
+			}
+			& > * {
+				margin-left: 20px;
+				margin-right: 0;
+			}
+		}
+	}
 }

@@ -15,7 +15,7 @@ const SideBar = props => (
 		<Divider />
 		<SideBarHeader title="Library" />
 		<SideBarItem path="/feed/history" label="History" icon="history" />
-		<SideBarItem path="/feed/watch-later" label="Watch later" icon="clock" />
+		<SideBarItem path="/feed/saved" label="Watch later" icon="clock" />
 		<SideBarItem path="/feed/liked" label="Liked videos" icon="thumbs up" />
 		<Divider />
 		<Subscriptions />

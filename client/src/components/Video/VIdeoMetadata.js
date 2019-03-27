@@ -3,17 +3,17 @@ import { Button, Divider, Icon } from "semantic-ui-react";
 
 import "./VideoMetadata.scss";
 import Ratings from "../Ratings/Ratings";
-import RatingsBar from "../Ratings/RatingsBar";
 
 const VideoMetadata = props => {
 	if (!props.video) return <div />;
 
 	const videoId = props.video.id;
 	const { pathname } = props;
-	const [saved, setSaved] = useState(props.savedVidCache[videoId]);
+	const [saved, setSaved] = useState(props.isSaved[videoId]);
+	// effect updates local saved state (style) when url changes
 	useEffect(() => {
-		setSaved(props.savedVidCache[videoId]);
-	}, [pathname, saved]);
+		setSaved(props.isSaved[videoId]);
+	}, [pathname]);
 
 	const title = props.video.snippet.title;
 	const viewCount = Number(props.video.statistics.viewCount).toLocaleString();
@@ -31,8 +31,8 @@ const VideoMetadata = props => {
 						dislikes={dislikeCount}
 						isVideo={true}
 						videoId={videoId}
+						ratingsBar={true}
 					/>
-					<RatingsBar likes={likeCount} dislikes={dislikeCount} />
 					<Button className="button-share" basic labelPosition="left">
 						<Icon name="share" />
 						<span>SHARE</span>
@@ -42,7 +42,7 @@ const VideoMetadata = props => {
 						labelPosition="left"
 						onClick={() => {
 							props.saveVideo(videoId);
-							setSaved(props.savedVidCache[videoId]);
+							setSaved(props.isSaved[videoId]);
 						}}>
 						<Icon name="add circle" className={saved ? "saved" : ""} />
 						<span className={saved ? "saved" : ""}>

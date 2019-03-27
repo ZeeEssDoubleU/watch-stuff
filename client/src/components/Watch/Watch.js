@@ -44,7 +44,7 @@ const Watch = props => {
 				className="video-metadata"
 				video={props.video}
 				saveVideo={props.saveVideo}
-				savedVidCache={props.savedVidCache}
+				isSaved={props.isSaved}
 				pathname={pathname}
 			/>
 			<VideoInfo
@@ -78,7 +78,7 @@ const mapStateToProps = (state, props) => ({
 	comments: selector_commentsByVideo(state, props.match.params.videoId),
 	commentsCount: selector_commentsCount(state, props.match.params.videoId),
 	commentsNPT: selector_commentsNPT(state, props.match.params.videoId),
-	savedVidCache: selector_savedVideoIdsCache(state),
+	isSaved: selector_savedVideoIdsCache(state),
 });
 
 const actionCreators = {

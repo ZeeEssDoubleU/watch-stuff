@@ -10,12 +10,12 @@ const initialState = {
 		order: [],
 		cache: {},
 	},
-	likes: {
+	liked: {
 		comments: [],
 		videos: [],
 		cache: {},
 	},
-	dislikes: {
+	disliked: {
 		comments: [],
 		videos: [],
 		cache: {},
@@ -104,15 +104,15 @@ const reducer_watchLater = (payload, state) => {
 const reducer_vote = (payload, state) => {
 	const { vote, category, id } = payload;
 	const timestamp = Date.now();
-	const likes = {
-		comments: state.likes.comments || [],
-		videos: state.likes.videos || [],
-		cache: state.likes.cache || {},
+	const liked = {
+		comments: state.liked.comments || [],
+		videos: state.liked.videos || [],
+		cache: state.liked.cache || {},
 	};
-	const dislikes = {
-		comments: state.dislikes.comments || [],
-		videos: state.dislikes.videos || [],
-		cache: state.dislikes.cache || {},
+	const disliked = {
+		comments: state.disliked.comments || [],
+		videos: state.disliked.videos || [],
+		cache: state.disliked.cache || {},
 	};
 
 	const item = {
@@ -127,30 +127,30 @@ const reducer_vote = (payload, state) => {
 		// comment like button
 		if (category === "comment") {
 			// if already liked or disliked, remove from respective comments
-			likes.cache[item.id]
-				? likes.comments.pop(likes.comments.indexOf(item.id))
-				: likes.comments.unshift(item);
-			if (dislikes.cache[item.id]) {
-				dislikes.comments.pop(dislikes.comments.indexOf(item.id));
+			liked.cache[item.id]
+				? liked.comments.pop(liked.comments.indexOf(item.id))
+				: liked.comments.unshift(item);
+			if (disliked.cache[item.id]) {
+				disliked.comments.pop(disliked.comments.indexOf(item.id));
 			}
 		}
 		// video like button
 		if (category === "video") {
 			// if already liked or disliked, remove from respective videos
-			likes.cache[item.id]
-				? likes.videos.pop(likes.videos.indexOf(item.id))
-				: likes.videos.unshift(item);
-			if (dislikes.cache[item.id]) {
-				dislikes.videos.pop(dislikes.videos.indexOf(item.id));
+			liked.cache[item.id]
+				? liked.videos.pop(liked.videos.indexOf(item.id))
+				: liked.videos.unshift(item);
+			if (disliked.cache[item.id]) {
+				disliked.videos.pop(disliked.videos.indexOf(item.id));
 			}
 		}
-		// cache stores all likes
+		// cache stores all liked
 		// if already liked or disliked, delete from respective cache
-		likes.cache[item.id]
-			? delete likes.cache[item.id]
-			: (likes.cache[item.id] = item);
-		if (dislikes.cache[item.id]) {
-			delete dislikes.cache[item.id];
+		liked.cache[item.id]
+			? delete liked.cache[item.id]
+			: (liked.cache[item.id] = item);
+		if (disliked.cache[item.id]) {
+			delete disliked.cache[item.id];
 		}
 	}
 
@@ -159,37 +159,37 @@ const reducer_vote = (payload, state) => {
 		// comment dislike button
 		if (category === "comment") {
 			// if already disliked or liked, remove from respective comments
-			dislikes.cache[item.id]
-				? dislikes.comments.pop(dislikes.comments.indexOf(item.id))
-				: dislikes.comments.unshift(item);
-			if (likes.cache[item.id]) {
-				likes.comments.pop(likes.comments.indexOf(item.id));
+			disliked.cache[item.id]
+				? disliked.comments.pop(disliked.comments.indexOf(item.id))
+				: disliked.comments.unshift(item);
+			if (liked.cache[item.id]) {
+				liked.comments.pop(liked.comments.indexOf(item.id));
 			}
 		}
 		// video dislike button
 		if (category === "video") {
 			// if already disliked or liked, remove from respective videos
-			dislikes.cache[item.id]
-				? dislikes.videos.pop(dislikes.videos.indexOf(item.id))
-				: dislikes.videos.unshift(item);
-			if (likes.cache[item.id]) {
-				likes.videos.pop(likes.videos.indexOf(item.id));
+			disliked.cache[item.id]
+				? disliked.videos.pop(disliked.videos.indexOf(item.id))
+				: disliked.videos.unshift(item);
+			if (liked.cache[item.id]) {
+				liked.videos.pop(liked.videos.indexOf(item.id));
 			}
 		}
-		// cache stores all dislikes
+		// cache stores all disliked
 		// if already disliked or liked, delete from respective cache
-		dislikes.cache[item.id]
-			? delete dislikes.cache[item.id]
-			: (dislikes.cache[item.id] = item);
-		if (likes.cache[item.id]) {
-			delete likes.cache[item.id];
+		disliked.cache[item.id]
+			? delete disliked.cache[item.id]
+			: (disliked.cache[item.id] = item);
+		if (liked.cache[item.id]) {
+			delete liked.cache[item.id];
 		}
 	}
 
 	return {
 		...state,
-		likes,
-		dislikes,
+		liked,
+		disliked,
 	};
 };
 
@@ -219,4 +219,20 @@ export const selector_savedVideos = createSelector(
 export const selector_savedVideoIdsCache = createSelector(
 	state => state.user.saved,
 	saved => (saved ? saved.cache : {}),
+);
+
+export const selector_likedVideos = createSelector(
+	state => state.user.liked.videos,
+	state => state.videos.byId,
+	(likedVids, videos) =>
+		likedVids ? likedVids.map(item => videos[item.id]) : null,
+);
+
+export const selector_likedIdsCache = createSelector(
+	state => state.user.liked,
+	liked => (liked ? liked.cache : {}),
+);
+export const selector_dislikedIdsCache = createSelector(
+	state => state.user.disliked,
+	disliked => (disliked ? disliked.cache : {}),
 );

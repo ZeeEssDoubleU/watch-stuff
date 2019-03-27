@@ -1,19 +1,30 @@
 .ratings {
    display: flex;
+   position: relative;
    justify-content: space-around;
+   width: 150px;
+
    .thumbs-up,
    .thumbs-down {
       cursor: pointer;
    }
-}
 
-.comment-ratings {
-   display: flex;
-   justify-content: space-between;
-   width: 75px;
-   height: max-content;
-   .thumbs-up,
-   .thumbs-down {
-      cursor: pointer;
+   .ratings-bar {
+      position: absolute;
+      width: 150px;
+      left: 0;
+      top: 25px;
+   }
+
+   &-comment {
+      display: flex;
+      justify-content: space-between;
+      width: 75px;
+      height: max-content;
+
+      .thumbs-up,
+      .thumbs-down {
+         cursor: pointer;
+      }
    }
 }
