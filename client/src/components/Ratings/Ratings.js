@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
+import { withRouter } from "react-router-dom";
 import { Icon, Progress } from "semantic-ui-react";
 // import styles
 import "./Ratings.scss";
@@ -13,44 +14,85 @@ import {
 } from "../../store/reducers/user";
 
 const Ratings = props => {
-	const likes = props.likes ? getAbbrevNumber(props.likes) : null;
-	const dislikes = props.dislikes ? getAbbrevNumber(props.dislikes) : null;
+	const { isComment, commentId, isVideo, videoId, ratingsBar } = props || null;
+	const ratingsId = commentId || videoId;
 
-	const percentLikes = (props.likes / (props.likes + props.dislikes)) * 100;
-	const percentLikesBar = props.ratingsBar ? (
-		<Progress className="ratings-bar" percent={percentLikes} size="tiny" />
-	) : null;
-
-	const { isComment, commentId, isVideo, videoId } = props || null;
-	const commentClass = isComment ? "-comment" : "";
-
+	// functions that retrieve state of recorded vote
+	const isLiked = () => (props.likedCache[ratingsId] ? true : false);
+	const isDisliked = () => (props.dislikedCache[ratingsId] ? true : false);
+	const isVote = () => {
+		if (isLiked()) return "like";
+		else if (isDisliked()) return "dislike";
+		else return "";
+	};
+	// function determines how to submit votes based on ratings type (ie comment, video)
 	const handleVote = vote => {
-		if (isComment) props.vote(vote, "comment", commentId);
-		if (isVideo) props.vote(vote, "video", videoId);
+		if (isComment) props.submitVote(vote, "comment", commentId);
+		if (isVideo) props.submitVote(vote, "video", videoId);
 	};
 
+	const [vote, setVote] = useState(isVote());
+	// effect updates local vote state (style) when url changes
+	useEffect(() => {
+		setVote(isVote());
+	}, []);
+
+	// class (style) variables
+	const highlightLiked = isLiked() ? " highlight" : "";
+	const highlightDisliked = isDisliked() ? " highlight" : "";
+	const commentClass = isComment ? " comment" : "";
+
+	// variables to display likes/dislikes below
+	const likes = props.likes
+		? getAbbrevNumber(isLiked() ? props.likes + 1 : props.likes)
+		: getAbbrevNumber(isLiked() ? 1 : 0);
+	const dislikes = props.dislikes
+		? getAbbrevNumber(isDisliked() ? props.dislikes + 1 : props.dislikes)
+		: null;
+
+	// toggles visibility of ratings bar
+	const percentLikes = (props.likes / (props.likes + props.dislikes)) * 100;
+	const percentLikesBar = ratingsBar ? (
+		<Progress
+			className="ratings-bar"
+			percent={percentLikes}
+			size="tiny"
+			color={isLiked() ? "red" : null}
+		/>
+	) : null;
+
 	return (
-			<div className={"ratings" + commentClass}>
-				<div className="thumbs-up" onClick={() => handleVote("like")}>
-					<Icon name="thumbs outline up" />
-					<span>{likes}</span>
-				</div>
-				<div className="thumbs-down" onClick={() => handleVote("dislike")}>
-					<Icon name="thumbs outline down" />
-					<span>{dislikes}</span>
-				</div>
-				{percentLikesBar}
+		<div className={"ratings" + commentClass}>
+			<div
+				className={"thumbs-up" + highlightLiked}
+				onClick={() => {
+					handleVote("like");
+					setVote(isVote());
+				}}>
+				<Icon name="thumbs outline up" />
+				<span>{likes}</span>
 			</div>
+			<div
+				className={"thumbs-down" + highlightDisliked}
+				onClick={() => {
+					handleVote("dislike");
+					setVote(isVote());
+				}}>
+				<Icon name="thumbs outline down" />
+				<span>{dislikes}</span>
+			</div>
+			{percentLikesBar}
+		</div>
 	);
 };
 
 const mapStateToProps = state => ({
-	isLiked: selector_likedIdsCache(state),
-	isDisliked: selector_dislikedIdsCache(state),
+	likedCache: selector_likedIdsCache(state),
+	dislikedCache: selector_dislikedIdsCache(state),
 });
 
 const actionCreators = {
-	vote: userActions.action_vote,
+	submitVote: userActions.action_vote,
 };
 
 export default connect(

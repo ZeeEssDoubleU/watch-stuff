@@ -27,8 +27,8 @@ import {
 } from "../../store/reducers/comments";
 
 const Watch = props => {
-	const { videoId } = props.match.params;
 	const { pathname } = props.location;
+	const { videoId } = props.match.params;
 	useEffect(() => {
 		if (props.youtubeLibraryLoaded) {
 			props.fetchWatchDetails(videoId);
@@ -42,10 +42,10 @@ const Watch = props => {
 			<Video id={videoId} className="video-container" />
 			<VideoMetadata
 				className="video-metadata"
+				pathname={pathname}
 				video={props.video}
 				saveVideo={props.saveVideo}
-				isSaved={props.isSaved}
-				pathname={pathname}
+				savedVideos={props.savedVideos}
 			/>
 			<VideoInfo
 				className="video-info-container"
@@ -78,7 +78,7 @@ const mapStateToProps = (state, props) => ({
 	comments: selector_commentsByVideo(state, props.match.params.videoId),
 	commentsCount: selector_commentsCount(state, props.match.params.videoId),
 	commentsNPT: selector_commentsNPT(state, props.match.params.videoId),
-	isSaved: selector_savedVideoIdsCache(state),
+	savedVideos: selector_savedVideoIdsCache(state),
 });
 
 const actionCreators = {

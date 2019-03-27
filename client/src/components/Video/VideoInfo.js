@@ -14,6 +14,8 @@ const VideoInfo = props => {
 
 	if (!video) return <div />;
 
+	const channelIcon =
+		"https://yt3.ggpht.com/a-/AAuE7mAWpJP0ftMStYJD1f_tGS-RlvHU2rk7zcxRbg=s240-mo-c-c0xffffffff-rj-k-no";
 	const channelName = channel
 		? channel.snippet.title
 		: video.snippet.channelTitle;
@@ -22,8 +24,6 @@ const VideoInfo = props => {
 	const subCount = channel
 		? getAbbrevNumber(channel.statistics.subscriberCount)
 		: null;
-	const channelIcon =
-		"https://yt3.ggpht.com/a-/AAuE7mAWpJP0ftMStYJD1f_tGS-RlvHU2rk7zcxRbg=s240-mo-c-c0xffffffff-rj-k-no";
 
 	return (
 		<div className="video-info-container">

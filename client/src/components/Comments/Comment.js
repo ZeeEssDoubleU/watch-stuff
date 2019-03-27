@@ -9,10 +9,12 @@ import Ratings from "../Ratings/Ratings";
 const Comment = props => {
 	const [collapsed, toggleCollapse] = useState(true);
 
-	const comment = props.comment.snippet.topLevelComment.snippet;
 	const commentId = props.comment.id;
-	const commentText = <p className="comment-text">{comment.textOriginal}</p>;
+	const comment = props.comment.snippet.topLevelComment.snippet;
+	const commentIcon = comment.authorProfileImageUrl;
 	const commentAuthor = comment.authorDisplayName;
+	const commentAuthorUrl = comment.authorChannelUrl;
+	const commentText = <p className="comment-text">{comment.textOriginal}</p>;
 	const commentDate = getFormattedTimeAgo(comment.updatedAt);
 	const commentLikes = comment.likeCount;
 
@@ -20,12 +22,10 @@ const Comment = props => {
 	const buttonText = collapsed ? "Read more" : "Read less";
 
 	return (
-		<div className="comment">
-			<Image
-				className="user-image"
-				src="http://via.placeholder.com/48x48"
-				circular
-			/>
+		<div className="comment-container">
+			<a href={commentAuthorUrl} target="_blank">
+				<Image className="user-image" src={commentIcon} circular />
+			</a>
 			<div className="comment-items">
 				<div className="user-name">{commentAuthor}</div>
 				<div className="comment-date">{commentDate}</div>

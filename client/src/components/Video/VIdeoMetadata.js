@@ -7,18 +7,21 @@ import Ratings from "../Ratings/Ratings";
 const VideoMetadata = props => {
 	if (!props.video) return <div />;
 
-	const videoId = props.video.id;
 	const { pathname } = props;
-	const [saved, setSaved] = useState(props.isSaved[videoId]);
+	const videoId = props.video.id;
+	const isSaved = () => (props.savedVideos[videoId] ? true : false);
+	const [saved, setSaved] = useState(isSaved);
 	// effect updates local saved state (style) when url changes
 	useEffect(() => {
-		setSaved(props.isSaved[videoId]);
+		setSaved(isSaved());
 	}, [pathname]);
 
 	const title = props.video.snippet.title;
 	const viewCount = Number(props.video.statistics.viewCount).toLocaleString();
 	const likeCount = Number(props.video.statistics.likeCount);
 	const dislikeCount = Number(props.video.statistics.dislikeCount);
+	const saveText = saved ? "SAVED" : "SAVE";
+	const saveClass = saved ? "saved" : "";
 
 	return (
 		<div className="video-metadata">
@@ -42,12 +45,10 @@ const VideoMetadata = props => {
 						labelPosition="left"
 						onClick={() => {
 							props.saveVideo(videoId);
-							setSaved(props.isSaved[videoId]);
+							setSaved(isSaved());
 						}}>
-						<Icon name="add circle" className={saved ? "saved" : ""} />
-						<span className={saved ? "saved" : ""}>
-							{saved ? "SAVED" : "SAVE"}
-						</span>
+						<Icon name="add circle" className={saveClass} />
+						<span className={saveClass}>{saveText}</span>
 					</Button>
 					<Button basic className="ellipsis">
 						<Icon name="ellipsis horizontal" />
