@@ -14,7 +14,7 @@ import {
 	selector_commentsByVideo,
 } from "../../store/reducers/comments";
 
-// TODO - 1.5x when done testing
+// TODO - Reset scroll bottom to end at 1.5x window height when done testing
 const Comments = props => {
 	// initialize .comments elem state and variables to determine comments infinite scroll height
 	const [commentsHeight, setCommentsHeight] = useState(0);

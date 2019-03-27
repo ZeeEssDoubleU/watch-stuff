@@ -18,7 +18,7 @@ import { action_youtubeLibraryLoaded } from "./store/actions/user";
 // import api key
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 
-// TODO - find way to ref sideBar
+// TODO - Refactor SideBar to that ref can be assigned to it (like .app-layout)
 const App = props => {
 	const [sideBarVisible, toggleSideBar] = useState(true);
 	const [windowSmall, setWindowSmall] = useState(window.innerWidth < 918);

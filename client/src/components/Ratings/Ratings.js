@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
 import { Icon, Progress } from "semantic-ui-react";
 // import styles
 import "./Ratings.scss";
@@ -42,6 +41,7 @@ const Ratings = props => {
 	const highlightDisliked = isDisliked() ? " highlight" : "";
 	const commentClass = isComment ? " comment" : "";
 
+	// TODO - Adjust to actually update likes/dislikes in global comment/video state 
 	// variables to display likes/dislikes below
 	const likes = props.likes
 		? getAbbrevNumber(isLiked() ? props.likes + 1 : props.likes)
