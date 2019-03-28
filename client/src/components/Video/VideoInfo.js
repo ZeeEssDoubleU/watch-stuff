@@ -8,8 +8,8 @@ import { getFormattedDate } from "../../utils/format-time";
 import { getAbbrevNumber } from "../../utils/format-number";
 
 const VideoInfo = props => {
-	const [collapsed, toggleCollapse] = useState(true);
-	const { channel, video, subscribe } = props;
+	const [isCollapsed, toggleCollapse] = useState(true);
+	const { channel, video, subscribe, subscriptions } = props;
 
 	if (!video) return <div />;
 
@@ -20,8 +20,14 @@ const VideoInfo = props => {
 		? `https://www.youtube.com/channel/${channelId}`
 		: null;
 	const channelIcon = channel ? channel.snippet.thumbnails.medium.url : null;
+	const isSubbed = subscriptions[channelId] ? true : false;
+	// TODO - Refactor code so that subbing actually updates subCount
 	const subCount = channel
-		? getAbbrevNumber(channel.statistics.subscriberCount)
+		? getAbbrevNumber(
+				isSubbed
+					? Number(channel.statistics.subscriberCount) + 1
+					: Number(channel.statistics.subscriberCount),
+		  )
 		: null;
 
 	return (
@@ -41,17 +47,17 @@ const VideoInfo = props => {
 				className="subscribe-button"
 				color="youtube"
 				onClick={() => subscribe(channelId, channelTitle, channelIcon)}>
-				SUBSCRIBE {subCount}
+				{isSubbed ? "SUBSCRIBED" : "SUBSCRIBE"} {subCount}
 			</Button>
 			<div className="video-description">
-				<div className={collapsed ? "collapsed" : "expanded"}>
+				<div className={isCollapsed ? "collapsed" : "expanded"}>
 					<Linkify>{description}</Linkify>
 				</div>
 				<Button
 					className="show-more-button"
 					compact
-					onClick={() => toggleCollapse(!collapsed)}>
-					{collapsed ? "SHOW MORE" : "SHOW LESS"}
+					onClick={() => toggleCollapse(!isCollapsed)}>
+					{isCollapsed ? "SHOW MORE" : "SHOW LESS"}
 				</Button>
 			</div>
 		</div>

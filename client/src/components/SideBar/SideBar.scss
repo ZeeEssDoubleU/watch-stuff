@@ -10,7 +10,7 @@
 	transition: $sidebar-trans;
 
 	.item {
-		@include hover-red-background;
+		@include hover-background-light-red;
 		@include hover-110x;
 	}
 

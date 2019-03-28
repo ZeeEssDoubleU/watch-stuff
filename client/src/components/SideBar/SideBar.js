@@ -20,12 +20,17 @@ const SideBar = props => (
 		<Divider />
 		<Subscriptions />
 		<SideBarHeader title="More From Youtube" />
-		<SideBarItem label="Movies and Shows" icon="film" />
+		<SideBarItem
+			path="https://www.youtube.com/channel/UClgRkhTL3_hImCAmdLfDE4g"
+			label="Movies and Shows"
+			icon="film"
+		/>
 		<Divider />
-		<SideBarItem label="Settings" icon="setting" />
-		<SideBarItem label="Report history" icon="flag" />
-		<SideBarItem label="Help" icon="help circle" />
-		<SideBarItem label="Send feedback" icon="comment" />
+		{/* TODO - None of these bottom SideBarItems go anywhere useful */}
+		<SideBarItem path="/account" label="Settings" icon="setting" />
+		<SideBarItem path="/report-history" label="Report history" icon="flag" />
+		<SideBarItem path="/help" label="Help" icon="help circle" />
+		<SideBarItem path="/feedback" label="Send feedback" icon="comment" />
 		<Divider />
 		<SideBarFooter />
 	</Menu>

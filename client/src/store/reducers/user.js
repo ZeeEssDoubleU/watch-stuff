@@ -61,7 +61,7 @@ const reducer_watchHistory = (payload, state) => {
 	const { videoId } = payload;
 	const timestamp = Date.now();
 
-	console.log("PAYLOAD - WATCH HISTORY", payload);
+	// console.log("PAYLOAD - WATCH HISTORY", payload);
 
 	const item = {
 		videoId,
@@ -79,7 +79,7 @@ const reducer_saveVideo = (payload, state) => {
 	let newOrder = [...state.saved.order];
 	const newCache = { ...state.saved.cache };
 
-	console.log("PAYLOAD - WATCH LATER", payload);
+	// console.log("PAYLOAD - WATCH LATER", payload);
 
 	const item = {
 		videoId,
@@ -114,7 +114,7 @@ const reducer_subscribe = (payload, state) => {
 		channelIcon,
 	};
 
-	console.log("PAYLOAD - SUBSCRIBE", payload);
+	// console.log("PAYLOAD - SUBSCRIBE", payload);
 
 	newSubs[channelId] ? delete newSubs[channelId] : (newSubs[channelId] = item);
 
@@ -127,16 +127,8 @@ const reducer_subscribe = (payload, state) => {
 const reducer_vote = (payload, state) => {
 	const { vote, category, id } = payload;
 	const timestamp = Date.now();
-	const liked = {
-		comments: state.liked.comments || [],
-		videos: state.liked.videos || [],
-		cache: state.liked.cache || {},
-	};
-	const disliked = {
-		comments: state.disliked.comments || [],
-		videos: state.disliked.videos || [],
-		cache: state.disliked.cache || {},
-	};
+	const liked = { ...state.liked };
+	const disliked = { ...state.disliked };
 
 	const item = {
 		vote,
@@ -152,7 +144,8 @@ const reducer_vote = (payload, state) => {
 			// if already liked or disliked, remove from respective comments
 			liked.cache[item.id]
 				? liked.comments.pop(liked.comments.indexOf(item.id))
-				: liked.comments.unshift(item);
+				: // add to liked if not liked
+				  liked.comments.unshift(item);
 			if (disliked.cache[item.id]) {
 				disliked.comments.pop(disliked.comments.indexOf(item.id));
 			}
@@ -162,7 +155,8 @@ const reducer_vote = (payload, state) => {
 			// if already liked or disliked, remove from respective videos
 			liked.cache[item.id]
 				? liked.videos.pop(liked.videos.indexOf(item.id))
-				: liked.videos.unshift(item);
+				: // add to liked if not liked
+				  liked.videos.unshift(item);
 			if (disliked.cache[item.id]) {
 				disliked.videos.pop(disliked.videos.indexOf(item.id));
 			}
@@ -171,7 +165,8 @@ const reducer_vote = (payload, state) => {
 		// if already liked or disliked, delete from respective cache
 		liked.cache[item.id]
 			? delete liked.cache[item.id]
-			: (liked.cache[item.id] = item);
+			: // add to liked cache if not liked
+			  (liked.cache[item.id] = item);
 		if (disliked.cache[item.id]) {
 			delete disliked.cache[item.id];
 		}
@@ -184,7 +179,8 @@ const reducer_vote = (payload, state) => {
 			// if already disliked or liked, remove from respective comments
 			disliked.cache[item.id]
 				? disliked.comments.pop(disliked.comments.indexOf(item.id))
-				: disliked.comments.unshift(item);
+				: // add to disliked if not disliked
+				  disliked.comments.unshift(item);
 			if (liked.cache[item.id]) {
 				liked.comments.pop(liked.comments.indexOf(item.id));
 			}
@@ -194,7 +190,8 @@ const reducer_vote = (payload, state) => {
 			// if already disliked or liked, remove from respective videos
 			disliked.cache[item.id]
 				? disliked.videos.pop(disliked.videos.indexOf(item.id))
-				: disliked.videos.unshift(item);
+				: // add to disliked if not disliked
+				  disliked.videos.unshift(item);
 			if (liked.cache[item.id]) {
 				liked.videos.pop(liked.videos.indexOf(item.id));
 			}
@@ -203,7 +200,8 @@ const reducer_vote = (payload, state) => {
 		// if already disliked or liked, delete from respective cache
 		disliked.cache[item.id]
 			? delete disliked.cache[item.id]
-			: (disliked.cache[item.id] = item);
+			: // add to disliked cache if not disliked
+			  (disliked.cache[item.id] = item);
 		if (liked.cache[item.id]) {
 			delete liked.cache[item.id];
 		}

@@ -1,21 +1,20 @@
 import React from "react";
 import { Menu, Image } from "semantic-ui-react";
-
+// import styles
 import "./Subscription.scss";
 
-// TODO - Update Subscription code to actually pull activity (broadcasting, new vids, etc) and update SideBar with data
 // TODO - Fix styling
 const Subscription = props => {
-	const channelUrl = `https://www.youtube.com/user/${props.id}`;
+	const channelUrl = `https://www.youtube.com/channel/${props.id}`;
 	return (
-		<Menu.Item>
-			<a className="subscription" href={channelUrl} target="_blank">
-				<div>
+		<a className="sidebar-item" href={channelUrl} target="_blank">
+			<Menu.Item>
+				<div className="sidebar-item-alignment-container">
 					<Image src={props.icon} avatar />
 					<span>{props.label}</span>
 				</div>
-			</a>
-		</Menu.Item>
+			</Menu.Item>
+		</a>
 	);
 };
 

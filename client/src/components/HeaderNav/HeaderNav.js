@@ -45,6 +45,7 @@ const HeaderNav = props => {
 						</Form.Field>
 					</Form>
 				</Menu.Item>
+				{/* TODO - None of these icons do anything */}
 				<Menu.Item className="header-right">
 					<Menu.Item>
 						<Icon

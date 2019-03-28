@@ -142,7 +142,7 @@ const reducer_fetchWatchDetails = (payload, state) => {
 };
 
 // // reducers adds initial search video results to state.videos.byId
-// // another version exists in seartch.js
+// // another version exists in search.js
 // const reducer_fetchSearchVideos = (payload, state) => {
 // 	const videoMap = {};
 // 	payload.response.items.forEach(item => {

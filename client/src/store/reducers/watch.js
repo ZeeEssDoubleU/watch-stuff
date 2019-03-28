@@ -47,6 +47,8 @@ const reducer_fetchRelatedVideos = (payload, state) => {
 
 	// console.log("PAYLOAD - FETCH RELATED VIDEOS", payload);
 
+	// if related videos are being fetched for the same videoId, combine prevIds and newIds
+	// if related videos are being fetched for a different videoId, return newIds
 	const videoIds =
 		prevWatchId === newWatchId
 			? Array.from(new Set([...prevIds, ...newIds]))

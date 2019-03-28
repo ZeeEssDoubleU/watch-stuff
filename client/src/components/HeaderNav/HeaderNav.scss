@@ -1,77 +1,85 @@
 @import "../../styles/shared.scss";
 
 .ui.menu.top-menu {
-   border: none; // remove Semantic UI's bottom border
-   height: 64px;
-   background: #f5f5f5;
+	border: none; // remove Semantic UI's bottom border
+	height: 64px;
+	background: #f5f5f5;
 
-   .nav-container {
-      display: flex;
-      flex-grow: 1; // take available space in flex container
-      justify-content: space-between;
-      align-items: center;
+	.nav-container {
+		display: flex;
+		flex-grow: 1; // take available space in flex container
+		justify-content: space-between;
+		align-items: center;
 
-      .header-left {
-         // left header group
-         display: flex;
-         width: $sidebar-left-width + 60px;
+		.header-left {
+			// left header group
+			display: flex;
+			width: $sidebar-left-width + 60px;
 
-         i.icon {
-            margin-right: 15px;
-            color: $text-color-medium;
-            @include hover-120x;
-         }
+			i.icon {
+				margin-right: 15px;
+				color: $text-color-medium;
+				@include hover-120x;
+			}
 
-         a {
-            height: 24px;
+			a {
+				height: 24px;
 
-            img {
-               height: 24px;
-               @include hover-110x;
-            }
-         }
-      }
+				img {
+					height: 24px;
+					@include hover-110x;
+				}
+			}
+		}
 
-      // search form
-      .search-input {
-         flex-grow: 1;
-         max-width: 640px;
+		// search form
+		.search-input {
+			flex-grow: 1;
+			max-width: 640px;
 
-         form {
-            width: 100%;
+			form {
+				width: 100%;
 
-            input {
-               transition: box-shadow 0.2s;
+				input {
+					transition: border 0.2s;
 
-               &:focus {
-                  box-shadow: inset 0 0 20px -5px red;
-               }
-            }
+					& + button {
+						transition: border 0.2s;
+					}
 
-            button {
-               @include hover-red-background;
-            }
-         }
-      }
+					&:focus {
+						border: 1px solid $border-medium-red;
 
-      // right header group
-      .header-right {
-         width: $sidebar-left-width + 60px;
-         display: flex;
+						& + button {
+							border: 1px solid $border-medium-red;
+						}
+					}
+				}
 
-         .item {
-            padding: 0 15px;
-            @include hover-120x;
+				button {
+					@include hover-background-light-red;
+				}
+			}
+		}
 
-            &>* {
-               padding: 0;
-               margin: 0;
-            }
-         }
-      }
-   }
+		// right header group
+		.header-right {
+			width: $sidebar-left-width + 60px;
+			display: flex;
 
-   .header-icon {
-      color: $text-color-medium;
-   }
+			.item {
+				padding: 0 15px;
+				@include hover-120x;
+
+				& > * {
+					padding: 0;
+					margin: 0;
+				}
+			}
+		}
+	}
+
+	.header-icon {
+		color: $text-color-medium;
+	}
 }

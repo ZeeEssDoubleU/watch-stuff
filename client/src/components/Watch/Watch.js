@@ -13,6 +13,7 @@ import * as watchActions from "../../store/actions/watch";
 import {
 	selector_youtubeLibraryLoaded,
 	selector_savedVideoIdsCache,
+	selector_subscriptions,
 } from "../../store/reducers/user";
 import { selector_videoById } from "../../store/reducers/videos";
 import {
@@ -52,6 +53,7 @@ const Watch = props => {
 				video={props.video}
 				channel={props.channel}
 				subscribe={props.subscribe}
+				subscriptions={props.subscriptions}
 			/>
 			<Comments
 				className="comments-container"
@@ -80,6 +82,7 @@ const mapStateToProps = (state, props) => ({
 	commentsCount: selector_commentsCount(state, props.match.params.videoId),
 	commentsNPT: selector_commentsNPT(state, props.match.params.videoId),
 	savedVideos: selector_savedVideoIdsCache(state),
+	subscriptions: selector_subscriptions(state),
 });
 
 const actionCreators = {

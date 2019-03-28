@@ -1,14 +1,14 @@
-@import '../../../styles/shared.scss';
+@import "../../../styles/shared.scss";
 
-.subscription {
-   width: 100%;
-   display: flex;
-   justify-content: space-between;
-   align-items: center;
-   i.icon {
-      color: red;
-   }
-   .new-videos-count {
-      color: $grey;
-   }
+.sidebar-item {
+	.sidebar-item-alignment-container {
+		display: flex;
+		align-items: center;
+
+		.avatar {
+			margin-right: 20px;
+			width: 25px;
+			height: 25px;
+		}
+	}
 }
