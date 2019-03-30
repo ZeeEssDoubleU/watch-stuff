@@ -3,6 +3,7 @@ export const types = {
 	WATCH_DETAILS_REQUEST: "WATCH_DETAILS_REQUEST",
 	WATCH_DETAILS_SUCCESS: "WATCH_DETAILS_SUCCESS",
 	WATCH_DETAILS_FAILURE: "WATCH_DETAILS_FAILURE",
+	UPDATE_WATCH_HISTORY: "UPDATE_WATCH_HISTORY",
 	RELATED_VIDEOS_REQUEST: "RELATED_VIDEOS_REQUEST",
 	RELATED_VIDEOS_SUCCESS: "RELATED_VIDEOS_SUCCESS",
 	RELATED_VIDEOS_FAILURE: "RELATED_VIDEOS_FAILURE",
@@ -33,6 +34,11 @@ export const action_fetchWatchDetails = {
 		payload: response,
 	}),
 };
+
+export const action_updateWatchHistory = videoId => ({
+	type: types.UPDATE_WATCH_HISTORY,
+	payload: { videoId },
+});
 
 export const action_fetchRelatedVideos = {
 	request: (videoId, nextPageToken, amount) => ({

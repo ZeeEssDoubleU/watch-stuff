@@ -28,7 +28,7 @@ const initialState = {
 
 const reducer_user = (state = initialState, action) => {
 	switch (action.type) {
-		case watchActions.types.WATCH_DETAILS_REQUEST:
+		case watchActions.types.UPDATE_WATCH_HISTORY:
 			return reducer_watchHistory(action.payload, state);
 		case watchActions.types.SAVE_VIDEO:
 			return reducer_saveVideo(action.payload, state);
@@ -215,20 +215,37 @@ const reducer_vote = (payload, state) => {
 //***************
 // selectors
 //***************
-export const selector_watchHistory = createSelector(
+export const selector_watchHistoryIds = createSelector(
+	state => state.user.history,
+	history => history,
+);
+
+export const selector_watchHistoryLoaded = createSelector(
+	selector_watchHistoryIds,
+	state => state.videos.byId,
+	(history, videosById) => {
+		return !history || history.length === 0 || !videosById
+			? false
+			: history.every(item => item.id in videosById);
+	},
+);
+
+export const selector_watchHistoryVideos = createSelector(
 	state => state.user.history,
 	state => state.videos.byId,
 	(historyItems, videos) =>
-		historyItems ? historyItems.map(item => videos[item.videoId]) : null,
+		historyItems || historyItems.length > 0
+			? historyItems.map(item => videos[item.videoId])
+			: [],
 );
 
-export const selector_savedVideoIdsOrder = createSelector(
+export const selector_savedVideoIds = createSelector(
 	state => state.user.saved,
 	saved => (saved ? saved.order : null),
 );
 
 export const selector_savedVideosLoaded = createSelector(
-	selector_savedVideoIdsOrder,
+	selector_savedVideoIds,
 	state => state.videos.byId,
 	(savedItems, videosById) => {
 		return !savedItems || savedItems.length === 0 || !videosById

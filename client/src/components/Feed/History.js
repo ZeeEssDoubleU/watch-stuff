@@ -4,23 +4,37 @@ import { connect } from "react-redux";
 import VideoList from "../VideoList/VideoList";
 // import actions / reducers / sagas
 import * as watchActions from "../../store/actions/watch";
-import { selector_watchHistory } from "../../store/reducers/user";
+import {
+	selector_watchHistoryIds,
+	selector_watchHistoryLoaded,
+	selector_watchHistoryVideos,
+} from "../../store/reducers/user";
+import { selector_youtubeLibraryLoaded } from "../../store/reducers/session";
 
 const History = props => {
 	// effect checks all history items for detailed info and fetches missing info
 	useEffect(() => {
-		props.watchHistory.forEach(item => {
-			if (!item.contentDetails || !item.statistics) {
-				props.fetchWatchDetails(item.id);
-			}
-		});
-	}, []);
+		if (props.youtubeLibraryLoaded && props.watchHistoryLoaded) {
+			props.watchHistoryVideos.forEach(item => {
+				if (!item.contentDetails || !item.statistics) {
+					props.fetchWatchDetails(item.id);
+				}
+			});
+		} else if (props.youtubeLibraryLoaded && !props.watchHistoryLoaded) {
+			props.watchHistoryIds.forEach(item => {
+				props.fetchWatchDetails(item.videoId);
+			});
+		}
+	}, [props.youtubeLibraryLoaded]);
 
-	return <VideoList videos={props.watchHistory} />;
+	return <VideoList videos={props.watchHistoryVideos} />;
 };
 
 const mapStateToProps = state => ({
-	watchHistory: selector_watchHistory(state),
+	youtubeLibraryLoaded: selector_youtubeLibraryLoaded(state),
+	watchHistoryIds: selector_watchHistoryIds(state),
+	watchHistoryLoaded: selector_watchHistoryLoaded(state),
+	watchHistoryVideos: selector_watchHistoryVideos(state),
 });
 
 const actionCreators = {

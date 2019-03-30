@@ -33,6 +33,7 @@ const Watch = props => {
 	useEffect(() => {
 		if (props.youtubeLibraryLoaded) {
 			props.fetchWatchDetails(videoId);
+			props.updateWatchHistory(videoId);
 			props.fetchRelatedVideos(videoId, props.relatedNPT, 5);
 			props.fetchComments(videoId, props.commentsNPT, 5);
 		}
@@ -87,6 +88,7 @@ const mapStateToProps = (state, props) => ({
 
 const actionCreators = {
 	fetchWatchDetails: watchActions.action_fetchWatchDetails.request,
+	updateWatchHistory: watchActions.action_updateWatchHistory,
 	fetchRelatedVideos: watchActions.action_fetchRelatedVideos.request,
 	fetchComments: watchActions.action_fetchComments.request,
 	saveVideo: watchActions.action_saveVideo,
