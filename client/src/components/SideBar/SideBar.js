@@ -11,6 +11,7 @@ const SideBar = props => (
 	<Menu borderless vertical stackable fixed="left" className="side-nav">
 		<SideBarItem path="/" label="Home" icon="home" />
 		<SideBarItem path="/feed/trending" label="Trending" icon="fire" />
+		{/* TODO - Followers is a dead link */}
 		<SideBarItem path="/watch" label="Followers" icon="spy" />
 		<Divider />
 		<SideBarHeader title="Library" />

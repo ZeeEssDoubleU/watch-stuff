@@ -12,9 +12,6 @@ import {
 import { selector_youtubeLibraryLoaded } from "../../store/reducers/session";
 
 const WatchLater = props => {
-	// TODO - FIX HISTORY COMPONENT TO PROPERLY LOAD LOCAL STORAGE
-	// TODO - FIX LIKED COMPONENT TO PROPERLY LOAD LOCAL STORAGE
-
 	// effect checks all saved videos for detailed info and fetches missing info
 	useEffect(() => {
 		if (props.youtubeLibraryLoaded && props.savedVideosLoaded) {

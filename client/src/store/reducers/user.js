@@ -268,11 +268,28 @@ export const selector_savedVideoIdsCache = createSelector(
 	saved => (saved ? saved.cache : {}),
 );
 
+export const selector_likedVideoIds = createSelector(
+	state => state.user.liked.videos,
+	likedVids => likedVids,
+);
+
+export const selector_likedVideosLoaded = createSelector(
+	selector_savedVideoIds,
+	state => state.videos.byId,
+	(likedVids, videosById) => {
+		return !likedVids || likedVids.length === 0 || !videosById
+			? false
+			: likedVids.every(item => item.id in videosById);
+	},
+);
+
 export const selector_likedVideos = createSelector(
 	state => state.user.liked.videos,
 	state => state.videos.byId,
 	(likedVids, videos) =>
-		likedVids ? likedVids.map(item => videos[item.id]) : null,
+		likedVids || likedVids.length > 0 
+			? likedVids.map(item => videos[item.id]) 
+			: [],
 );
 
 export const selector_likedIdsCache = createSelector(
