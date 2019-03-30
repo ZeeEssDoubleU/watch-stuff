@@ -23,11 +23,11 @@ const Comment = props => {
 
 	return (
 		<div className="comment-container">
-			<a href={commentAuthorUrl} target="_blank">
+			<a href={commentAuthorUrl} target="_blank" rel="noopener noreferrer">
 				<Image className="user-image" src={commentIcon} circular />
 			</a>
 			<div className="comment-items">
-				<a className="user-name" href={commentAuthorUrl} target="_blank">
+				<a className="user-name" href={commentAuthorUrl} target="_blank" rel="noopener noreferrer">
 					{commentAuthor}
 				</a>
 				<div className="comment-date">{commentDate}</div>

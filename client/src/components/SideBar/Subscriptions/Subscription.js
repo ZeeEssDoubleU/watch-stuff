@@ -7,7 +7,7 @@ import "./Subscription.scss";
 const Subscription = props => {
 	const channelUrl = `https://www.youtube.com/channel/${props.id}`;
 	return (
-		<a className="sidebar-item" href={channelUrl} target="_blank">
+		<a className="sidebar-item" href={channelUrl} target="_blank" rel="noopener noreferrer">
 			<Menu.Item>
 				<div className="sidebar-item-alignment-container">
 					<Image src={props.icon} avatar />

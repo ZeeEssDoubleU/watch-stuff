@@ -127,8 +127,16 @@ const reducer_subscribe = (payload, state) => {
 const reducer_vote = (payload, state) => {
 	const { vote, category, id } = payload;
 	const timestamp = Date.now();
-	const liked = { ...state.liked };
-	const disliked = { ...state.disliked };
+	const liked = {
+		comments: [...state.liked.comments],
+		videos: [...state.liked.videos],
+		cache: { ...state.liked.cache },
+	};
+	const disliked = {
+		comments: [...state.disliked.comments],
+		videos: [...state.disliked.videos],
+		cache: { ...state.disliked.cache },
+	};
 
 	const item = {
 		vote,

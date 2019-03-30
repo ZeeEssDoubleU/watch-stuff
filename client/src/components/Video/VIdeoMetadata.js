@@ -17,6 +17,8 @@ const VideoMetadata = props => {
 	const saveText = isSaved() ? "SAVED" : "SAVE";
 	const highlightSaved = isSaved() ? " highlight" : "";
 
+	console.log("THING THING", saveText);
+
 	return (
 		<div className="video-metadata">
 			<h3>{title}</h3>

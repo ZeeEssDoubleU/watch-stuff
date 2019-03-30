@@ -23,7 +23,7 @@ const SideBarItem = props => {
 		// if path exists, check if path includes 'https://'
 		path.includes("https://") ? (
 			// if includes, assign a tag
-			<a href={`${path}`} className="sidebar-item" target="_blank">
+			<a href={`${path}`} className="sidebar-item" target="_blank" rel="noopener noreferrer">
 				{content}
 			</a>
 		) : (

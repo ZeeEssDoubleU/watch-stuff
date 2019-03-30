@@ -65,7 +65,7 @@ const VideoPreview = props => {
 					<a
 						className="channel-title semi-bold show-max-two-lines"
 						href={channelUrl}
-						target="_blank">
+						target="_blank" rel="noopener noreferrer">
 						{channelTitle}
 					</a>
 					<div className="view-and-time">

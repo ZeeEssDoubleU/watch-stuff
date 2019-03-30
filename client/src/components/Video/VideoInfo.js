@@ -32,11 +32,11 @@ const VideoInfo = props => {
 
 	return (
 		<div className="video-info-container">
-			<a href={channelUrl} target="_blank">
+			<a href={channelUrl} target="_blank" rel="noopener noreferrer">
 				<Image className="channel-image" src={channelIcon} circular />
 			</a>
 			<div className="video-info">
-				<a className="channel-name" href={channelUrl} target="_blank">
+				<a className="channel-name" href={channelUrl} target="_blank" rel="noopener noreferrer">
 					{channelTitle}
 				</a>
 				<div className="videopublication-date">

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { connect } from "react-redux";
 import { Icon, Progress } from "semantic-ui-react";
 // import styles
@@ -19,22 +19,12 @@ const Ratings = props => {
 	// functions that retrieve state of recorded vote
 	const isLiked = () => (props.likedCache[ratingsId] ? true : false);
 	const isDisliked = () => (props.dislikedCache[ratingsId] ? true : false);
-	const isVote = () => {
-		if (isLiked()) return "like";
-		else if (isDisliked()) return "dislike";
-		else return "";
-	};
+
 	// function determines how to submit votes based on ratings type (ie comment, video)
 	const handleVote = vote => {
 		if (isComment) props.submitVote(vote, "comment", commentId);
 		if (isVideo) props.submitVote(vote, "video", videoId);
 	};
-
-	const [vote, setVote] = useState(isVote());
-	// effect updates local vote state (style) when url changes
-	useEffect(() => {
-		setVote(isVote());
-	}, []);
 
 	// class (style) variables
 	const highlightLiked = isLiked() ? " highlight" : "";
@@ -46,8 +36,10 @@ const Ratings = props => {
 	const likes = props.likes
 		? getAbbrevNumber(isLiked() ? props.likes + 1 : props.likes)
 		: getAbbrevNumber(isLiked() ? 1 : 0);
-	const dislikes = props.dislikes
-		? getAbbrevNumber(isDisliked() ? props.dislikes + 1 : props.dislikes)
+	const dislikes = !isComment
+		? props.dislikes
+			? getAbbrevNumber(isDisliked() ? props.dislikes + 1 : props.dislikes)
+			: getAbbrevNumber(isDisliked() ? 1 : 0)
 		: null;
 
 	// toggles visibility of ratings bar
@@ -65,19 +57,13 @@ const Ratings = props => {
 		<div className={"ratings" + commentClass}>
 			<div
 				className={"thumbs-up" + highlightLiked}
-				onClick={() => {
-					handleVote("like");
-					setVote(isVote());
-				}}>
+				onClick={() => handleVote("like")}>
 				<Icon name="thumbs outline up" />
 				<span>{likes}</span>
 			</div>
 			<div
 				className={"thumbs-down" + highlightDisliked}
-				onClick={() => {
-					handleVote("dislike");
-					setVote(isVote());
-				}}>
+				onClick={() => handleVote("dislike")}>
 				<Icon name="thumbs outline down" />
 				<span>{dislikes}</span>
 			</div>
