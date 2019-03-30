@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import VideoList from "../VideoList/VideoList";
 
 import * as searchActions from "../../store/actions/search";
-import { selector_youtubeLibraryLoaded } from "../../store/reducers/user";
+import { selector_youtubeLibraryLoaded } from "../../store/reducers/session";
 import {
 	selector_searchResultsLoaded,
 	selector_searchResults,

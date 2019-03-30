@@ -14,7 +14,7 @@ import Liked from "./components/Feed/Liked";
 import Search from "./components/Search/Search";
 import SideBar from "./components/SideBar/SideBar";
 // import actions / reducers / sagas
-import { action_youtubeLibraryLoaded } from "./store/actions/user";
+import { action_youtubeLibraryLoaded } from "./store/actions/session";
 // import api key
 const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
 

@@ -6,7 +6,7 @@ import HomeContent from "./HomeContent";
 
 // import actions / reducers / sagas
 import * as videoActions from "../../store/actions/videos";
-import { selector_youtubeLibraryLoaded } from "../../store/reducers/user";
+import { selector_youtubeLibraryLoaded } from "../../store/reducers/session";
 import {
 	selector_categories,
 	selector_categoriesLoaded,

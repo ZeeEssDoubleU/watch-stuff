@@ -3,16 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "lodash.throttle": "^4.1.1",
     "moment": "^2.24.0",
     "moment-duration-format": "^2.2.2",
     "node-sass": "^4.11.0",
     "numeral": "^2.0.6",
-    "react": "^16.8.4",
-    "react-dom": "^16.8.4",
+    "react": "^16.8.6",
+    "react-dom": "^16.8.6",
     "react-linkify": "^0.2.2",
     "react-redux": "^6.0.1",
     "react-router-dom": "^4.3.1",
-    "react-scripts": "^2.1.5",
+    "react-scripts": "^2.1.8",
     "react-waypoint": "^9.0.1",
     "redux": "^4.0.1",
     "redux-saga": "^1.0.2",
@@ -38,8 +39,8 @@
   ],
   "devDependencies": {
     "enzyme": "^3.9.0",
-    "enzyme-adapter-react-16": "^1.10.0",
+    "enzyme-adapter-react-16": "^1.11.2",
     "enzyme-to-json": "^3.3.5",
-    "react-test-renderer": "^16.8.4"
+    "react-test-renderer": "^16.8.6"
   }
 }

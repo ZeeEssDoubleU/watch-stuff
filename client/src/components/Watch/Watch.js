@@ -11,10 +11,10 @@ import Comments from "../Comments/Comments";
 
 import * as watchActions from "../../store/actions/watch";
 import {
-	selector_youtubeLibraryLoaded,
 	selector_savedVideoIdsCache,
 	selector_subscriptions,
 } from "../../store/reducers/user";
+import { selector_youtubeLibraryLoaded } from "../../store/reducers/session";
 import { selector_videoById } from "../../store/reducers/videos";
 import {
 	selector_relatedVideos,

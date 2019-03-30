@@ -4,7 +4,6 @@ import * as watchActions from "../actions/watch";
 import * as userActions from "../actions/user";
 
 const initialState = {
-	libraryLoaded: false,
 	history: [],
 	saved: {
 		order: [],
@@ -29,8 +28,6 @@ const initialState = {
 
 const reducer_user = (state = initialState, action) => {
 	switch (action.type) {
-		case userActions.types.YOUTUBE_LIBRARY_LOADED:
-			return reducer_apiLoaded(action.payload, state);
 		case watchActions.types.WATCH_DETAILS_REQUEST:
 			return reducer_watchHistory(action.payload, state);
 		case watchActions.types.SAVE_VIDEO:
@@ -49,13 +46,6 @@ export default reducer_user;
 //***************
 // sub reducers
 //***************
-
-const reducer_apiLoaded = (payload, state) => {
-	return {
-		...state,
-		libraryLoaded: true,
-	};
-};
 
 const reducer_watchHistory = (payload, state) => {
 	const { videoId } = payload;
@@ -225,12 +215,6 @@ const reducer_vote = (payload, state) => {
 //***************
 // selectors
 //***************
-
-export const selector_youtubeLibraryLoaded = createSelector(
-	state => state.user.libraryLoaded,
-	loaded => loaded,
-);
-
 export const selector_watchHistory = createSelector(
 	state => state.user.history,
 	state => state.videos.byId,
@@ -238,11 +222,28 @@ export const selector_watchHistory = createSelector(
 		historyItems ? historyItems.map(item => videos[item.videoId]) : null,
 );
 
+export const selector_savedVideoIdsOrder = createSelector(
+	state => state.user.saved,
+	saved => (saved ? saved.order : null),
+);
+
+export const selector_savedVideosLoaded = createSelector(
+	selector_savedVideoIdsOrder,
+	state => state.videos.byId,
+	(savedItems, videosById) => {
+		return !savedItems || savedItems.length === 0 || !videosById
+			? false
+			: savedItems.every(item => item.id in videosById);
+	},
+);
+
 export const selector_savedVideos = createSelector(
 	state => state.user.saved.order,
 	state => state.videos.byId,
 	(savedItems, videos) =>
-		savedItems ? savedItems.map(item => videos[item.videoId]) : null,
+		savedItems || savedItems.length > 0
+			? savedItems.map(item => videos[item.videoId])
+			: [],
 );
 
 export const selector_savedVideoIdsCache = createSelector(

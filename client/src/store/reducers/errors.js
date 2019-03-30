@@ -20,6 +20,7 @@ const reducer_errors = (state = initialState, action) => {
 				errors: {
 					type: action.type,
 					message: action.payload.message,
+					payload: action.payload.response,
 				},
 			};
 		default:

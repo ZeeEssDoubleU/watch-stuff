@@ -16,6 +16,7 @@ const CommentsHeader = props => {
 				compact
 				icon
 				labelPosition="left">
+				{/* Add functionality to sort comments */}
 				<Icon name="align left" />
 				SORT BY
 			</Button>

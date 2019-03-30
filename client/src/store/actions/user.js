@@ -5,10 +5,6 @@ export const types = {
 	VOTE_DISLIKE: "VOTE_DISLIKE",
 };
 
-export const action_youtubeLibraryLoaded = () => ({
-	type: types.YOUTUBE_LIBRARY_LOADED,
-});
-
 export const action_vote = (vote, category, id) => {
 	return {
 		type: vote === "like" 
