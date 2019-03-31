@@ -15,7 +15,7 @@ import {
 const Trending = props => {
 	// effect fetches mostPopular vids on page/site refresh
 	useEffect(() => {
-		if (props.youtubeLibraryLoaded && !props.mostPopularLoaded) {
+		if (props.youtubeLibraryLoaded) {
 			props.fetchMostPopular(20, true);
 		}
 	}, [props.youtubeLibraryLoaded]);

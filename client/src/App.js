@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { Route, Switch, withRouter } from "react-router-dom";
+import { Route, Switch, withRouter, Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 // import styles
 import "./App.scss";
@@ -13,6 +13,7 @@ import WatchLater from "./components/Feed/WatchLater";
 import Liked from "./components/Feed/Liked";
 import Search from "./components/Search/Search";
 import SideBar from "./components/SideBar/SideBar";
+import NotFound from "./components/NotFound/NotFound";
 // import actions / reducers / sagas
 import { action_youtubeLibraryLoaded } from "./store/actions/session";
 // import api key
@@ -123,7 +124,9 @@ const App = props => {
 					<Route path="/feed/saved" component={WatchLater} />
 					<Route path="/feed/liked" component={Liked} />
 					<Route path="/search/:query" component={Search} />
+					<Redirect from="/search/" to="/" />
 					<Route path="/watch/:videoId" component={Watch} />
+					<Route component={NotFound} />
 				</Switch>
 			</div>
 		</div>

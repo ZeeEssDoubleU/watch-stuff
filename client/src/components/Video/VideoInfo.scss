@@ -36,6 +36,11 @@
       &.ui.button {
          margin: 0;
       }
+
+      &.subscribed {
+         background: #EEEEEE;
+         color: #757575;
+      }
    }
 
    .video-description {

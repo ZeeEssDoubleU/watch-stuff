@@ -8,14 +8,14 @@ const VideoMetadata = props => {
 	if (!props.video) return <div />;
 
 	const videoId = props.video.id;
-	const isSaved = () => (props.savedVideos[videoId] ? true : false);
+	const isSaved = props.savedVideos[videoId] ? true : false;
 
 	const title = props.video.snippet.title;
 	const viewCount = Number(props.video.statistics.viewCount).toLocaleString();
 	const likeCount = Number(props.video.statistics.likeCount);
 	const dislikeCount = Number(props.video.statistics.dislikeCount);
-	const saveText = isSaved() ? "SAVED" : "SAVE";
-	const highlightSaved = isSaved() ? " highlight" : "";
+	const saveText = isSaved ? "SAVED" : "SAVE";
+	const highlightSaved = isSaved ? " highlight" : "";
 
 	return (
 		<div className="video-metadata">

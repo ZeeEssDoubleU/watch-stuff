@@ -1,7 +1,13 @@
 import { createSelector } from "reselect";
+// import actions
 import * as searchActions from "../actions/search";
 
-const initialState = {};
+const initialState = {
+	query: null,
+	totalResults: null,
+	nextPageToken: null,
+	results: [],
+};
 
 //***************
 // root reducer
@@ -23,16 +29,22 @@ export default reducer_search;
 
 const reducer_fetchSearchVideos = (payload, state) => {
 	const { response, query } = payload;
+	const prevQuery = state.query;
 	const prevIds = state.results || [];
 	const newIds = response.items.map(item => item.id.videoId) || [];
 
-	// console.log("PAYLOAD - FETCH SEARCH VIDEOS (SEARCH)", payload);
+	console.log("PAYLOAD - FETCH SEARCH VIDEOS (SEARCH)", payload);
+
+	const results =
+		prevQuery === query
+			? Array.from(new Set([...prevIds, ...newIds]))
+			: newIds;
 
 	return {
 		query,
 		totalResults: response.pageInfo.totalResults,
 		nextPageToken: response.nextPageToken,
-		results: Array.from(new Set([...prevIds, ...newIds])),
+		results,
 	};
 };
 
@@ -43,8 +55,7 @@ const reducer_fetchSearchVideos = (payload, state) => {
 export const selector_searchResultsLoaded = createSelector(
 	state => state.search.results,
 	state => state.videos.byId,
-	(searchIds, videosById) =>
-		searchIds ? searchIds.every(id => id in videosById) : false,
+	(searchIds, videosById) => searchIds.every(id => id in videosById),
 );
 export const selector_searchNPT = createSelector(
 	state => state.search,
@@ -53,5 +64,5 @@ export const selector_searchNPT = createSelector(
 export const selector_searchResults = createSelector(
 	state => state.search.results,
 	state => state.videos.byId,
-	(searchIds, videos) => (searchIds ? searchIds.map(id => videos[id]) : null),
+	(searchIds, videos) => searchIds.map(id => videos[id]),
 );

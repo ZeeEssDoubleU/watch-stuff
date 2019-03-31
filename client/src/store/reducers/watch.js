@@ -87,32 +87,22 @@ const reducer_WatchHistory = (payload, state) => {
 
 export const selector_relatedVideoIds = createSelector(
 	state => state.watch.relatedVideos,
-	related => (related ? related.videoIds : null),
+	related => (related.videoIds ? related.videoIds : []),
 );
 
-// // relatedVideosLoaded - VERSION 1
-// // checks if at least 1 relatedVideo has been loaded to state.videos.byId
-// export const selector_relatedVideosLoaded = createSelector(
-// 	selector_relatedVideos,
-// 	relatedVideos => (relatedVideos ? relatedVideos.length > 0 : false),
-// );
-
-// // relatedVideosLoaded - VERSION 2
-// // checks if ALL relatedVideos have been loaded to state.videos.byId
+// checks if ALL relatedVideos have been loaded to state.videos.byId
 export const selector_relatedVideosLoaded = createSelector(
 	selector_relatedVideoIds,
 	state => state.videos.byId,
-	(relatedIds, videosById) =>
-		relatedIds ? relatedIds.every(id => id in videosById) : false,
+	(relatedIds, videosById) => relatedIds.every(id => id in videosById),
 );
 
 export const selector_relatedVideosNPT = createSelector(
 	state => state.watch.relatedVideos,
-	related => (related ? related.nextPageToken : null),
+	related => (related.nextPageToken ? related.nextPageToken : null),
 );
 export const selector_relatedVideos = createSelector(
 	selector_relatedVideoIds,
 	state => state.videos.byId,
-	(relatedIds, videos) =>
-		relatedIds ? relatedIds.map(videoId => videos[videoId]) : null,
+	(relatedIds, videos) => relatedIds.map(videoId => videos[videoId]),
 );

@@ -71,6 +71,7 @@ export const selector_commentsByVideo = createSelector(
 );
 
 export const selector_commentsCount = createSelector(
+		// requires state and videoid params
 	selector_videoById,
 	video => (video ? video.statistics.commentCount : null),
 );
@@ -81,6 +82,7 @@ export const selector_commentsNPT = createSelector(
 );
 
 export const selector_commentsLoaded = createSelector(
+	// requires state and videoid params
 	selector_commentsByVideo,
 	comments => (comments ? comments.length > 0 : false),
 );

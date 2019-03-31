@@ -21,6 +21,7 @@ const VideoInfo = props => {
 		: null;
 	const channelIcon = channel ? channel.snippet.thumbnails.medium.url : null;
 	const isSubbed = subscriptions[channelId] ? true : false;
+	const subbedClass = isSubbed ? " subscribed" : "";
 	// TODO - Refactor code so that subbing actually updates subCount
 	const subCount = channel
 		? getAbbrevNumber(
@@ -36,7 +37,11 @@ const VideoInfo = props => {
 				<Image className="channel-image" src={channelIcon} circular />
 			</a>
 			<div className="video-info">
-				<a className="channel-name" href={channelUrl} target="_blank" rel="noopener noreferrer">
+				<a
+					className="channel-name"
+					href={channelUrl}
+					target="_blank"
+					rel="noopener noreferrer">
 					{channelTitle}
 				</a>
 				<div className="videopublication-date">
@@ -44,7 +49,7 @@ const VideoInfo = props => {
 				</div>
 			</div>
 			<Button
-				className="subscribe-button"
+				className={"subscribe-button" + subbedClass}
 				color="youtube"
 				onClick={() => subscribe(channelId, channelTitle, channelIcon)}>
 				{isSubbed ? "SUBSCRIBED" : "SUBSCRIBE"} {subCount}

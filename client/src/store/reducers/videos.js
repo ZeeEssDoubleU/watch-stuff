@@ -141,27 +141,6 @@ const reducer_fetchWatchDetails = (payload, state) => {
 	};
 };
 
-// // reducers adds initial search video results to state.videos.byId
-// // another version exists in search.js
-// const reducer_fetchSearchVideos = (payload, state) => {
-// 	const videoMap = {};
-// 	payload.response.items.forEach(item => {
-// 		videoMap[item.id.videoId] = item || null;
-// 	});
-
-// 	// console.log("PAYLOAD - FETCH SEARCH VIDEOS (VIDEOS)", payload);
-// 	// console.log("MAP - RELATED/SEARCH VIDEOS BY ID", videoMap);
-
-// 	// add related video details to byId lookup table
-// 	return {
-// 		...state,
-// 		byId: {
-// 			...state.byId,
-// 			...videoMap,
-// 		},
-// 	};
-// };
-
 // fetches additional data for related videos and adds them to state.videos.byId
 // fetches details for watch related videos and search videos
 const reducer_fetchVideoDetails = (payload, state) => {
@@ -187,43 +166,35 @@ const reducer_fetchVideoDetails = (payload, state) => {
 //***************
 // selectors
 //***************
-export const selector_mostPopularVideos = createSelector(
+
+export const selector_mostPopularIds = createSelector(
 	state => state.videos.mostPopular,
-	state => state.videos.byId,
-	(mostPopular, videosById) => {
-		// return [] - no mostPopular items exist
-		// return array - map videos using mostPopular itemIds to look up video data from videosById
-		return !mostPopular || !mostPopular.itemIds
-			? []
-			: mostPopular.itemIds.map(id => videosById[id]);
-	},
+	mostPopular => (mostPopular.itemIds ? mostPopular.itemIds : []),
 );
 
-// mostPopularLoaded - VERSION 1
 // checks if ALL mostPopular itemIds have been loaded to state.video.byId
 export const selector_mostPopularLoaded = createSelector(
-	state => state.videos.mostPopular,
+	selector_mostPopularIds,
 	state => state.videos.byId,
-	(mostPopular, videosById) => {
-		// return false - no mostPopular itemIds or no videosById exist
-		// return true - every mostPopular itemId exists in videosById
-		// return false - any mostPopular itemId doesn't exist in videosById
-		return !mostPopular || !mostPopular.itemIds || !videosById
-			? false
-			: mostPopular.itemIds.every(id => id in videosById);
-	},
+	// return true - every mostPopular itemId exists in videosById
+	// return false - any mostPopular itemId doesn't exist in videosById
+	// return false - mostPopular array is empty
+	(mostPopular, videosById) =>
+		mostPopular.length > 0
+			? mostPopular.every(id => id in videosById)
+			: false,
 );
 
-// // mostPopularLoaded - VERSION 2
-// // returns true if at least 1 mostPopular video has been loaded to state.video.byId
-// export const selector_mostPopularLoaded = createSelector(
-// 	selector_mostPopularVideos,
-// 	mostPopular => mostPopular.length > 0
-// )
+export const selector_mostPopularVideos = createSelector(
+	selector_mostPopularIds,
+	state => state.videos.byId,
+	(mostPopular, videosById) => mostPopular.map(id => videosById[id]),
+);
 
 export const selector_mostPopularNPT = createSelector(
 	state => state.videos.mostPopular,
-	mostPopular => (mostPopular ? mostPopular.nextPageToken : null),
+	mostPopular =>
+		mostPopular.nextPageToken ? mostPopular.nextPageToken : null,
 );
 
 export const selector_categories = createSelector(
@@ -238,7 +209,7 @@ export const selector_categoriesLoaded = createSelector(
 
 export const selector_validCategoriesLength = createSelector(
 	state => state.videos.byCategory,
-	categories => (categories ? Object.keys(categories).length : 0),
+	categories => Object.keys(categories).length,
 );
 
 // returns object of videos sorted by category names
@@ -248,10 +219,15 @@ export const selector_videosByCategory = createSelector(
 	state => state.videos.byId,
 	(categories, videoIdsByCategory, videosById) => {
 		const byCategory = {};
+		// assign category ids that contain video results
 		const categoryIds = Object.keys(videoIdsByCategory);
 		categoryIds.forEach(categoryId => {
+			// for each category id, assign category name
 			const categoryName = categories[categoryId];
+			// assign category id's video results
 			const videoIds = videoIdsByCategory[categoryId].items;
+			// assign category names to byCategory object
+			// assign array of item object to each category name in byCategory object
 			byCategory[categoryName] = videoIds.map(
 				videoId => videosById[videoId],
 			);
@@ -260,37 +236,31 @@ export const selector_videosByCategory = createSelector(
 	},
 );
 
-// videosByCategoryLoaded - VERSION 1
 // checks if ALL videosByCategory itemIds have been loaded to state.video.byId
 export const selector_videosByCategoryLoaded = createSelector(
 	state => state.videos.byCategory,
 	state => state.videos.byId,
 	(byCategory, videosById) => {
-		const categories = Object.keys(byCategory);
-		const videoIds = Object.keys(videosById);
+		// assign category ids that contain video results
+		const categoryIds = Object.keys(byCategory);
+		// array to keep record of ALL category video ids
 		let totalIds = [];
-		categories.forEach(category => {
+		categoryIds.forEach(category => {
+			// for each category id, assign associated video ids
 			const videoIds = byCategory[category].items;
 			totalIds.push(...videoIds);
 		});
-		// return false - no byCategories or byIds exist
 		// return true - EVERY videosByCategory videoId exists in state.videos.byId
 		// return false - ANY videosByCategory videoId doesn't exist in state.videos.byId
-		return !categories.length || !videoIds.length
-			? false
-			: totalIds.every(id => id in videosById);
+		// return false - totalIds array is empty
+		return totalIds.length > 0
+			? totalIds.every(id => id in videosById)
+			: false;
 	},
 );
 
-// // videosByCategoryLoaded - VERSION 2
-// // return true if at least 1 videosByCategory video has been loaded to state.videos.byId
-// export const selector_videosByCategoryLoaded = createSelector(
-// 	selector_videosByCategoryLength,
-// 	length => length > 0,
-// );
-
 // this selector is mirrored in watch.js as selector_watchDetails
 export const selector_videoById = createSelector(
-	(state, videoId) => state.videos.byId[videoId] || null,
-	video => (video ? video : null),
+	(state, videoId) => state.videos.byId[videoId],
+	video => video,
 );

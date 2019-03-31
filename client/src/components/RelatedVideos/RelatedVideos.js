@@ -1,16 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-
+// import styles
 import "./RelatedVideos.scss";
+// import components
 import NextUpVideo from "./NextUpVideo/NextUpVideo";
 import VideoPreview from "../VideoPreview/VideoPreview";
 import InfiniteScroll from "../InfiniteScroll/InfiniteScroll";
-
-import {
-	selector_relatedVideosNPT,
-	selector_relatedVideosLoaded,
-} from "../../store/reducers/watch";
+// import actions / reducers / sagas
+import { selector_relatedVideosNPT } from "../../store/reducers/watch";
 
 // TODO - Reset scroll bottom to end at 1.5x window height when done testing
 const RelatedVideos = props => {
@@ -71,7 +69,6 @@ const RelatedVideos = props => {
 
 const mapStateToProps = (state, props) => ({
 	relatedNPT: selector_relatedVideosNPT(state, props.videoId),
-	relatedLoaded: selector_relatedVideosLoaded(state, props.videoId),
 });
 
 export default withRouter(

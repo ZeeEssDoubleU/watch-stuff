@@ -223,20 +223,13 @@ export const selector_watchHistoryIds = createSelector(
 export const selector_watchHistoryLoaded = createSelector(
 	selector_watchHistoryIds,
 	state => state.videos.byId,
-	(history, videosById) => {
-		return !history || history.length === 0 || !videosById
-			? false
-			: history.every(item => item.id in videosById);
-	},
+	(history, videosById) => history.every(item => item.videoId in videosById),
 );
 
 export const selector_watchHistoryVideos = createSelector(
 	state => state.user.history,
 	state => state.videos.byId,
-	(historyItems, videos) =>
-		historyItems || historyItems.length > 0
-			? historyItems.map(item => videos[item.videoId])
-			: [],
+	(historyItems, videos) => historyItems.map(item => videos[item.videoId]),
 );
 
 export const selector_savedVideoIds = createSelector(
@@ -247,20 +240,14 @@ export const selector_savedVideoIds = createSelector(
 export const selector_savedVideosLoaded = createSelector(
 	selector_savedVideoIds,
 	state => state.videos.byId,
-	(savedItems, videosById) => {
-		return !savedItems || savedItems.length === 0 || !videosById
-			? false
-			: savedItems.every(item => item.id in videosById);
-	},
+	(savedItems, videosById) =>
+		savedItems.every(item => item.videoId in videosById),
 );
 
 export const selector_savedVideos = createSelector(
 	state => state.user.saved.order,
 	state => state.videos.byId,
-	(savedItems, videos) =>
-		savedItems || savedItems.length > 0
-			? savedItems.map(item => videos[item.videoId])
-			: [],
+	(savedItems, videos) => savedItems.map(item => videos[item.videoId]),
 );
 
 export const selector_savedVideoIdsCache = createSelector(
@@ -276,20 +263,14 @@ export const selector_likedVideoIds = createSelector(
 export const selector_likedVideosLoaded = createSelector(
 	selector_savedVideoIds,
 	state => state.videos.byId,
-	(likedVids, videosById) => {
-		return !likedVids || likedVids.length === 0 || !videosById
-			? false
-			: likedVids.every(item => item.id in videosById);
-	},
+	(likedVids, videosById) =>
+		likedVids.every(item => item.videoId in videosById),
 );
 
 export const selector_likedVideos = createSelector(
 	state => state.user.liked.videos,
 	state => state.videos.byId,
-	(likedVids, videos) =>
-		likedVids || likedVids.length > 0 
-			? likedVids.map(item => videos[item.id]) 
-			: [],
+	(likedVids, videos) => likedVids.map(item => videos[item.id]),
 );
 
 export const selector_likedIdsCache = createSelector(

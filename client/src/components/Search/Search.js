@@ -15,20 +15,18 @@ const Search = props => {
 	const { query } = props.match.params;
 
 	useEffect(() => {
-		if (props.youtubeLibraryLoaded && !props.searchResultsLoaded) {
+		if (props.youtubeLibraryLoaded) {
 			props.fetchSearchVideos(query, null, 20);
 		}
-	}, [props.youtubeLibraryLoaded]);
-   
+	}, [props.youtubeLibraryLoaded, query]);
+
 	// fetchMoreVideos & shouldShowLoader functions used in InfiniteScroll
 	const fetchMoreVideos = () => {
 		if (props.searchNPT && props.searchResultsLoaded) {
 			props.fetchSearchVideos(query, props.searchNPT, 10);
 		}
 	};
-	const shouldShowLoader = () => {
-		return props.searchNPT ? true : false;
-	};
+	const shouldShowLoader = () => (props.searchNPT ? true : false);
 
 	return (
 		<VideoList

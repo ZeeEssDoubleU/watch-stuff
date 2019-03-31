@@ -76,8 +76,8 @@ const Watch = props => {
 const mapStateToProps = (state, props) => ({
 	youtubeLibraryLoaded: selector_youtubeLibraryLoaded(state),
 	video: selector_videoById(state, props.match.params.videoId),
-	relatedVideos: selector_relatedVideos(state, props.match.params.videoId),
-	relatedNPT: selector_relatedVideosNPT(state, props.match.params.videoId),
+	relatedVideos: selector_relatedVideos(state),
+	relatedNPT: selector_relatedVideosNPT(state),
 	channel: selector_channelDetails(state, props.match.params.videoId),
 	comments: selector_commentsByVideo(state, props.match.params.videoId),
 	commentsCount: selector_commentsCount(state, props.match.params.videoId),

@@ -31,6 +31,7 @@ const Liked = props => {
 };
 
 const mapStateToProps = state => ({
+	youtubeLibraryLoaded: selector_youtubeLibraryLoaded(state),
 	likedVideoIds: selector_likedVideoIds(state),
 	likedVideosLoaded: selector_likedVideosLoaded(state),
 	likedVideos: selector_likedVideos(state),

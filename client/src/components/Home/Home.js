@@ -21,13 +21,13 @@ const Home = props => {
 			props.fetchMostPopular();
 		}
 	}, [props.youtubeLibraryLoaded, props.mostPopularLoaded]);
-	// effect loads video ids
+	// effect loads video categories
 	useEffect(() => {
 		if (props.youtubeLibraryLoaded && !props.categoriesLoaded) {
 			props.fetchCategories();
 		}
-	}, [props.youtubeLibraryLoaded, props.CategoriesLoaded]);
-
+	}, [props.youtubeLibraryLoaded, props.categoriesLoaded]);
+	// effect loads most popular videos for each category 
 	useEffect(() => {
 		if (props.categoriesLoaded && !props.byCategoryLoaded) {
 			props.fetchMostPopularByCategory(props.categories);
