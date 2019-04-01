@@ -57,9 +57,13 @@ const reducer_watchHistory = (payload, state) => {
 		videoId,
 		timestamp,
 	};
+
+	// limit history to 50 items
+	const history = [item, ...state.history].slice(0, 50);
+
 	return {
 		...state,
-		history: [item, ...state.history],
+		history,
 	};
 };
 
