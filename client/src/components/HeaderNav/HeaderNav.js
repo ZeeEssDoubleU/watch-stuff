@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 // import styles
 import "./HeaderNav.scss";
 // import assets
-import logo from "../../assets/images/WatchStuff.svg";
+import logo from "../../assets/images/Logo - Full.svg";
 
 const HeaderNav = props => {
 	const [searchQuery, setSearchQuery] = useState("");

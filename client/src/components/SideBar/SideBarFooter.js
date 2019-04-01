@@ -7,6 +7,11 @@ const SideBarFooter = props => {
 		<>
 			<div className="footer-block">
 				<div>A Youtube clone used as a portfolio piece.</div>
+				<br />
+				<div>
+					Built on <strong>React</strong> with{" "}
+					<strong>Semantic UI</strong> by, Me!
+				</div>
 			</div>
 		</>
 	);
