@@ -46,7 +46,7 @@ const VideoPreview = props => {
 		<div className={"video-preview" + horizontal + expanded}>
 			<Link to={`/watch/${video.id}`}>
 				<div className="image-container">
-					<Image src={thumbnail} />
+					<Image src={thumbnail} alt='video preview thumbnail'/>
 					<div className="time-label">
 						<span>{formattedDuration(video)}</span>
 					</div>

@@ -1,15 +1,14 @@
 {
-  "short_name": "WatchStuff",
-  "name": "Youtube React Clone",
-  "icons": [
-    {
-      "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
-      "type": "image/x-icon"
-    }
-  ],
-  "start_url": ".",
-  "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+	"short_name": "WatchStuff",
+	"name": "WatchStuff - Youtube React Clone",
+	"icons": [
+		{
+			"src": "icon.svg",
+			"sizes": "256x256 128x128 64x64 32x32 24x24 16x16"
+		}
+	],
+	"start_url": "/",
+	"display": "standalone",
+	"theme_color": "red",
+	"background_color": "grey"
 }

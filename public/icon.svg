@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="111px" height="128px" viewBox="0 0 111 128" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 47.1 (45422) - http://www.bohemiancoding.com/sketch -->
+    <title>Favicon - 128px</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="55.1724138 8.82758621 119.172414 119.172414 -8.82758621 119.172414"></polygon>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Favicon---128px">
+            <g id="Triangle" transform="translate(55.172414, 64.000000) rotate(90.000000) translate(-55.172414, -64.000000) ">
+                <use fill="#FFFFFF" fill-rule="evenodd" xlink:href="#path-1"></use>
+                <path stroke="#FF0000" stroke-width="7" d="M55.1724138,15.8036153 L-2.75148932,115.672414 L113.096317,115.672414 L55.1724138,15.8036153 Z"></path>
+            </g>
+        </g>
+    </g>
+</svg>

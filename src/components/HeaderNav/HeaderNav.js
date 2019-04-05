@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 // import styles
 import "./HeaderNav.scss";
 // import assets
-import logo from "../../assets/images/Logo - Full.svg";
+import logo from "../../assets/images/logo.svg";
 
 const HeaderNav = props => {
 	const [searchQuery, setSearchQuery] = useState("");
@@ -68,7 +68,11 @@ const HeaderNav = props => {
 						<Icon className="header-icon" name="alarm" size="large" />
 					</Menu.Item>
 					<Menu.Item name="avatar">
-						<Image src="http://via.placeholder.com/80x80" avatar />
+						<Image
+							src="https://via.placeholder.com/80x80"
+							avatar
+							alt="avatar"
+						/>
 					</Menu.Item>
 				</Menu.Item>
 			</Menu.Menu>
