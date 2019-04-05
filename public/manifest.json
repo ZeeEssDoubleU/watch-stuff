@@ -4,35 +4,11 @@
 	"icons": [
 		{
 			"src": "icon.svg",
-			"sizes": "512x512"
-		},
-		{
-			"src": "icon.svg",
-			"sizes": "256x256"
-		},
-		{
-			"src": "icon.svg",
-			"sizes": "128x128"
-		},
-		{
-			"src": "icon.svg",
-			"sizes": "92x92"
-		},
-		{
-			"src": "icon.svg",
-			"sizes": "64x64"
-		},
-		{
-			"src": "icon.svg",
-			"sizes": "48x48"
-		},
-		{
-			"src": "icon.svg",
-			"sizes": "24x24"
+			"sizes": "512x512 256x256 128x128 92x92 64x64 48x48 24x24"
 		}
 	],
 	"start_url": "/",
 	"display": "standalone",
 	"theme_color": "red",
-	"background_color": "grey"
+	"background_color": "black"
 }
