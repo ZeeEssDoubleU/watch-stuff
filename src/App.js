@@ -140,8 +140,6 @@ const App = props => {
 		}
 	}, [props.libraryLoaded]);
 
-	console.log('API INDEX', props.apiIndex);
-
 	return (
 		<div className="app">
 			<HeaderNav toggleSideBar={() => toggleSideBar(!sideBarVisible)} />
