@@ -16,15 +16,32 @@ const reducer_errors = (state = initialState, action) => {
 		case videoActions.types.MOST_POPULAR_BY_CATEGORY_FAILURE:
 		case watchActions.types.WATCH_DETAILS_FAILURE:
 		case watchActions.types.RELATED_VIDEOS_FAILURE:
-			return {
-				errors: {
-					type: action.type,
-					message: action.payload.message,
-					payload: action.payload.response,
-				},
-			};
+			return reducer_error(action, state);
 		default:
 			return state;
 	}
 };
+
 export default reducer_errors;
+
+//***************
+// root reducers
+//***************
+
+const reducer_error = (action, state) => {
+	const { type, payload } = action;
+
+	const error = {
+		type,
+		payload,
+	};
+
+	return {
+		...state,
+		errors: error,
+	};
+};
+
+//***************
+// selectors
+//***************

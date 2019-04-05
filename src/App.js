@@ -16,8 +16,33 @@ import SideBar from "./components/SideBar/SideBar";
 import NotFound from "./components/NotFound/NotFound";
 // import actions / reducers / sagas
 import { action_youtubeLibraryLoaded } from "./store/actions/session";
+import { selector_youtubeLibraryLoaded } from "./store/reducers/session";
+import { action_incrementApiIndex } from "./store/actions/user";
+import { selector_apiIndex } from "./store/reducers/user";
 // import api key
-const API_KEY = process.env.REACT_APP_GOOGLE_API_KEY;
+const API_KEY = [
+	process.env.REACT_APP_GOOGLE_API_KEY_1,
+	process.env.REACT_APP_GOOGLE_API_KEY_2,
+	process.env.REACT_APP_GOOGLE_API_KEY_3,
+	process.env.REACT_APP_GOOGLE_API_KEY_4,
+	process.env.REACT_APP_GOOGLE_API_KEY_5,
+	process.env.REACT_APP_GOOGLE_API_KEY_6,
+	process.env.REACT_APP_GOOGLE_API_KEY_7,
+	process.env.REACT_APP_GOOGLE_API_KEY_8,
+	process.env.REACT_APP_GOOGLE_API_KEY_9,
+	process.env.REACT_APP_GOOGLE_API_KEY_10,
+	process.env.REACT_APP_GOOGLE_API_KEY_11,
+	process.env.REACT_APP_GOOGLE_API_KEY_12,
+	process.env.REACT_APP_GOOGLE_API_KEY_13,
+	process.env.REACT_APP_GOOGLE_API_KEY_14,
+	process.env.REACT_APP_GOOGLE_API_KEY_15,
+	process.env.REACT_APP_GOOGLE_API_KEY_16,
+	process.env.REACT_APP_GOOGLE_API_KEY_17,
+	process.env.REACT_APP_GOOGLE_API_KEY_18,
+	process.env.REACT_APP_GOOGLE_API_KEY_19,
+	process.env.REACT_APP_GOOGLE_API_KEY_20,
+	process.env.REACT_APP_GOOGLE_API_KEY_21,
+];
 
 // TODO - Refactor SideBar to that ref can be assigned to it (like .app-layout)
 const App = props => {
@@ -85,32 +110,35 @@ const App = props => {
 
 	// load youtube api library
 	useEffect(() => {
-		const script = document.createElement("script");
-		script.src = "https://apis.google.com/js/api.js";
+		if (!props.libraryLoaded) {
+			const script = document.createElement("script");
+			script.src = "https://apis.google.com/js/api.js";
 
-		script.onload = () => {
-			window.gapi.load("client", () => {
-				window.gapi.client.setApiKey(API_KEY);
-				window.gapi.client
-					.request(
-						"https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest",
-					)
-					.then(
-						response => {
-							console.log(
-								"RESPONSE - YOUTUBE CLIENT LIBRARY",
-								response.result,
-							);
-							props.action_youtubeLibraryLoaded();
-						},
-						reason => {
-							console.log("Error: " + reason.result.error.message);
-						},
-					);
-			});
-		};
-		document.body.appendChild(script);
-	}, []);
+			script.onload = () => {
+				window.gapi.load("client", () => {
+					window.gapi.client.setApiKey(API_KEY[props.apiIndex]);
+					window.gapi.client
+						.request(
+							"https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest",
+						)
+						.then(
+							response => {
+								console.log(
+									"RESPONSE - YOUTUBE CLIENT LIBRARY",
+									response.result,
+								);
+								props.action_youtubeLibraryLoaded();
+							},
+							reason => {
+								console.log("Error: " + reason.result.error.message);
+							},
+						);
+				});
+			};
+			document.body.appendChild(script);
+			props.action_incrementApiIndex();
+		}
+	}, [props.libraryLoaded]);
 
 	return (
 		<div className="app">
@@ -133,9 +161,14 @@ const App = props => {
 	);
 };
 
+const mapStateToProps = state => ({
+	libraryLoaded: selector_youtubeLibraryLoaded(state),
+	apiIndex: selector_apiIndex(state),
+});
+
 export default withRouter(
 	connect(
-		null,
-		{ action_youtubeLibraryLoaded },
+		mapStateToProps,
+		{ action_youtubeLibraryLoaded, action_incrementApiIndex },
 	)(App),
 );

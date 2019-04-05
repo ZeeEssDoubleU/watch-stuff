@@ -3,7 +3,7 @@
 	"name": "WatchStuff - Youtube React Clone",
 	"icons": [
 		{
-			"src": "icon.svg",
+			"src": "icon.png",
 			"sizes": "512x512 256x256 128x128 92x92 64x64 48x48 24x24"
 		}
 	],

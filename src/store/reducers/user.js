@@ -20,6 +20,7 @@ const initialState = {
 		cache: {},
 	},
 	subscriptions: {},
+	apiIndex: 0,
 };
 
 //***************
@@ -37,6 +38,11 @@ const reducer_user = (state = initialState, action) => {
 		case userActions.types.VOTE_LIKE:
 		case userActions.types.VOTE_DISLIKE:
 			return reducer_vote(action.payload, state);
+		case userActions.types.INCREMENT_API_INDEX:
+			return {
+				...state,
+				apiIndex: state.apiIndex + 1,
+			};
 		default:
 			return state;
 	}
@@ -289,4 +295,9 @@ export const selector_dislikedIdsCache = createSelector(
 export const selector_subscriptions = createSelector(
 	state => state.user.subscriptions,
 	subscriptions => subscriptions,
+);
+
+export const selector_apiIndex = createSelector(
+	state => state.user.apiIndex,
+	index => index,
 );
