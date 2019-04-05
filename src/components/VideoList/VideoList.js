@@ -22,15 +22,17 @@ const VideoList = props => {
 		) : null,
 	);
 
-	if (props.videos.length === 0 && !props.listloaded) {
-		return <div />;
-	}
-	if (props.videos.length === 0 && props.listLoaded) {
-		return (
-			<div className="video-list">
-				<h3>There are no associated videos. Abort. Abort!</h3>;
-			</div>
-		);
+	if (props.videos.length === 0) {
+		if (!props.listLoaded) {
+			return <div />;
+		}
+		if (props.listLoaded) {
+			return (
+				<div className="video-list">
+					<h3>There are no associated videos. Abort. Abort!</h3>
+				</div>
+			);
+		}
 	}
 
 	return (
