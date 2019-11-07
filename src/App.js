@@ -30,18 +30,6 @@ const API_KEY = [
 	process.env.REACT_APP_GOOGLE_API_KEY_7,
 	process.env.REACT_APP_GOOGLE_API_KEY_8,
 	process.env.REACT_APP_GOOGLE_API_KEY_9,
-	process.env.REACT_APP_GOOGLE_API_KEY_10,
-	process.env.REACT_APP_GOOGLE_API_KEY_11,
-	process.env.REACT_APP_GOOGLE_API_KEY_12,
-	process.env.REACT_APP_GOOGLE_API_KEY_13,
-	process.env.REACT_APP_GOOGLE_API_KEY_14,
-	process.env.REACT_APP_GOOGLE_API_KEY_15,
-	process.env.REACT_APP_GOOGLE_API_KEY_16,
-	process.env.REACT_APP_GOOGLE_API_KEY_17,
-	process.env.REACT_APP_GOOGLE_API_KEY_18,
-	process.env.REACT_APP_GOOGLE_API_KEY_19,
-	process.env.REACT_APP_GOOGLE_API_KEY_20,
-	process.env.REACT_APP_GOOGLE_API_KEY_21,
 ];
 
 // TODO - Refactor SideBar to that ref can be assigned to it (like .app-layout)
