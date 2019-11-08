@@ -57,13 +57,15 @@ const Ratings = props => {
 		<div className={"ratings" + commentClass}>
 			<div
 				className={"thumbs-up" + highlightLiked}
-				onClick={() => handleVote("like")}>
+				onClick={() => handleVote("like")}
+			>
 				<Icon name="thumbs outline up" />
 				<span>{likes}</span>
 			</div>
 			<div
 				className={"thumbs-down" + highlightDisliked}
-				onClick={() => handleVote("dislike")}>
+				onClick={() => handleVote("dislike")}
+			>
 				<Icon name="thumbs outline down" />
 				<span>{dislikes}</span>
 			</div>

@@ -5,7 +5,7 @@ import * as videosActions from "../actions/videos";
 import * as searchActions from "../actions/search";
 
 const initialState = {
-	youtubeLibraryLoaded: false,
+	libraryLoaded: false,
 	listLoaded: false,
 };
 

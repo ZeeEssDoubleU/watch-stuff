@@ -10,6 +10,11 @@ import configureStore from "./store/configureStore";
 import App from "./App";
 import ScrollToTop from "./components/ScrollToTop/ScrollToTop";
 
+// dotenv needed to protect API keys
+if (process.env.NODE_ENV !== "production") {
+	require("dotenv/config");
+}
+
 const store = configureStore();
 
 ReactDOM.render(

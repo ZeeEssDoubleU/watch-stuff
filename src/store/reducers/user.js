@@ -39,10 +39,8 @@ const reducer_user = (state = initialState, action) => {
 		case userActions.types.VOTE_DISLIKE:
 			return reducer_vote(action.payload, state);
 		case userActions.types.INCREMENT_API_INDEX:
-			return {
-				...state,
-				apiIndex: state.apiIndex + 1,
-			};
+		case userActions.types.RESET_API_INDEX:
+			return reducer_apiIndex(action.payload, state);
 		default:
 			return state;
 	}
@@ -52,7 +50,6 @@ export default reducer_user;
 //***************
 // sub reducers
 //***************
-
 const reducer_watchHistory = (payload, state) => {
 	const { videoId } = payload;
 	const timestamp = Date.now();
@@ -122,6 +119,24 @@ const reducer_subscribe = (payload, state) => {
 		...state,
 		subscriptions: newSubs,
 	};
+};
+
+const reducer_apiIndex = (payload, state) => {
+	const { update } = payload;
+
+	if (update === "increment") {
+		return {
+			...state,
+			apiIndex: state.apiIndex + 1,
+		};
+	}
+
+	if (update === "reset") {
+		return {
+			...state,
+			apiIndex: 0,
+		};
+	}
 };
 
 const reducer_vote = (payload, state) => {

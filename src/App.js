@@ -17,19 +17,13 @@ import NotFound from "./components/NotFound/NotFound";
 // import actions / reducers / sagas
 import { action_youtubeLibraryLoaded } from "./store/actions/session";
 import { selector_youtubeLibraryLoaded } from "./store/reducers/session";
-import { action_incrementApiIndex } from "./store/actions/user";
+import { action_updateApiIndex } from "./store/actions/user";
 import { selector_apiIndex } from "./store/reducers/user";
 // import api key
 const API_KEY = [
-	process.env.REACT_APP_GOOGLE_API_KEY_1,
-	process.env.REACT_APP_GOOGLE_API_KEY_2,
-	process.env.REACT_APP_GOOGLE_API_KEY_3,
-	process.env.REACT_APP_GOOGLE_API_KEY_4,
-	process.env.REACT_APP_GOOGLE_API_KEY_5,
-	process.env.REACT_APP_GOOGLE_API_KEY_6,
-	process.env.REACT_APP_GOOGLE_API_KEY_7,
-	process.env.REACT_APP_GOOGLE_API_KEY_8,
-	process.env.REACT_APP_GOOGLE_API_KEY_9,
+	process.env.REACT_APP_GOOGLE_API_KEY_00,
+	process.env.REACT_APP_GOOGLE_API_KEY_01,
+	process.env.REACT_APP_GOOGLE_API_KEY_02,
 ];
 
 // TODO - Refactor SideBar to that ref can be assigned to it (like .app-layout)
@@ -102,29 +96,33 @@ const App = props => {
 			const script = document.createElement("script");
 			script.src = "https://apis.google.com/js/api.js";
 
-			script.onload = () => {
-				window.gapi.load("client", () => {
-					window.gapi.client.setApiKey(API_KEY[props.apiIndex]);
-					window.gapi.client
-						.request(
+			// *** init javascript client library ***
+			const initClient = async () => {
+				window.gapi.client.init({ apiKey: API_KEY[props.apiIndex] });
+				try {
+					// *** make api request ***
+					const response = await window.gapi.client.request({
+						path:
 							"https://www.googleapis.com/discovery/v1/apis/youtube/v3/rest",
-						)
-						.then(
-							response => {
-								console.log(
-									"RESPONSE - YOUTUBE CLIENT LIBRARY",
-									response.result,
-								);
-								props.action_youtubeLibraryLoaded();
-							},
-							reason => {
-								console.log("Error: " + reason.result.error.message);
-							},
-						);
-				});
+					});
+					console.log(
+						"RESPONSE - YOUTUBE CLIENT LIBRARY",
+						response.result,
+					);
+					props.action_youtubeLibraryLoaded();
+				} catch (reason) {
+					console.log("Error: " + reason.result.error.message);
+				}
 			};
+
+			// *** load javascript client library ***
+			script.onload = () => window.gapi.load("client", initClient);
 			document.body.appendChild(script);
-			props.action_incrementApiIndex();
+
+			// if at end of api index, reset index.  Otherwise, increment index
+			props.apiIndex >= API_KEY.length - 1
+				? props.action_updateApiIndex("reset")
+				: props.action_updateApiIndex("increment");
 		}
 	}, [props.libraryLoaded]);
 
@@ -157,6 +155,6 @@ const mapStateToProps = state => ({
 export default withRouter(
 	connect(
 		mapStateToProps,
-		{ action_youtubeLibraryLoaded, action_incrementApiIndex },
+		{ action_youtubeLibraryLoaded, action_updateApiIndex },
 	)(App),
 );
